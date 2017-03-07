@@ -1,21 +1,21 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.tag.UniqueTagList;
+import seedu.task.model.tag.UniqueTagList;
+import seedu.task.model.task.EndDateTime;
+import seedu.task.model.task.StartDateTime;
+import seedu.task.model.task.Name;
+import seedu.task.model.task.Description;
+import seedu.task.model.task.ReadOnlyTask;
 
 /**
  * A mutable person object. For testing only.
  */
-public class TestPerson implements ReadOnlyPerson {
+public class TestPerson implements ReadOnlyTask {
 
     private Name name;
-    private Address address;
-    private Email email;
-    private Phone phone;
+    private EndDateTime address;
+    private StartDateTime email;
+    private Description phone;
     private UniqueTagList tags;
 
     public TestPerson() {
@@ -37,15 +37,15 @@ public class TestPerson implements ReadOnlyPerson {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(EndDateTime address) {
         this.address = address;
     }
 
-    public void setEmail(Email email) {
+    public void setEmail(StartDateTime email) {
         this.email = email;
     }
 
-    public void setPhone(Phone phone) {
+    public void setPhone(Description phone) {
         this.phone = phone;
     }
 
@@ -59,17 +59,17 @@ public class TestPerson implements ReadOnlyPerson {
     }
 
     @Override
-    public Phone getPhone() {
+    public Description getPhone() {
         return phone;
     }
 
     @Override
-    public Email getEmail() {
+    public StartDateTime getEmail() {
         return email;
     }
 
     @Override
-    public Address getAddress() {
+    public EndDateTime getAddress() {
         return address;
     }
 
