@@ -37,6 +37,20 @@ public class EditCommandTest extends TaskListGuiTest {
     }
 
     @Test
+    public void edit_clearDateTime_success() throws Exception {
+        String detailsToEdit = "Walk the dog d/Take Zelda on a walk around the park "
+                + "s/ e/ t/Incomplete";
+        int taskListIndex = 1;
+
+        TestTask editedTask = new TaskBuilder().withName("Walk the dog")
+                .withDescription("Take Zelda on a walk around the park")
+                .withStartDateTime("")
+                .withEndDateTime("").withTags("Incomplete").build();
+
+        assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
+    }
+
+    @Test
     public void edit_notAllFieldsSpecified_success() throws Exception {
         String detailsToEdit = "t/sweetie t/bestie";
         int taskListIndex = 2;
