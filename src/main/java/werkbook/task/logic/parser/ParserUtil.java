@@ -91,20 +91,32 @@ public class ParserUtil {
      * Parses a {@code Optional<String> endDateTime} into an
      * {@code Optional<EndDateTime>} if {@code endDateTime} is present.
      */
-    public static Optional<EndDateTime> parseEndDateTime(Optional<String> endDateTime)
+    public static Optional<Optional<EndDateTime>> parseEndDateTime(Optional<String> endDateTime)
             throws IllegalValueException {
         assert endDateTime != null;
-        return endDateTime.isPresent() ? Optional.of(new EndDateTime(endDateTime.get())) : Optional.empty();
+        if (!endDateTime.isPresent()) {
+            return Optional.empty();
+        } else {
+            return !endDateTime.get().trim().equals("") ?
+                    Optional.of(Optional.of(new EndDateTime(endDateTime.get()))) :
+                    Optional.of(Optional.empty());
+        }
     }
 
     /**
      * Parses a {@code Optional<String> startDateTime} into an {@code Optional<StartDateTime>}
      * if {@code startDateTime} is present.
      */
-    public static Optional<StartDateTime> parseStartDateTime(Optional<String> startDateTime)
+    public static Optional<Optional<StartDateTime>> parseStartDateTime(Optional<String> startDateTime)
             throws IllegalValueException {
         assert startDateTime != null;
-        return startDateTime.isPresent() ? Optional.of(new StartDateTime(startDateTime.get())) : Optional.empty();
+        if (!startDateTime.isPresent()) {
+            return Optional.empty();
+        } else {
+            return !startDateTime.get().trim().equals("") ?
+                    Optional.of(Optional.of(new StartDateTime(startDateTime.get()))) :
+                    Optional.of(Optional.empty());
+        }
     }
 
     /**

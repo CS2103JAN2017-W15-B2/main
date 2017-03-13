@@ -81,8 +81,10 @@ public class EditCommand extends Command {
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         Description updatedDescription = editTaskDescriptor.getDescription()
                 .orElseGet(taskToEdit::getDescription);
-        Optional<StartDateTime> updatedStartDateTime = editTaskDescriptor.getStartDateTime();
-        Optional<EndDateTime> updatedEndDateTime = editTaskDescriptor.getEndDateTime();
+        Optional<StartDateTime> updatedStartDateTime = editTaskDescriptor.getStartDateTime()
+                .orElseGet(taskToEdit::getStartDateTime);
+        Optional<EndDateTime> updatedEndDateTime = editTaskDescriptor.getEndDateTime()
+                .orElseGet(taskToEdit::getEndDateTime);
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
         return new Task(updatedName, updatedDescription, updatedStartDateTime, updatedEndDateTime,
@@ -96,8 +98,8 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();
         private Optional<Description> description = Optional.empty();
-        private Optional<StartDateTime> startDateTime = Optional.empty();
-        private Optional<EndDateTime> endDateTime = Optional.empty();
+        private Optional<Optional<StartDateTime>> startDateTime = Optional.empty();
+        private Optional<Optional<EndDateTime>> endDateTime = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditTaskDescriptor() {
@@ -137,21 +139,21 @@ public class EditCommand extends Command {
             return description;
         }
 
-        public void setStartDateTime(Optional<StartDateTime> startDateTime) {
+        public void setStartDateTime(Optional<Optional<StartDateTime>> startDateTime) {
             assert startDateTime != null;
             this.startDateTime = startDateTime;
         }
 
-        public Optional<StartDateTime> getStartDateTime() {
+        public Optional<Optional<StartDateTime>> getStartDateTime() {
             return startDateTime;
         }
 
-        public void setEndDateTime(Optional<EndDateTime> endDateTime) {
+        public void setEndDateTime(Optional<Optional<EndDateTime>> endDateTime) {
             assert endDateTime != null;
             this.endDateTime = endDateTime;
         }
 
-        public Optional<EndDateTime> getEndDateTime() {
+        public Optional<Optional<EndDateTime>> getEndDateTime() {
             return endDateTime;
         }
 
