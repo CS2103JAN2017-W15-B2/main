@@ -1,5 +1,8 @@
 package werkbook.task.testutil;
 
+
+import java.util.Optional;
+
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.model.tag.Tag;
 import werkbook.task.model.tag.UniqueTagList;
@@ -45,12 +48,16 @@ public class TaskBuilder {
     }
 
     public TaskBuilder withStartDateTime(String startDateTime) throws IllegalValueException {
-        this.task.setStartDateTime(new StartDateTime(startDateTime));
+        this.task.setStartDateTime(!startDateTime.equals("") ?
+                Optional.of(new StartDateTime(startDateTime)) :
+                Optional.empty());
         return this;
     }
 
     public TaskBuilder withEndDateTime(String endDateTime) throws IllegalValueException {
-        this.task.setEndDateTime(new EndDateTime(endDateTime));
+        this.task.setEndDateTime(!endDateTime.equals("") ?
+                Optional.of(new EndDateTime(endDateTime)) :
+                Optional.empty());
         return this;
     }
 

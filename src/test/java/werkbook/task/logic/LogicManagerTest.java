@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -451,8 +452,8 @@ public class LogicManagerTest {
         Task adam() throws Exception {
             Name name = new Name("Email Adam Brown");
             Description description = new Description("By lunch time");
-            StartDateTime startDateTime = new StartDateTime("01/01/1980 0000");
-            EndDateTime endDateTime = new EndDateTime("01/01/1980 0500");
+            Optional<StartDateTime> startDateTime = Optional.of(new StartDateTime("01/01/1980 0000"));
+            Optional<EndDateTime> endDateTime = Optional.of(new EndDateTime("01/01/1980 0500"));
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -468,7 +469,8 @@ public class LogicManagerTest {
          */
         Task generateTask(int seed) throws Exception {
             return new Task(new Name("Task " + seed), new Description("" + Math.abs(seed)),
-                    new StartDateTime("01/01/2016 0900"), new EndDateTime("02/01/2016 1000"),
+                    Optional.of(new StartDateTime("01/01/2016 0900")),
+                    Optional.of(new EndDateTime("02/01/2016 1000")),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1))));
         }
 
@@ -565,8 +567,8 @@ public class LogicManagerTest {
          * dummy values.
          */
         Task generateTaskWithName(String name) throws Exception {
-            return new Task(new Name(name), new Description("1"), new StartDateTime("01/01/1980 0000"),
-                    new EndDateTime("01/01/1980 0100"), new UniqueTagList(new Tag("tag")));
+            return new Task(new Name(name), new Description("1"), Optional.of(new StartDateTime("01/01/1980 0000")),
+                    Optional.of(new EndDateTime("01/01/1980 0100")), new UniqueTagList(new Tag("tag")));
         }
     }
 }
