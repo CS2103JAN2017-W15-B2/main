@@ -1,6 +1,7 @@
 package werkbook.task.model.task;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import werkbook.task.commons.util.CollectionUtil;
 import werkbook.task.model.tag.UniqueTagList;
@@ -13,15 +14,16 @@ public class Task implements ReadOnlyTask {
 
     private Name name;
     private Description description;
-    private StartDateTime startDateTime;
-    private EndDateTime endDateTime;
+    private Optional<StartDateTime> startDateTime;
+    private Optional<EndDateTime> endDateTime;
 
     private UniqueTagList tags;
 
     /**
      * Name must be present and not null.
      */
-    public Task(Name name, Description description, StartDateTime startDateTime, EndDateTime endDateTime,
+    public Task(Name name, Description description,
+            Optional<StartDateTime> startDateTime, Optional<EndDateTime> endDateTime,
             UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
@@ -60,20 +62,20 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
-    public StartDateTime getStartDateTime() {
+    public Optional<StartDateTime> getStartDateTime() {
         return startDateTime;
     }
 
-    public void setStartDateTime(StartDateTime startDateTime) {
+    public void setStartDateTime(Optional<StartDateTime> startDateTime) {
         this.startDateTime = startDateTime;
     }
 
     @Override
-    public EndDateTime getEndDateTime() {
+    public Optional<EndDateTime> getEndDateTime() {
         return endDateTime;
     }
 
-    public void setEndDateTime(EndDateTime endDateTime) {
+    public void setEndDateTime(Optional<EndDateTime> endDateTime) {
         this.endDateTime = endDateTime;
     }
 
