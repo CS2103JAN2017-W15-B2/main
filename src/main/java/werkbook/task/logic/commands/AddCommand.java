@@ -37,16 +37,19 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, String description,
+    public AddCommand(String name, Optional<Description> description,
             Optional<StartDateTime> startDateTime, Optional<EndDateTime> endDateTime, Set<String> tags)
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        if (!description.isPresent()) {
+            description = Optional.of(new Description(""));
+        }
         this.toAdd = new Task(
                 new Name(name),
-                new Description(description),
+                description.get(),
                 startDateTime,
                 endDateTime,
                 new UniqueTagList(tagSet)
