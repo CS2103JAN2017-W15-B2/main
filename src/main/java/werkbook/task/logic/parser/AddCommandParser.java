@@ -30,8 +30,8 @@ public class AddCommandParser {
             return new AddCommand(
                     argsTokenizer.getPreamble().get(),
                     argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
-                    argsTokenizer.getValue(PREFIX_STARTDATETIME).get(),
-                    argsTokenizer.getValue(PREFIX_ENDDATETIME).get(),
+                    ParserUtil.parseStartDateTime(argsTokenizer.getValue(PREFIX_STARTDATETIME)),
+                    ParserUtil.parseEndDateTime(argsTokenizer.getValue(PREFIX_ENDDATETIME)),
                     ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
             );
         } catch (NoSuchElementException nsee) {
