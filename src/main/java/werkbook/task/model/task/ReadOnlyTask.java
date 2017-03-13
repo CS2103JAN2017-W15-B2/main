@@ -1,5 +1,7 @@
 package werkbook.task.model.task;
 
+import java.util.Optional;
+
 import werkbook.task.model.tag.UniqueTagList;
 
 /**
@@ -10,8 +12,8 @@ public interface ReadOnlyTask {
 
     Name getName();
     Description getDescription();
-    StartDateTime getStartDateTime();
-    EndDateTime getEndDateTime();
+    Optional<StartDateTime> getStartDateTime();
+    Optional<EndDateTime> getEndDateTime();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -40,9 +42,11 @@ public interface ReadOnlyTask {
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Start Date/Time: ")
-                .append(getStartDateTime())
+                .append(getStartDateTime().isPresent() ?
+                        getStartDateTime().get() : "")
                 .append(" End Date/Time: ")
-                .append(getEndDateTime())
+                .append(getEndDateTime().isPresent() ?
+                        getEndDateTime().get() : "")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

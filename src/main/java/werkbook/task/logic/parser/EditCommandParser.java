@@ -48,8 +48,9 @@ public class EditCommandParser {
                     .setDescription(ParserUtil.parseDescription(argsTokenizer.getValue(PREFIX_DESCRIPTION)));
             editTaskDescriptor.setStartDateTime(
                     ParserUtil.parseStartDateTime(argsTokenizer.getValue(PREFIX_STARTDATETIME)));
-            editTaskDescriptor
-                    .setEndDateTime(ParserUtil.parseEndDateTime(argsTokenizer.getValue(PREFIX_ENDDATETIME)));
+            editTaskDescriptor.setEndDateTime(argsTokenizer.hasPrefix(PREFIX_ENDDATETIME) ?
+                    ParserUtil.parseEndDateTime(argsTokenizer.getValue(PREFIX_ENDDATETIME)) :
+                    Optional.empty());
             editTaskDescriptor
                     .setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
         } catch (IllegalValueException ive) {

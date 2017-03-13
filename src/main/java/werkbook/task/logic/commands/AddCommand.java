@@ -1,6 +1,7 @@
 package werkbook.task.logic.commands;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import werkbook.task.commons.exceptions.IllegalValueException;
@@ -36,17 +37,24 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, String description, String startDateTime, String endDateTime, Set<String> tags)
+    public AddCommand(String name, Optional<Description> description,
+            Optional<StartDateTime> startDateTime, Optional<EndDateTime> endDateTime, Set<String> tags)
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        if (!description.isPresent()) {
+            description = Optional.of(new Description(""));
+        }
+        if (startDateTime.isPresent() && !endDateTime.isPresent()) {
+            throw new IllegalValueException("End date and time must be specified if Start date and time is specified.");
+        }
         this.toAdd = new Task(
                 new Name(name),
-                new Description(description),
-                new StartDateTime(startDateTime),
-                new EndDateTime(endDateTime),
+                description.get(),
+                startDateTime,
+                endDateTime,
                 new UniqueTagList(tagSet)
         );
     }

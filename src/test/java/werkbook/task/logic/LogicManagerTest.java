@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -199,16 +200,8 @@ public class LogicManagerTest {
     @Test
     public void execute_add_invalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-        assertCommandFailure("add wrong args wrong args", expectedMessage);
-        // No description prefix
-        assertCommandFailure("add Valid Name 12345 s/01/01/1980 e/01/01/1980",
-                expectedMessage);
-        // No start date prefix
-        assertCommandFailure("add Valid Name p/12345 01/01/1980 e/01/01/1980",
-                expectedMessage);
-        // No end date prefix
-        assertCommandFailure("add Valid Name p/12345 s/01/01/1980 01/01/1980",
-                expectedMessage);
+        // Adding without name or arguments
+        assertCommandFailure("add", expectedMessage);
     }
 
     @Test
@@ -235,20 +228,6 @@ public class LogicManagerTest {
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedTaskList,
                 expectedTaskList.getTaskList());
-
-    }
-
-    @Test
-    public void execute_addDuplicate_notAllowed() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
-
-        // setup starting state
-        model.addTask(toBeAdded); // task already in internal task ist
-
-        // execute command and verify result
-        assertCommandFailure(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
     }
 
@@ -451,8 +430,8 @@ public class LogicManagerTest {
         Task adam() throws Exception {
             Name name = new Name("Email Adam Brown");
             Description description = new Description("By lunch time");
-            StartDateTime startDateTime = new StartDateTime("01/01/1980 0000");
-            EndDateTime endDateTime = new EndDateTime("01/01/1980 0500");
+            Optional<StartDateTime> startDateTime = Optional.of(new StartDateTime("01/01/1980 0000"));
+            Optional<EndDateTime> endDateTime = Optional.of(new EndDateTime("01/01/1980 0500"));
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -468,7 +447,8 @@ public class LogicManagerTest {
          */
         Task generateTask(int seed) throws Exception {
             return new Task(new Name("Task " + seed), new Description("" + Math.abs(seed)),
-                    new StartDateTime("01/01/2016 0900"), new EndDateTime("02/01/2016 1000"),
+                    Optional.of(new StartDateTime("01/01/2016 0900")),
+                    Optional.of(new EndDateTime("02/01/2016 1000")),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1))));
         }
 
@@ -480,8 +460,8 @@ public class LogicManagerTest {
 
             cmd.append(p.getName().toString());
             cmd.append(" d/").append(p.getDescription().toString());
-            cmd.append(" s/").append(p.getStartDateTime().toString());
-            cmd.append(" e/").append(p.getEndDateTime().toString());
+            cmd.append(" s/").append(p.getStartDateTime().get().toString());
+            cmd.append(" e/").append(p.getEndDateTime().get().toString());
 
             UniqueTagList tags = p.getTags();
             for (Tag t : tags) {
@@ -565,8 +545,8 @@ public class LogicManagerTest {
          * dummy values.
          */
         Task generateTaskWithName(String name) throws Exception {
-            return new Task(new Name(name), new Description("1"), new StartDateTime("01/01/1980 0000"),
-                    new EndDateTime("01/01/1980 0100"), new UniqueTagList(new Tag("tag")));
+            return new Task(new Name(name), new Description("1"), Optional.of(new StartDateTime("01/01/1980 0000")),
+                    Optional.of(new EndDateTime("01/01/1980 0100")), new UniqueTagList(new Tag("tag")));
         }
     }
 }

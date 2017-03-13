@@ -9,7 +9,6 @@ import guitests.guihandles.TaskCardHandle;
 import werkbook.task.commons.core.Messages;
 import werkbook.task.logic.commands.EditCommand;
 import werkbook.task.model.tag.Tag;
-import werkbook.task.model.task.EndDateTime;
 import werkbook.task.model.task.Name;
 import werkbook.task.model.task.StartDateTime;
 import werkbook.task.testutil.TaskBuilder;
@@ -33,6 +32,20 @@ public class EditCommandTest extends TaskListGuiTest {
                 .withDescription("Take Zelda on a walk around the park")
                 .withStartDateTime("01/01/2016 0900")
                 .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
+
+        assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
+    }
+
+    @Test
+    public void edit_clearDateTime_success() throws Exception {
+        String detailsToEdit = "Walk the dog d/Take Zelda on a walk around the park "
+                + "s/ e/ t/Incomplete";
+        int taskListIndex = 1;
+
+        TestTask editedTask = new TaskBuilder().withName("Walk the dog")
+                .withDescription("Take Zelda on a walk around the park")
+                .withStartDateTime("")
+                .withEndDateTime("").withTags("Incomplete").build();
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
@@ -101,9 +114,6 @@ public class EditCommandTest extends TaskListGuiTest {
 
         commandBox.runCommand("edit 1 s/yahoo!!!");
         assertResultMessage(StartDateTime.MESSAGE_START_DATETIME_CONSTRAINTS);
-
-        commandBox.runCommand("edit 1 e/");
-        assertResultMessage(EndDateTime.MESSAGE_END_DATETIME_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 t/*&");
         assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);

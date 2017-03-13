@@ -1,5 +1,7 @@
 package werkbook.task.testutil;
 
+import java.util.Optional;
+
 import werkbook.task.model.tag.UniqueTagList;
 import werkbook.task.model.task.Description;
 import werkbook.task.model.task.EndDateTime;
@@ -14,8 +16,8 @@ public class TestTask implements ReadOnlyTask {
 
     private Name name;
     private Description description;
-    private StartDateTime startDateTime;
-    private EndDateTime endDateTime;
+    private Optional<StartDateTime> startDateTime;
+    private Optional<EndDateTime> endDateTime;
     private UniqueTagList tags;
 
     public TestTask() {
@@ -41,11 +43,11 @@ public class TestTask implements ReadOnlyTask {
         this.description = description;
     }
 
-    public void setStartDateTime(StartDateTime startDateTime) {
+    public void setStartDateTime(Optional<StartDateTime> startDateTime) {
         this.startDateTime = startDateTime;
     }
 
-    public void setEndDateTime(EndDateTime endDateTime) {
+    public void setEndDateTime(Optional<EndDateTime> endDateTime) {
         this.endDateTime = endDateTime;
     }
 
@@ -64,12 +66,12 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public StartDateTime getStartDateTime() {
+    public Optional<StartDateTime> getStartDateTime() {
         return startDateTime;
     }
 
     @Override
-    public EndDateTime getEndDateTime() {
+    public Optional<EndDateTime> getEndDateTime() {
         return endDateTime;
     }
 
@@ -87,8 +89,8 @@ public class TestTask implements ReadOnlyTask {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().taskName + " ");
         sb.append("d/" + this.getDescription().toString() + " ");
-        sb.append("s/" + this.getStartDateTime().toString() + " ");
-        sb.append("e/" + this.getEndDateTime().toString() + " ");
+        sb.append("s/" + this.getStartDateTime().get().toString() + " ");
+        sb.append("e/" + this.getEndDateTime().get().toString() + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }

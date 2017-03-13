@@ -8,6 +8,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
@@ -76,32 +77,32 @@ public class TestUtil {
             // CHECKSTYLE.OFF: LineLength
             return new Task[] {
                 new Task(new Name("Walk the dog"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the cat"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the cow"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the wolf"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the fish"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the lion"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the elephant"),
                         new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the tiger"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()),
                 new Task(new Name("Walk the zebra"), new Description("Take Zelda on a walk at the park"),
-                        new StartDateTime("01/01/2016 0900"), new EndDateTime("01/01/2016 1000"),
+                        Optional.of(new StartDateTime("01/01/2016 0900")), Optional.of(new EndDateTime("01/01/2016 1000")),
                         new UniqueTagList()) };
             // CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {

@@ -74,6 +74,13 @@ public class ArgumentTokenizer {
         }
     }
 
+    /**
+     * Returns if given prefix exists in the command
+     */
+    public boolean hasPrefix(Prefix prefix) {
+        return this.tokenizedArguments.containsKey(prefix);
+    }
+
     private void resetTokenizerState() {
         this.tokenizedArguments.clear();
     }
