@@ -2,6 +2,7 @@ package werkbook.task.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -47,8 +48,8 @@ public class XmlAdaptedTask {
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().taskName;
         description = source.getDescription().toString();
-        startDateTime = source.getStartDateTime().toString();
-        endDateTime = source.getEndDateTime().toString();
+        startDateTime = source.getStartDateTime().isPresent() ? source.getStartDateTime().get().toString() : "";
+        endDateTime = source.getEndDateTime().isPresent() ? source.getEndDateTime().get().toString() : "";
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -67,8 +68,10 @@ public class XmlAdaptedTask {
         }
         final Name name = new Name(this.name);
         final Description description = new Description(this.description);
-        final StartDateTime startDateTime = new StartDateTime(this.startDateTime);
-        final EndDateTime endDateTime = new EndDateTime(this.endDateTime);
+        final Optional<StartDateTime> startDateTime = this.startDateTime.equals("") ?
+                Optional.empty() : Optional.of(new StartDateTime(this.startDateTime));
+        final Optional<EndDateTime> endDateTime = this.endDateTime.equals("") ?
+                Optional.empty() : Optional.of(new EndDateTime(this.endDateTime));
         final UniqueTagList tags = new UniqueTagList(taskTags);
         return new Task(name, description, startDateTime, endDateTime, tags);
     }
