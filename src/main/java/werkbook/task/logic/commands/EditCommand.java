@@ -81,10 +81,8 @@ public class EditCommand extends Command {
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         Description updatedDescription = editTaskDescriptor.getDescription()
                 .orElseGet(taskToEdit::getDescription);
-        StartDateTime updatedStartDateTime = editTaskDescriptor.getStartDateTime()
-                .orElseGet(taskToEdit::getStartDateTime);
-        EndDateTime updatedEndDateTime = editTaskDescriptor.getEndDateTime()
-                .orElseGet(taskToEdit::getEndDateTime);
+        Optional<StartDateTime> updatedStartDateTime = editTaskDescriptor.getStartDateTime();
+        Optional<EndDateTime> updatedEndDateTime = editTaskDescriptor.getEndDateTime();
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
         return new Task(updatedName, updatedDescription, updatedStartDateTime, updatedEndDateTime,
