@@ -240,20 +240,6 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_addDuplicate_notAllowed() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
-
-        // setup starting state
-        model.addTask(toBeAdded); // task already in internal task ist
-
-        // execute command and verify result
-        assertCommandFailure(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
-
-    }
-
-    @Test
     public void execute_list_showsAllTasks() throws Exception {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
