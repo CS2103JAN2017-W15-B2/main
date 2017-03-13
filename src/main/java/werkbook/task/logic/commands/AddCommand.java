@@ -47,6 +47,9 @@ public class AddCommand extends Command {
         if (!description.isPresent()) {
             description = Optional.of(new Description(""));
         }
+        if (startDateTime.isPresent() && !endDateTime.isPresent()) {
+            throw new IllegalValueException("End date and time must be specified if Start date and time is specified.");
+        }
         this.toAdd = new Task(
                 new Name(name),
                 description.get(),
