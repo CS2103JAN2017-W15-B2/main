@@ -19,7 +19,7 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
     apply plugin: 'checkstyle'
-
+    apply plugin: "eclipse"
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,6 +42,9 @@ allprojects {
         testFxVersion = '4.0.+'
         monocleVersion = '1.8.0_20'
         checkstyleVersion = '7.1.2'
+        googleAPIClient = '1.22.0'
+        googleOAuthClient = '1.22.0'
+        googleAPITasks = 'v1-rev46-1.22.0'
 
         libDir = 'lib'
     }
@@ -63,6 +66,9 @@ allprojects {
         compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
         compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataTypeVersion"
         compile "com.google.guava:guava:$guavaVersion"
+        compile "com.google.api-client:google-api-client:$googleAPIClient"
+        compile "com.google.oauth-client:google-oauth-client-jetty:$googleOAuthClient"
+        compile "com.google.apis:google-api-services-tasks:$googleAPITasks"
 
         testCompile "junit:junit:$junitVersion"
         testCompile "org.testfx:testfx-core:$testFxVersion"
