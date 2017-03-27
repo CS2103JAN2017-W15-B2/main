@@ -13,6 +13,8 @@ import werkbook.task.logic.commands.DeleteCommand;
 import werkbook.task.logic.commands.EditCommand;
 import werkbook.task.logic.commands.ExitCommand;
 import werkbook.task.logic.commands.FindCommand;
+import werkbook.task.logic.commands.GLoginCommand;
+import werkbook.task.logic.commands.GLogoutCommand;
 import werkbook.task.logic.commands.HelpCommand;
 import werkbook.task.logic.commands.IncorrectCommand;
 import werkbook.task.logic.commands.ListCommand;
@@ -87,6 +89,12 @@ public class Parser {
         case SaveCommand.COMMAND_WORD:
             return new SaveCommandParser().parse(arguments);
 
+        case GLoginCommand.COMMAND_WORD:
+            return new GLoginCommand();
+            
+        case GLogoutCommand.COMMAND_WORD:
+            return new GLogoutCommand();
+            
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }

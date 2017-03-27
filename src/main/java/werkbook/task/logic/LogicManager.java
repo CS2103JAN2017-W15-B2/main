@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import werkbook.task.commons.core.ComponentManager;
 import werkbook.task.commons.core.LogsCenter;
+import werkbook.task.gtasks.GTasks;
 import werkbook.task.logic.commands.Command;
 import werkbook.task.logic.commands.CommandResult;
 import werkbook.task.logic.commands.exceptions.CommandException;
@@ -22,10 +23,12 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Model model;
     private final Parser parser;
     private final Storage storage;
-
-    public LogicManager(Model model, Storage storage) {
+    private final GTasks gtasks;
+    
+    public LogicManager(Model model, Storage storage, GTasks gtasks) {
         this.model = model;
         this.storage = storage;
+        this.gtasks = gtasks;
         this.parser = new Parser();
     }
 
@@ -35,6 +38,7 @@ public class LogicManager extends ComponentManager implements Logic {
         Command command = parser.parseCommand(commandText);
         command.setData(model);
         command.setStorage(storage);
+        command.setGTasks(gtasks);
         return command.execute();
     }
 

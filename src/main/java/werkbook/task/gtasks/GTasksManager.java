@@ -1,3 +1,4 @@
+//@@author A0162266E
 package werkbook.task.gtasks;
 
 import java.io.File;
@@ -64,7 +65,6 @@ public class GTasksManager extends ComponentManager implements GTasks {
             DATA_STORE_FACTORY = new FileDataStoreFactory(DATA_STORE_DIR);
         } catch (Throwable t) {
             t.printStackTrace();
-            System.exit(1);
         }
     }
 
@@ -105,6 +105,11 @@ public class GTasksManager extends ComponentManager implements GTasks {
             file.delete();
         }
         credential = null;
+        try {
+            DATA_STORE_FACTORY = new FileDataStoreFactory(DATA_STORE_DIR);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
