@@ -24,7 +24,7 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Parser parser;
     private final Storage storage;
     private final GTasks gtasks;
-    
+
     public LogicManager(Model model, Storage storage, GTasks gtasks) {
         this.model = model;
         this.storage = storage;

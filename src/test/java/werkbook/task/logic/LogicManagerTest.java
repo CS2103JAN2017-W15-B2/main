@@ -7,6 +7,7 @@ import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static werkbook.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,6 +25,8 @@ import werkbook.task.commons.core.EventsCenter;
 import werkbook.task.commons.events.model.TaskListChangedEvent;
 import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.events.ui.ShowHelpRequestEvent;
+import werkbook.task.gtasks.GTasks;
+import werkbook.task.gtasks.GTasksManager;
 import werkbook.task.logic.commands.AddCommand;
 import werkbook.task.logic.commands.ClearCommand;
 import werkbook.task.logic.commands.Command;
@@ -60,6 +63,7 @@ public class LogicManagerTest {
 
     private Model model;
     private Logic logic;
+    private GTasks gtasks;
 
     // These are for checking the correctness of the events raised
     private ReadOnlyTaskList latestSavedTaskList;
@@ -82,11 +86,12 @@ public class LogicManagerTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         model = new ModelManager();
+        gtasks = new GTasksManager();
         String tempTaskListFile = saveFolder.getRoot().getPath() + "TempTaskList.xml";
         String tempPreferencesFile = saveFolder.getRoot().getPath() + "TempPreferences.json";
-        logic = new LogicManager(model, new StorageManager(tempTaskListFile, tempPreferencesFile));
+        logic = new LogicManager(model, new StorageManager(tempTaskListFile, tempPreferencesFile), gtasks);
         EventsCenter.getInstance().registerHandler(this);
 
         latestSavedTaskList = new TaskList(model.getTaskList()); // last saved

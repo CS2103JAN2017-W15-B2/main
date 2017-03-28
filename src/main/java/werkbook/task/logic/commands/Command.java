@@ -44,7 +44,7 @@ public abstract class Command {
     public void setStorage(Storage storage) {
         this.storage = storage;
     }
-    
+
     public void setGTasks(GTasks gtasks) {
         this.gtasks = gtasks;
     }

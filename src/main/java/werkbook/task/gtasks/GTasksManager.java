@@ -55,10 +55,10 @@ public class GTasksManager extends ComponentManager implements GTasks {
 
     /** Global instance of client secrets */
     private static GoogleClientSecrets clientSecrets;
-    
+
     /** Credentials for interacting with Google API */
     private Credential credential;
-    
+
     static {
         try {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -78,7 +78,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
             login();
         }
     }
-    
+
     @Override
     public void login() throws IOException {
         // Build flow and trigger user authorization request.

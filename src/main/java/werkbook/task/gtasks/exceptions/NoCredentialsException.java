@@ -5,11 +5,11 @@ package werkbook.task.gtasks.exceptions;
  */
 public class NoCredentialsException extends Exception {
    /**
-     * 
+     *
      */
     private static final long serialVersionUID = 1L;
 
-public NoCredentialsException(String message) {
-       super(message);
-   }
+    public NoCredentialsException(String message) {
+           super(message);
+    }
 }

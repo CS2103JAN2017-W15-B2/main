@@ -91,10 +91,10 @@ public class Parser {
 
         case GLoginCommand.COMMAND_WORD:
             return new GLoginCommand();
-            
+
         case GLogoutCommand.COMMAND_WORD:
             return new GLogoutCommand();
-            
+
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
