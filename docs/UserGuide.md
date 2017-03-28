@@ -17,7 +17,7 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
         2. [List tasks](#b-list-tasks)
         3. [Edit task](#c-edit-task)
         4. [Find task](#d-find-task)
-        5. [Select task] (#e-select-task)
+        5. [Select task](#e-select-task)
         6. [Mark task](#f-mark-task)
         7. [Delete task](#g-delete-task)
         8. [Clear all tasks](#h-clear-all-tasks)
