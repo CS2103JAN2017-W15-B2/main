@@ -19,3 +19,4 @@ classes/
 .*.md.html
 .project
 src/main/resources/client_secret.json
+credentials/

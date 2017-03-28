@@ -33,7 +33,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
 
     /** Directory to store user credentials for this application. */
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
-        System.getProperty("user.home"), ".credentials/werkbook");
+        "./credentials");
 
     /** Global instance of the {@link FileDataStoreFactory}. */
     private static FileDataStoreFactory DATA_STORE_FACTORY;
@@ -48,7 +48,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
     /** Global instance of the scopes required by werkbook.
      *
      * If modifying these scopes, delete your previously saved credentials
-     * at ~/.credentials/werkbook
+     * at /credentials
      */
     private static final List<String> SCOPES =
         Arrays.asList(TasksScopes.TASKS_READONLY);
