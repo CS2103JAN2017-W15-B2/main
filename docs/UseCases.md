@@ -1,13 +1,14 @@
 # Appendix B: Use Cases
 
 - [Use Case Diagram](#use-case-diagram)
-- [Use Cases](#use-cases-1)
+- [Use Cases](#use-cases)
     - [Add Floating Task](#add-floating-task)
     - [Add Deadline Task](#add-deadline-task)
     - [Add Event](#add-event)
     - [List Tasks](#list-tasks)
     - [List all Tasks](#list-all-tasks)
     - [Find Tasks](#find-tasks)
+    - [Select Task](#select-task)
     - [Edit Task](#edit-task)
     - [Mark Task as Completed](#mark-task-as-completed)
     - [Delete Task](#delete-task)
@@ -27,7 +28,7 @@
 #### MSS
 
 1. User enters command with name and description of task
-2. Taskbook enters task into system <br>
+2. TaskList enters task into system <br>
 **Use case ends**
 
 #### Extensions
@@ -45,7 +46,7 @@ This use case extends [Add Floating task](#add-floating-task). It is inserted at
 #### Extensions
 
 1a. End date/time is in the wrong format
-> 1a1. TaskBook shows an error message <br>
+> 1a1. TaskList shows an error message <br>
   **Use case ends**
 
 - [Add Event](#add-event) occurs after step 1.
@@ -62,14 +63,14 @@ This use case extends [Add Deadline Task](#add-deadline-task). It is inserted at
 #### Extensions
 
 1a. Start date/time is in the wrong format
-> 1a1. TaskBook shows an error message <br>
+> 1a1. TaskList shows an error message <br>
   **Use case ends**
 
 ### List Tasks
 
 #### MSS
 
-1. TaskBook shows the list of tasks <br>
+1. TaskList shows the list of tasks <br>
 **Use case ends**
 
 - [List all Tasks](#list-all-tasks) occurs before step 1
@@ -82,13 +83,26 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 #### MSS
 
 1. User request to list all tasks
-2. TaskBook retrieves all tasks <br>
+2. TaskList retrieves all tasks <br>
 **Use Case continues in step 1 of [List Tasks](#list-tasks)**
 
 #### Extensions
 
 2a. There are no tasks
-> 2a1. TaskBook shows a notice message <br>
+> 2a1. TaskList shows a notice message <br>
+  **Use case ends**
+
+### Select Task
+
+#### MSS
+
+1. User selects a task using its index
+2. TaskList retrieves the full details of the task <br>
+
+#### Extensions
+
+2a. No tasks match the index
+> 2a1. TaskList shows a notice message <br>
   **Use case ends**
 
 ### Find Tasks
@@ -98,13 +112,13 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 #### MSS
 
 1. User requests to find tasks by keyword
-2. TaskBook shows a list of tasks with keywords that match the exact keyword <br>
+2. TaskList shows a list of tasks with keywords that match the exact keyword <br>
 **Use Case continues in step 1 of [List Tasks](#list-tasks)**
 
 #### Extensions
 
 2a. No tasks match the specified keywords
-> 2a1. TaskBook shows a notice message <br>
+> 2a1. TaskList shows a notice message <br>
   **Use case ends**
 
 ### Edit Task
@@ -113,31 +127,31 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 
 1. User retrieves list of tasks [via Use Case: List Tasks](#list-tasks)
 2. User enters command to edit task
-3. TaskBook edits task according to given parameters <br>
+3. TaskList edits task according to given parameters <br>
 **Use case ends**
 
 #### Extensions
 
 2a. The given index is invalid
-> 2a1. TaskBook shows an error message <br>
+> 2a1. TaskList shows an error message <br>
   **Use case resumes at step 2**
 
 2b. The given parameters are invalid
 
- > 2b1. TaskBook shows an error message <br>
+ > 2b1. TaskList shows an error message <br>
   **Use case resumes at step 2**
 
 ### Mark Task as Completed
 
 1. User retrieves list of tasks [via Use Case: List Tasks](#list-tasks)
 2. User enters command to mark task as completed
-3. TaskBook marks specified task as completed <br>
+3. TaskList marks specified task as completed <br>
 **Use case ends**
 
 #### Extensions
 
 2a. The given index is invalid
-> 2a1. TaskBook shows an error message <br>
+> 2a1. TaskList shows an error message <br>
   **Use case resumes at step 2**
 
 ### Delete Task
@@ -146,13 +160,13 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 
 1. User retrieves list of tasks [via Use Case: List Tasks](#list-tasks)
 2. User enters command to delete task
-3. TaskBook deletes specified task <br>
+3. TaskList deletes specified task <br>
 **Use case ends**
 
 #### Extensions
 
 2a. The given index is invalid
-> 2a1. TaskBook shows an error message <br>
+> 2a1. TaskList shows an error message <br>
   **Use case resumes at step 2**
 
 ### Undo Action
@@ -160,14 +174,14 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 #### MSS
 
 1. User requests to undo the previous action
-2. TaskBook undos the last action
-3. TaskBook shows the reflected changes <br>
+2. TaskList undos the last action
+3. TaskList shows the reflected changes <br>
 **Use case ends**
 
 #### Extensions
 
 2a. There exists no valid action that can be undone
-> 2a1. TaskBook shows a notice message <br>
+> 2a1. TaskList shows a notice message <br>
   **Use case ends**
 
 ### Redo Action
@@ -175,14 +189,14 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 #### MSS
 
 1. User requests to redo the previous undo
-2. TaskBook redos the previous undo
-3. TaskBook shows the reflected changes <br>
+2. TaskList redos the previous undo
+3. TaskList shows the reflected changes <br>
 **Use case ends**
 
 #### Extensions
 
 2a. There exists no valid undo action that can be redone
-> 2a1. TaskBook shows a notice message <br>
+> 2a1. TaskList shows a notice message <br>
   **Use case ends**
 
 ### Save to File
