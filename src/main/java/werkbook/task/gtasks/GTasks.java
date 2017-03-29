@@ -16,6 +16,8 @@ public interface GTasks {
      * @throws NoCredentialsException */
     void logout() throws NoCredentialsException;
 
-    /** Syncs current tasks with the ones stored on Google Tasks */
-    Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList);
+    /** Syncs current tasks with the ones stored on Google Tasks
+     * @throws IOException
+     * @throws NoCredentialsException */
+    Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) throws IOException, NoCredentialsException;
 }

@@ -19,7 +19,10 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.tasks.Tasks;
 import com.google.api.services.tasks.TasksScopes;
+import com.google.api.services.tasks.model.TaskList;
+import com.google.api.services.tasks.model.TaskLists;
 
 import werkbook.task.commons.core.ComponentManager;
 import werkbook.task.gtasks.exceptions.NoCredentialsException;
@@ -51,7 +54,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
      * at /credentials
      */
     private static final List<String> SCOPES =
-        Arrays.asList(TasksScopes.TASKS_READONLY);
+        Arrays.asList(TasksScopes.TASKS);
 
     /** Global instance of client secrets */
     private static GoogleClientSecrets clientSecrets;
@@ -99,7 +102,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
         // Delete credentials from data store directory
         File dataStoreDirectory = DATA_STORE_FACTORY.getDataDirectory();
         if (dataStoreDirectory.list().length == 0) {
-            throw new NoCredentialsException("No user logged in");
+            throw new NoCredentialsException("You are not logged in");
         }
         for (File file : dataStoreDirectory.listFiles()) {
             file.delete();
@@ -113,8 +116,36 @@ public class GTasksManager extends ComponentManager implements GTasks {
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) {
-        // TODO Auto-generated method stub
+    public Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) throws IOException, NoCredentialsException {
+        if (credential == null) {
+            throw new NoCredentialsException("You are not logged in");
+        }
+
+        // Retrieve user's tasklists
+        Tasks service = (new Tasks.Builder(
+                HTTP_TRANSPORT, JSON_FACTORY, credential))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        TaskLists taskLists = service.tasklists().list()
+                .execute();
+
+        // Get the tasklist with the name werkbook
+        // Creates one if it does not exist
+        TaskList gWerkbook;
+        exist: {
+            for (TaskList tl : taskLists.getItems()) {
+                if (tl.getTitle().equals("Werkbook")) {
+                    gWerkbook = tl;
+                    break exist;
+                }
+            }
+            gWerkbook = service.tasklists().insert(
+                    (new TaskList()).setTitle("Werkbook"))
+                .execute();
+        }
+
+        System.out.println(gWerkbook.toString());
+
         return null;
     }
 
