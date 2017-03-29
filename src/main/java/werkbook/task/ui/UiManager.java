@@ -27,7 +27,7 @@ import werkbook.task.model.UserPrefs;
  */
 public class UiManager extends ComponentManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/app_icon_32.png";
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private Logic logic;
@@ -102,32 +102,32 @@ public class UiManager extends ComponentManager implements Ui {
     //==================== Event Handling Code ===============================================================
 
     @Subscribe
-    private void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
+    public void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
     }
 
     @Subscribe
-    private void handleShowHelpEvent(ShowHelpRequestEvent event) {
+    public void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.handleHelp();
     }
 
     @Subscribe
-    private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
+    public void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
     @Subscribe
-    private void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.loadTaskPanel(event.getNewSelection());
     }
 
     //@@author A0139903B
     @Subscribe
-    private void handleClearTaskPanelSelectionEvent(ClearTaskPanelEvent event) {
+    public void handleClearTaskPanelSelectionEvent(ClearTaskPanelEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.clearTaskPanel();
     }
