@@ -107,7 +107,11 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.getItems().addAll(suggestions);
         commandTextField.getEditor().setText(userInput);
         commandTextField.getEditor().positionCaret(initialCaretPosition);
-        commandTextField.show();
+        commandTextField.hide();
+        commandTextField.setVisibleRowCount(suggestions.size());
+        if(suggestions.size() > 0) {
+            commandTextField.show();
+        }
     }
 
     //@@author
