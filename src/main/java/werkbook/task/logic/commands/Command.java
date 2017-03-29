@@ -1,6 +1,7 @@
 package werkbook.task.logic.commands;
 
 import werkbook.task.commons.core.Messages;
+import werkbook.task.gtasks.GTasks;
 import werkbook.task.logic.commands.exceptions.CommandException;
 import werkbook.task.model.Model;
 import werkbook.task.storage.Storage;
@@ -11,6 +12,7 @@ import werkbook.task.storage.Storage;
 public abstract class Command {
     protected Model model;
     protected Storage storage;
+    protected GTasks gtasks;
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of tasks.
@@ -41,6 +43,10 @@ public abstract class Command {
 
     public void setStorage(Storage storage) {
         this.storage = storage;
+    }
+
+    public void setGTasks(GTasks gtasks) {
+        this.gtasks = gtasks;
     }
 
     /**
