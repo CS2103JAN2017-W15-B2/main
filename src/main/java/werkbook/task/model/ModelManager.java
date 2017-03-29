@@ -10,7 +10,6 @@ import werkbook.task.commons.core.ComponentManager;
 import werkbook.task.commons.core.LogsCenter;
 import werkbook.task.commons.core.UnmodifiableObservableList;
 import werkbook.task.commons.events.model.TaskListChangedEvent;
-import werkbook.task.commons.events.ui.ClearTaskPanelEvent;
 import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
 import werkbook.task.commons.util.CollectionUtil;
 import werkbook.task.commons.util.StringUtil;
@@ -54,7 +53,6 @@ public class ModelManager extends ComponentManager implements Model {
         undoStack.push(new TaskList(taskList));
         redoStack.clear();
         taskList.resetData(newData);
-        indicateTaskListEmpty();
         indicateTaskListChanged();
     }
 
@@ -73,11 +71,6 @@ public class ModelManager extends ComponentManager implements Model {
     public void indicateTaskChanged(ReadOnlyTask editedTask) {
         raise (new TaskPanelSelectionChangedEvent(editedTask));
     }
-
-    @Override
-    public void indicateTaskListEmpty() {
-        raise (new ClearTaskPanelEvent());
-    }
     //@author
 
     @Override
@@ -86,11 +79,7 @@ public class ModelManager extends ComponentManager implements Model {
         redoStack.clear();
         taskList.removeTask(target);
         // To fix, possible array index out of range
-        if (taskList.getTaskList().isEmpty()) {
-            indicateTaskListEmpty();
-        } else {
-            indicateTaskChanged(taskList.getTaskList().get(0));
-        }
+        indicateTaskChanged(taskList.getTaskList().get(0));
         indicateTaskListChanged();
     }
 
