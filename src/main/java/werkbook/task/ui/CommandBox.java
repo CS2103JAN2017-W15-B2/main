@@ -109,7 +109,7 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.getEditor().positionCaret(initialCaretPosition);
         commandTextField.hide();
         commandTextField.setVisibleRowCount(suggestions.size());
-        if(suggestions.size() > 0) {
+        if (suggestions.size() > 0) {
             commandTextField.show();
         }
     }

@@ -14,12 +14,13 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
 4. [Features](#4-features)
     1. [Task Management](#i-task-management)
         1. [Add task](#a-add-task)
-        2. [List task](#b-list-task)
+        2. [List tasks](#b-list-tasks)
         3. [Edit task](#c-edit-task)
         4. [Find task](#d-find-task)
-        5. [Mark task](#e-mark-task)
-        6. [Delete task](#f-delete-task)
-        7. [Clear all tasks](#g-clear-all-tasks)
+        5. [Select task](#e-select-task)
+        6. [Mark task](#f-mark-task)
+        7. [Delete task](#g-delete-task)
+        8. [Clear all tasks](#h-clear-all-tasks)
     2. [Program Usage](#ii-program-usage)
         1. [Help](#a-help)
         2. [Undo/Redo](#b-undo-redo)
@@ -101,7 +102,7 @@ Now you're all set to start managing your tasks! Feel free to refer to our [Feat
 <img src="images/annotated-ui.png" width="600"><br>
 1. Menu bar
 2. Command box
- > Commands are entered here
+ > Commands are entered here. As you type, the drop-down box will also show the list of commands you can use.
 3. Output box
  > Results of commands are displayed here
 4. Task cards listing
@@ -145,7 +146,7 @@ Example: `add Get the groceries (Milk, eggs, and cheese) from 10/03/2017 1400 to
 > * A task must have a name, the description is optional<br>
 > * The task can also optionally have a End Date/Time, or both a Start Date/Time and End Date/Time<br>
 
-#### b. List task
+#### b. List tasks
 
 If you want to see a list of all the tasks you have added, you can use the `list` command.<br>
 Format: `list`
@@ -191,7 +192,15 @@ Example:
 > * tasks matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Milk` will match `Get the Milk`
 
-#### e. Mark task
+#### e. Select task
+
+Want to review a task you created but it's a little tiring reaching for the mouse? Use the `select` command on a task to view its full description. <br>
+Format: `select INDEX`
+
+Example:
+* `select 2`
+
+#### f. Mark task
 
 Finally done with that long and tedious project? Mark it as `Completed` using the `mark` command!<br>
 Format: `mark INDEX`
@@ -208,7 +217,7 @@ Oops! Missed out on some project requirements? Just use the `mark` command again
     The index refers to the index number shown in the last task listing.<br>
     The index **must be a positive integer** 1, 2, 3, ...
 
-#### f. Delete task
+#### g. Delete task
 
 Accidentally added duplicate tasks? Use the `delete` command to remove the specified task from Werkbook.<br>
 Format: `delete INDEX`
@@ -225,7 +234,7 @@ Examples:
 > * The index refers to the index number shown in the most recent listing.<br>
 > * The index **must be a positive integer** 1, 2, 3, ...
 
-#### g. Clear all tasks
+#### h. Clear all tasks
 
 Seeking a fresh start? Use the `clear` command to clear all the tasks in Werkbook and start anew!<br>
 Format: `clear`
