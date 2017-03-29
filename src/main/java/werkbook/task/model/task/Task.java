@@ -1,6 +1,7 @@
 package werkbook.task.model.task;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import werkbook.task.commons.exceptions.IllegalValueException;
@@ -23,6 +24,7 @@ public class Task implements ReadOnlyTask {
     private Description description;
     private StartDateTime startDateTime;
     private EndDateTime endDateTime;
+    private Date lastUpdated;
 
     private UniqueTagList tags;
 
@@ -47,6 +49,13 @@ public class Task implements ReadOnlyTask {
         this.endDateTime = endDateTime;
         this.tags = new UniqueTagList(tags); // protect internal tags from
                                              // changes in the arg list
+        this.lastUpdated = new Date();
+    }
+
+    public Task(Name name, Description description, StartDateTime startDateTime, EndDateTime endDateTime,
+            UniqueTagList tags, long lastUpdated) throws IllegalValueException {
+        this(name, description, startDateTime, endDateTime, tags);
+        this.lastUpdated = new Date(lastUpdated);
     }
 
     /**
@@ -136,6 +145,15 @@ public class Task implements ReadOnlyTask {
     @Override
     public String toString() {
         return getAsText();
+    }
+
+    @Override
+    public Date getUpdated() {
+        return this.lastUpdated;
+    }
+
+    public void setUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
 }

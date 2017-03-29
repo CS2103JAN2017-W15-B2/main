@@ -28,6 +28,8 @@ public class XmlAdaptedTask {
     private String startDateTime;
     @XmlElement(required = true)
     private String endDateTime;
+    @XmlElement(required = true)
+    private String lastUpdated;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -49,6 +51,7 @@ public class XmlAdaptedTask {
         description = source.getDescription().toString();
         startDateTime = source.getStartDateTime().toString();
         endDateTime = source.getEndDateTime().toString();
+        lastUpdated = Long.toString(source.getUpdated().getTime());
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -70,6 +73,6 @@ public class XmlAdaptedTask {
         final StartDateTime startDateTime = new StartDateTime(this.startDateTime);
         final EndDateTime endDateTime = new EndDateTime(this.endDateTime);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(name, description, startDateTime, endDateTime, tags);
+        return new Task(name, description, startDateTime, endDateTime, tags, Long.parseLong(lastUpdated));
     }
 }
