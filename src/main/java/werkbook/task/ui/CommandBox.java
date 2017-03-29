@@ -23,6 +23,7 @@ public class CommandBox extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private static final String FXML = "CommandBox.fxml";
     public static final String ERROR_STYLE_CLASS = "error";
+    private static final int SUGGESTION_COUNT = 5;
 
     private final Logic logic;
 
@@ -33,6 +34,7 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
         addToPlaceholder(commandBoxPlaceholder);
+        commandTextField.setVisibleRowCount(SUGGESTION_COUNT);
     }
 
     private void addToPlaceholder(AnchorPane placeHolderPane) {
@@ -66,9 +68,8 @@ public class CommandBox extends UiPart<Region> {
                 break;
             }
         });
-
     }
-
+    //@@author
     @FXML
     private void handleCommandInputChanged() {
         try {
@@ -91,7 +92,7 @@ public class CommandBox extends UiPart<Region> {
             raise(new NewResultAvailableEvent(e.getMessage()));
         }
     }
-
+    //@@author A0140462R
     private void handleInputMethodTextChanged() {
         String userInput = new String(commandTextField.getEditor().getText());
         int initialCaretPosition = commandTextField.getEditor().getCaretPosition();
@@ -109,7 +110,7 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.show();
     }
 
-
+    //@@author
     /**
      * Sets the command box style to indicate a successful command.
      */
