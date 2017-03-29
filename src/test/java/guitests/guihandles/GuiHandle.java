@@ -56,13 +56,13 @@ public class GuiHandle {
 
     protected String getTextFieldText(String filedName) {
         ComboBox<String> textField = getNode(filedName);
-        return textField.getEditor().getText();
+        return textField.getValue();
     }
 
     protected void setTextField(String textFieldId, String newText) {
         guiRobot.clickOn(textFieldId);
         ComboBox<String> textField = getNode(textFieldId);
-        textField.getEditor().setText(newText);
+        textField.setValue(newText);
         guiRobot.sleep(500); // so that the texts stays visible on the GUI for a short period
     }
 
