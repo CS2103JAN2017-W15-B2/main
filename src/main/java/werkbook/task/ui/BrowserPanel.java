@@ -67,7 +67,7 @@ public class BrowserPanel extends UiPart<Region> {
         placeholder.getChildren().add(browser);
     }
 
-    //@@author A0139930B
+    //@@author A0139903B
     /**
      * Initializes the task panel with welcome message
      */
