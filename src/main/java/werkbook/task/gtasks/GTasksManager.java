@@ -25,7 +25,7 @@ import com.google.api.services.tasks.model.TaskList;
 import com.google.api.services.tasks.model.TaskLists;
 
 import werkbook.task.commons.core.ComponentManager;
-import werkbook.task.gtasks.exceptions.NoCredentialsException;
+import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.model.ReadOnlyTaskList;
 
 public class GTasksManager extends ComponentManager implements GTasks {
@@ -78,12 +78,19 @@ public class GTasksManager extends ComponentManager implements GTasks {
         clientSecrets =
             GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
         if (DATA_STORE_FACTORY.getDataDirectory().list().length != 0) {
-            login();
+            try {
+                login();
+            } catch (CredentialsException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
-    public void login() throws IOException {
+    public void login() throws IOException, CredentialsException {
+        if (credential != null) {
+            throw new CredentialsException("You are already logged in.");
+        }
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow =
                 new GoogleAuthorizationCodeFlow.Builder(
@@ -98,11 +105,11 @@ public class GTasksManager extends ComponentManager implements GTasks {
     }
 
     @Override
-    public void logout() throws NoCredentialsException {
+    public void logout() throws CredentialsException {
         // Delete credentials from data store directory
         File dataStoreDirectory = DATA_STORE_FACTORY.getDataDirectory();
         if (dataStoreDirectory.list().length == 0) {
-            throw new NoCredentialsException("You are not logged in");
+            throw new CredentialsException("You are not logged in");
         }
         for (File file : dataStoreDirectory.listFiles()) {
             file.delete();
@@ -116,9 +123,9 @@ public class GTasksManager extends ComponentManager implements GTasks {
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) throws IOException, NoCredentialsException {
+    public Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) throws IOException, CredentialsException {
         if (credential == null) {
-            throw new NoCredentialsException("You are not logged in");
+            throw new CredentialsException("You are not logged in");
         }
 
         // Retrieve user's tasklists
