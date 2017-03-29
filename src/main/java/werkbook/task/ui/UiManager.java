@@ -14,6 +14,7 @@ import werkbook.task.commons.core.ComponentManager;
 import werkbook.task.commons.core.Config;
 import werkbook.task.commons.core.LogsCenter;
 import werkbook.task.commons.events.storage.DataSavingExceptionEvent;
+import werkbook.task.commons.events.ui.ClearTaskPanelEvent;
 import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.events.ui.ShowHelpRequestEvent;
 import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
@@ -26,7 +27,7 @@ import werkbook.task.model.UserPrefs;
  */
 public class UiManager extends ComponentManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/app_icon_32.png";
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private Logic logic;
@@ -53,7 +54,7 @@ public class UiManager extends ComponentManager implements Ui {
             mainWindow = new MainWindow(primaryStage, config, prefs, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
+            mainWindow.initTaskPanel();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -121,7 +122,14 @@ public class UiManager extends ComponentManager implements Ui {
     @Subscribe
     private void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.loadTaskPage(event.getNewSelection());
+        mainWindow.loadTaskPanel(event.getNewSelection());
     }
 
+    //@@author A0139903B
+    @Subscribe
+    private void handleClearTaskPanelSelectionEvent(ClearTaskPanelEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        mainWindow.clearTaskPanel();
+    }
+    //@@author
 }

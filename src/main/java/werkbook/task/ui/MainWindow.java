@@ -24,7 +24,7 @@ import werkbook.task.model.task.ReadOnlyTask;
  */
 public class MainWindow extends UiPart<Region> {
 
-    private static final String ICON = "/images/address_book_32.png";
+    private static final String ICON = "/images/app_icon_32.png";
     private static final String FXML = "MainWindow.fxml";
     private static final int MIN_HEIGHT = 600;
     private static final int MIN_WIDTH = 450;
@@ -199,7 +199,26 @@ public class MainWindow extends UiPart<Region> {
         return this.taskListPanel;
     }
 
-    void loadTaskPage(ReadOnlyTask task) {
-        browserPanel.loadTaskPage(task);
+    //@@author A0139903B
+    /**
+     * Loads task page with information from {@code task}
+     */
+    void loadTaskPanel(ReadOnlyTask task) {
+        browserPanel.loadTaskPanel(task);
     }
+
+    /**
+     * Clears the task panel
+     */
+    void clearTaskPanel() {
+        browserPanel.clearTaskPanel();
+    }
+
+    /**
+     * Initializes the task panel
+     */
+    void initTaskPanel() {
+        browserPanel.initTaskPanel();
+    }
+    //@@author
 }
