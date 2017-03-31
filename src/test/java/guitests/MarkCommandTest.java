@@ -89,6 +89,7 @@ public class MarkCommandTest extends TaskListGuiTest {
             boolean hasMarked) {
         commandBox.runCommand("mark " + filteredTaskListIndex);
 
+        System.out.println("Marked: " + markedTask.getName().toString());
         // confirm the new card contains the right data
         TaskCardHandle existingTask = taskListPanel.navigateToTask(markedTask.getName().toString());
         assertMatching(markedTask, existingTask);

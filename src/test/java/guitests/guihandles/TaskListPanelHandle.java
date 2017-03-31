@@ -117,6 +117,7 @@ public class TaskListPanelHandle extends GuiHandle {
      */
     public TaskCardHandle navigateToTask(ReadOnlyTask task) {
         int index = getTaskIndex(task);
+        System.out.println("Navigating to " + task.getName().toString());
 
         guiRobot.interact(() -> {
             getListView().scrollTo(index);
