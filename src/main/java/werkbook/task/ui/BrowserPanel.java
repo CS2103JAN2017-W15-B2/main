@@ -1,3 +1,5 @@
+/*
+
 package werkbook.task.ui;
 
 import javafx.event.Event;
@@ -12,30 +14,32 @@ import werkbook.task.model.task.ReadOnlyTask;
 /**
  * The Browser Panel of the App.
  */
+
+/*
 public class BrowserPanel extends UiPart<Region> {
 
     private static final String FXML = "BrowserPanel.fxml";
 
     private static final String DOG =
-            "\n─────────▄──────────────▄────" +
-            "\n────────▌▒█───────────▄▀▒▌───" +
-            "\n────────▌▒▒▀▄───────▄▀▒▒▒▐───" +
-            "\n───────▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐───" +
-            "\n─────▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐───" +
-            "\n───▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀██▀▒▌───" +
-            "\n──▐▒▒▒▄▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▒▌──" +
-            "\n──▌▒▒▐▄█▀▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐──" +
-            "\n─▐▒▒▒▒▒▒▒▒▒▒▒▌██▀▒▒▒▒▒▒▒▒▀▄▌─" +
-            "\n─▌▒▀▄██▄▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌─" +
-            "\n─▌▀▐▄█▄█▌▄▒▀▒▒▒▒▒▒░░░░░░▒▒▒▐─" +
-            "\n▐▒▀▐▀▐▀▒▒▄▄▒▄▒▒▒▒▒░░░░░░▒▒▒▒▌" +
-            "\n▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒░░░░░░▒▒▒▐─" +
-            "\n─▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌─" +
-            "\n─▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐──" +
-            "\n──▀▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▌──" +
-            "\n────▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀───" +
-            "\n───▐▀▒▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀─────" +
-            "\n──▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀────────";
+    		  "\n─────────▄──────────────▄────" +
+    		            "\n────────▌▒█───────────▄▀▒▌───" +
+    		            "\n────────▌▒▒▀▄───────▄▀▒▒▒▐───" +
+    		            "\n───────▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐───" +
+    		            "\n─────▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐───" +
+    		            "\n───▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀██▀▒▌───" +
+    		            "\n──▐▒▒▒▄▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▒▌──" +
+    		            "\n──▌▒▒▐▄█▀▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐──" +
+    		            "\n─▐▒▒▒▒▒▒▒▒▒▒▒▌██▀▒▒▒▒▒▒▒▒▀▄▌─" +
+    		            "\n─▌▒▀▄██▄▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌─" +
+    		            "\n─▌▀▐▄█▄█▌▄▒▀▒▒▒▒▒▒░░░░░░▒▒▒▐─" +
+    		            "\n▐▒▀▐▀▐▀▒▒▄▄▒▄▒▒▒▒▒░░░░░░▒▒▒▒▌" +
+    		            "\n▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒░░░░░░▒▒▒▐─" +
+    		            "\n─▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌─" +
+    		            "\n─▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐──" +
+    		            "\n──▀▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▌──" +
+    		            "\n────▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀───" +
+    		            "\n───▐▀▒▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀─────" +
+    		            "\n──▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀────────";
 
     private static final String MOTD = "Welcome back, Jim!" + DOG;
 
@@ -54,9 +58,13 @@ public class BrowserPanel extends UiPart<Region> {
     @FXML
     private Label endDateTime;
 
+*/
+
     /**
      * @param placeholder The AnchorPane where the BrowserPanel must be inserted
      */
+
+/*
     public BrowserPanel(AnchorPane placeholder) {
         super(FXML);
         placeholder.setOnKeyPressed(Event::consume); // To prevent triggering
@@ -71,6 +79,8 @@ public class BrowserPanel extends UiPart<Region> {
     /**
      * Initializes the task panel with welcome message
      */
+
+/*
     void initTaskPanel() {
         name.setText(MOTD);
         description.setText("");
@@ -83,6 +93,8 @@ public class BrowserPanel extends UiPart<Region> {
      * Loads the task panel with {@code task}
      * @param task
      */
+
+/*
     void loadTaskPanel(ReadOnlyTask task) {
         name.setText(task.getName().taskName);
         description.setText(task.getDescription().toString());
@@ -94,6 +106,8 @@ public class BrowserPanel extends UiPart<Region> {
     /**
      * Clears the task panel
      */
+
+/*
     void clearTaskPanel() {
         name.setText("Great job for getting things done! A doge is pleased." + DOG);
         description.setText("");
@@ -101,17 +115,26 @@ public class BrowserPanel extends UiPart<Region> {
         endDateTime.setText("");
         clearTags();
     }
-
+    
+    */
+    
     /**
      * Clears the tags in the task panel
      */
+
+/*
     private void clearTags() {
         tags.getChildren().clear();
     }
     //@@author
 
+  //@@author A0130183U
     private void initTags(ReadOnlyTask task) {
         tags.getChildren().clear();
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+  //@@author
+    
 }
+
+*/

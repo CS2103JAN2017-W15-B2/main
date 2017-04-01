@@ -16,7 +16,7 @@ import werkbook.task.commons.events.ui.ExitAppRequestEvent;
 import werkbook.task.commons.util.FxViewUtil;
 import werkbook.task.logic.Logic;
 import werkbook.task.model.UserPrefs;
-import werkbook.task.model.task.ReadOnlyTask;
+//import werkbook.task.model.task.ReadOnlyTask;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
+//  private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
     private Config config;
 
@@ -113,7 +113,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(browserPlaceholder);
+//        browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskListFilePath());
@@ -203,6 +203,7 @@ public class MainWindow extends UiPart<Region> {
     /**
      * Loads task page with information from {@code task}
      */
+/*
     void loadTaskPanel(ReadOnlyTask task) {
         browserPanel.loadTaskPanel(task);
     }
@@ -210,6 +211,7 @@ public class MainWindow extends UiPart<Region> {
     /**
      * Clears the task panel
      */
+/*
     void clearTaskPanel() {
         browserPanel.clearTaskPanel();
     }
@@ -217,8 +219,10 @@ public class MainWindow extends UiPart<Region> {
     /**
      * Initializes the task panel
      */
+/*
     void initTaskPanel() {
         browserPanel.initTaskPanel();
     }
+    */
     //@@author
 }
