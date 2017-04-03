@@ -10,7 +10,7 @@ import werkbook.task.model.task.ReadOnlyTask;
 
 public class TaskToGTaskAdapter {
     private Task gTask;
-    
+
     public TaskToGTaskAdapter(ReadOnlyTask task) throws IllegalValueException {
         this.gTask = new Task();
         this.gTask.setTitle(task.getName().taskName);
@@ -18,7 +18,7 @@ public class TaskToGTaskAdapter {
         if (task.getEndDateTime().isPresent()) {
             this.gTask.setDue(new DateTime(task.getEndDateTime().value.get()));
         }
-        if(task.getTags().contains(new Tag("Complete"))) {
+        if (task.getTags().contains(new Tag("Complete"))) {
             this.gTask.setCompleted(new DateTime(task.getUpdated()));
         }
     }
@@ -34,7 +34,7 @@ public class TaskToGTaskAdapter {
         if (task.getEndDateTime().isPresent()) {
             gTask.setDue(new DateTime(task.getEndDateTime().value.get()));
         }
-        if(task.getTags().contains(new Tag("Complete"))) {
+        if (task.getTags().contains(new Tag("Complete"))) {
             gTask.setStatus("completed");
         }
         return gTask;

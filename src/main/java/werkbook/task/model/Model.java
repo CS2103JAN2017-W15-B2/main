@@ -59,9 +59,9 @@ public interface Model {
     /** Raises an event to indicate the task list is empty */
     void indicateTaskListEmpty();
     //@@author
-    
+
     //@@author A0162266E
     /** Synchronize current task list with given task list **/
-	void sync(UniqueTaskList taskList);
-	//@@author
+    void sync(UniqueTaskList taskList);
+    //@@author
 }

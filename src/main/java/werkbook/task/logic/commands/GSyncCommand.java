@@ -19,12 +19,12 @@ public class GSyncCommand extends Command {
             // model.sync(gTaskList);
             gtasks.update(model.getTaskList());
         } catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
             throw new CommandException(e.getMessage());
         }
         return new CommandResult(GOOGLE_SYNCED_ACKNOWLEDGEMENT);
     }
-    
+
     @Override
     public boolean isMutable() {
         return true;

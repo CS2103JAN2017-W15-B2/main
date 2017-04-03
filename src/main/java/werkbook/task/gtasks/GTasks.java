@@ -2,7 +2,6 @@
 package werkbook.task.gtasks;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.model.ReadOnlyTaskList;
@@ -22,7 +21,7 @@ public interface GTasks {
      * @throws IOException
      * @throws CredentialsException */
     UniqueTaskList retrieve() throws IOException, CredentialsException;
-    
+
     /** Updates tasks stored on Google Tasks with current tasks
      * @throws IOException
      * @throws CredentialsException */

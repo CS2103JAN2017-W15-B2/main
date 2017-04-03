@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -162,19 +161,19 @@ public class GTasksManager extends ComponentManager implements GTasks {
 
         UniqueTaskList gTaskAdaptedTaskList = new UniqueTaskList();
         for (Task t : gTasks) {
-        	try {
-				gTaskAdaptedTaskList.add(new werkbook.task.model.task.Task(new GTaskToTaskAdapter(t)));
-			} catch (IllegalValueException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            try {
+                gTaskAdaptedTaskList.add(new werkbook.task.model.task.Task(new GTaskToTaskAdapter(t)));
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
         return gTaskAdaptedTaskList;
     }
 
-	@Override
-	public void update(ReadOnlyTaskList taskList) throws IOException, CredentialsException {
+    @Override
+    public void update(ReadOnlyTaskList taskList) throws IOException, CredentialsException {
         if (credential == null) {
             throw new CredentialsException("You are not logged in");
         }
@@ -200,7 +199,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
         gTaskList = service.tasklists().insert(
                 (new TaskList()).setTitle("Werkbook"))
                 .execute();
-        
+
         // Add tasks from Werkbook to Google Tasks
         for (ReadOnlyTask t : taskList.getTaskList()) {
             try {
@@ -211,15 +210,5 @@ public class GTasksManager extends ComponentManager implements GTasks {
                 e.printStackTrace();
             }
         }
-
-//        UniqueTaskList gTaskAdaptedTaskList = new UniqueTaskList();
-//        for (Task t : gTasks) {
-//            try {
-//                gTaskAdaptedTaskList.add(new werkbook.task.model.task.Task(new GTaskToTaskAdapter(t)));
-//            } catch (IllegalValueException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-//        }
-	}
+    }
 }
