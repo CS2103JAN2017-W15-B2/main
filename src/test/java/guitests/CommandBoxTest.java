@@ -32,7 +32,6 @@ public class CommandBoxTest extends TaskListGuiTest {
     @Test
     public void commandBox_commandSucceeds_textClearedAndStyleClassRemainsTheSame() {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
-
         assertEquals("", commandBox.getCommandInput());
         assertEquals(defaultStyleOfCommandBox, commandBox.getStyleClass());
     }

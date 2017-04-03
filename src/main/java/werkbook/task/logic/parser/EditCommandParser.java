@@ -3,6 +3,7 @@ package werkbook.task.logic.parser;
 import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTIONEND;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_ENDDATETIME;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,8 +31,8 @@ public class EditCommandParser {
      */
     public Command parse(String args) {
         assert args != null;
-        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTDATETIME,
-                PREFIX_ENDDATETIME, PREFIX_DEADLINE, PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_DESCRIPTIONEND,
+                PREFIX_STARTDATETIME, PREFIX_ENDDATETIME, PREFIX_DEADLINE, PREFIX_TAG);
         try {
             argsTokenizer.tokenize(args);
         } catch (IllegalValueException ive) {

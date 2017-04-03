@@ -1,11 +1,11 @@
 package werkbook.task.model.task;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
 import werkbook.task.commons.exceptions.IllegalValueException;
+import werkbook.task.model.util.DateTimeUtil;
 
 /**
  * Represents a Task Start DateTime in the task book. Guarantees: immutable; is
@@ -15,7 +15,6 @@ public class StartDateTime {
 
     public static final String MESSAGE_START_DATETIME_CONSTRAINTS = "Start Date/Time must be in the format of "
             + "DD/MM/YYYY HHMM, where time is represented in 24 hours";
-    public static final SimpleDateFormat START_DATETIME_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HHmm");
 
     public final Optional<Date> value;
 
@@ -31,7 +30,7 @@ public class StartDateTime {
             this.value = Optional.empty();
         } else {
             try {
-                this.value = Optional.of(START_DATETIME_FORMATTER.parse(trimmedStartDateTime));
+                this.value = Optional.of(DateTimeUtil.DATETIME_FORMATTER.parse(trimmedStartDateTime));
             } catch (ParseException e) {
                 throw new IllegalValueException(MESSAGE_START_DATETIME_CONSTRAINTS);
             }
@@ -43,9 +42,9 @@ public class StartDateTime {
      * @throws IllegalValueException
      */
     public static boolean isValidStartDateTime(String test) throws IllegalValueException {
-        START_DATETIME_FORMATTER.setLenient(false);
+        DateTimeUtil.DATETIME_FORMATTER.setLenient(false);
         try {
-            START_DATETIME_FORMATTER.parse(test);
+            DateTimeUtil.DATETIME_FORMATTER.parse(test);
         } catch (ParseException e) {
             return false;
             //throw new IllegalValueException(MESSAGE_START_DATETIME_CONSTRAINTS);
@@ -60,7 +59,15 @@ public class StartDateTime {
     @Override
     public String toString() {
         if (this.value.isPresent()) {
-            return START_DATETIME_FORMATTER.format(this.value.get());
+            return DateTimeUtil.DATETIME_FORMATTER.format(this.value.get());
+        } else {
+            return "";
+        }
+    }
+
+    public String getPrettyString() {
+        if (this.value.isPresent()) {
+            return DateTimeUtil.getPrettyDateTime(this.value.get());
         } else {
             return "";
         }

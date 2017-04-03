@@ -1,5 +1,8 @@
 package werkbook.task.logic.parser;
 
+import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTIONEND;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -47,7 +50,8 @@ public class ArgumentTokenizer {
     public void tokenize(String argsString) throws IllegalValueException {
         resetTokenizerState();
         List<PrefixPosition> positions = findAllPrefixPositions(argsString);
-        List<PrefixPosition> filteredList = filterPositionsForDate(argsString, positions);
+        List<PrefixPosition> filteredList = filterPositions(argsString, positions);
+        //List<PrefixPosition> filteredList = filterPositionsForDate(argsString, positions);
         extractArguments(argsString, filteredList);
     }
 
@@ -149,17 +153,13 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Filters a list of prefix positions for dates, it will check for dates
-     * between any two prefixes and extract their positions if so. If there
-     * isn't a valid date behind a prefix, it will simply treat the prefix as a
-     * text
-     *
-     * @param argsString Argument string
-     * @param prefixPositions List of prefix positions to be passed in
-     * @return Returns a list of prefix positions with the non-date prefixes
-     *         filtered out
+     * Filters the prefix positions list by doing filtering it for the
+     * description prefixes and date time prefixes
+     * @param argsString
+     * @param prefixPositions
+     * @return
      */
-    private List<PrefixPosition> filterPositionsForDate(String argsString,
+    private List<PrefixPosition> filterPositions(String argsString,
             List<PrefixPosition> prefixPositions) {
         List<PrefixPosition> filteredList = new ArrayList<PrefixPosition>();
 
@@ -174,6 +174,21 @@ public class ArgumentTokenizer {
         PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(""), argsString.length());
         prefixPositions.add(endPositionMarker);
 
+        filterPositionsForDescription(prefixPositions);
+
+        filterPositionsForDates(argsString, prefixPositions, filteredList);
+
+        return filteredList;
+    }
+
+    /**
+     * Filters prefix positions for dates, checks if value behind a date prefix is a valid date
+     * @param argsString
+     * @param prefixPositions
+     * @param filteredList
+     */
+    private void filterPositionsForDates(String argsString, List<PrefixPosition> prefixPositions,
+            List<PrefixPosition> filteredList) {
         // Extract the prefixed arguments and preamble (if any)
         for (int i = 0; i < prefixPositions.size() - 1; i++) {
             Prefix prefix = prefixPositions.get(i).getPrefix();
@@ -197,8 +212,59 @@ public class ArgumentTokenizer {
             PrefixPosition another = new PrefixPosition(new Prefix(""),
                     prefixPositions.get(i + 1).getStartPosition());
             filteredList.add(another);
+
         }
-        return filteredList;
+    }
+
+    /**
+     * Filters prefix positions for description prefixes
+     * @param prefixPositions List of prefix positions
+     */
+    private void filterPositionsForDescription(List<PrefixPosition> prefixPositions) {
+        int index = 0;
+        int startIndex = -1;
+        int endIndex = -1;
+        List<PrefixPosition> positionsToRemove = new ArrayList<PrefixPosition>();
+
+        // Look for start and end prefixes for description
+        for (PrefixPosition p: prefixPositions) {
+            Prefix current = p.getPrefix();
+
+            if (current.equals(PREFIX_DESCRIPTION)) {
+                startIndex = index;
+            } else if (current.equals(PREFIX_DESCRIPTIONEND)) {
+                endIndex = index;
+            }
+
+            index++;
+        }
+
+        int prefixIndex = 0;
+        // Remove prefixes in between start and end description prefixes
+        for (PrefixPosition p: prefixPositions) {
+            if (prefixIndex > startIndex && prefixIndex < endIndex) {
+                positionsToRemove.add(p);
+            }
+            prefixIndex++;
+        }
+
+        // If both prefixes exist
+        if (startIndex != -1 && endIndex != -1) {
+            // Now validate positions
+            if (startIndex < endIndex) {
+                prefixPositions.removeAll(positionsToRemove);
+            } else {
+                prefixPositions.remove(startIndex);
+                prefixPositions.remove(endIndex);
+            }
+        }
+        // If only start index exists
+        if (startIndex != -1 && endIndex == -1) {
+            prefixPositions.remove(startIndex);
+        } else if (startIndex == -1 && endIndex != -1) {
+            // If only end index exists
+            prefixPositions.remove(endIndex);
+        }
     }
     // @@author
 

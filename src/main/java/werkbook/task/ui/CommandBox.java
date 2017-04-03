@@ -3,11 +3,12 @@ package werkbook.task.ui;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import com.sun.javafx.scene.control.skin.ComboBoxPopupControl;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import werkbook.task.commons.core.CommandTexts;
@@ -22,6 +23,7 @@ public class CommandBox extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private static final String FXML = "CommandBox.fxml";
     public static final String ERROR_STYLE_CLASS = "error";
+    private static final int SUGGESTION_COUNT = 5;
 
     private final Logic logic;
 
@@ -32,6 +34,7 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
         addToPlaceholder(commandBoxPlaceholder);
+        commandTextField.setVisibleRowCount(SUGGESTION_COUNT);
     }
 
     private void addToPlaceholder(AnchorPane placeHolderPane) {
@@ -40,22 +43,33 @@ public class CommandBox extends UiPart<Region> {
         FxViewUtil.applyAnchorBoundaryParameters(getRoot(), 0.0, 0.0, 0.0, 0.0);
         FxViewUtil.applyAnchorBoundaryParameters(commandTextField, 0.0, 0.0, 0.0, 0.0);
 
-        //**author A0140462R
-        commandTextField.getEditor().setOnKeyReleased(event -> {
-            if (!(event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP)) {
-                handleInputMethodTextChanged(event);
-                commandTextField.getEditor().positionCaret(commandTextField.getEditor().getText().length() + 1);
+        //@@author A0140462R
+        Platform.runLater(() -> {
+            commandTextField.setEditable(true);
+            if (commandTextField.getEditor() instanceof ComboBoxPopupControl.FakeFocusTextField) {
+                ((ComboBoxPopupControl.FakeFocusTextField) commandTextField.getEditor()).setFakeFocus(true);
             }
         });
 
-        commandTextField.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
+        commandTextField.setOnKeyReleased(event -> {
+            commandTextField.show();
+            String selected;
+            switch(event.getCode()) {
+            case ENTER:
                 handleCommandInputChanged();
+                break;
+            case DOWN:
+            case UP:
+                selected = commandTextField.getSelectionModel().getSelectedItem().toString();
+                commandTextField.getEditor().positionCaret(selected.length() + 1);
+                break;
+            default:
+                handleInputMethodTextChanged();
+                break;
             }
         });
-
     }
-
+    //@@author
     @FXML
     private void handleCommandInputChanged() {
         try {
@@ -78,13 +92,11 @@ public class CommandBox extends UiPart<Region> {
             raise(new NewResultAvailableEvent(e.getMessage()));
         }
     }
-
-    private void handleInputMethodTextChanged(KeyEvent event) {
+    //@@author A0140462R
+    private void handleInputMethodTextChanged() {
         String userInput = new String(commandTextField.getEditor().getText());
+        int initialCaretPosition = commandTextField.getEditor().getCaretPosition();
 
-        if (commandTextField.getSelectionModel().getSelectedItem() != null) {
-            userInput.concat(event.getText());
-        }
         commandTextField.getItems().clear();
         ArrayList<String> suggestions = new ArrayList<String>();
         for (String s : CommandTexts.COMMAND_TEXT_LIST) {
@@ -94,11 +106,15 @@ public class CommandBox extends UiPart<Region> {
         }
         commandTextField.getItems().addAll(suggestions);
         commandTextField.getEditor().setText(userInput);
-        commandTextField.getEditor().positionCaret(userInput.length() + 1);
-        commandTextField.show();
+        commandTextField.getEditor().positionCaret(initialCaretPosition);
+        commandTextField.hide();
+        commandTextField.setVisibleRowCount(suggestions.size());
+        if (suggestions.size() > 0) {
+            commandTextField.show();
+        }
     }
 
-
+    //@@author
     /**
      * Sets the command box style to indicate a successful command.
      */

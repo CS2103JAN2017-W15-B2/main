@@ -24,7 +24,7 @@ public class EditCommandTest extends TaskListGuiTest {
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
-        String detailsToEdit = "Walk the dog d/Take Zelda on a walk around the park "
+        String detailsToEdit = "Walk the dog(Take Zelda on a walk around the park) "
                 + "from 01/01/2016 0900 to 01/01/2016 1000 t/Incomplete";
         int taskListIndex = 1;
 
@@ -108,7 +108,7 @@ public class EditCommandTest extends TaskListGuiTest {
 
     @Test
     public void edit_duplicateTask_failure() {
-        commandBox.runCommand("edit 3 Walk the dog d/Take Zelda on a walk at the park"
+        commandBox.runCommand("edit 3 Walk the dog (Take Zelda on a walk at the park)"
                 + "from 01/01/2016 0900 to 01/01/2016 1000 t/Important");
     }
 
