@@ -35,7 +35,7 @@
             </Menu>
          </menus>
          <effect>
-            <Bloom threshold="0.65">
+            <Bloom threshold="0">
                <input>
                   <Lighting diffuseConstant="1.05" specularConstant="0.21" surfaceScale="1.16">
                      <bumpInput>

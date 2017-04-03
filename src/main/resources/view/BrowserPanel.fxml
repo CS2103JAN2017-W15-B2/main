@@ -18,13 +18,13 @@
            </padding>
 
             <children>
-                <Label fx:id="name" styleClass="cell_big_label" text="Welcome back" textOverrun="WORD_ELLIPSIS" />
+                <Label fx:id="name" styleClass="cell_big_label_panel" text="Welcome back" textOverrun="WORD_ELLIPSIS" />
                 <FlowPane fx:id="tags" blendMode="OVERLAY">
             <children>
                 <Label blendMode="SCREEN" depthTest="DISABLE" styleClass="cell_big_label" text="Jim" />
             </children>
          </FlowPane>
-               <Label fx:id="description" styleClass="cell_small_label" text="\$description"/>
+               <Label fx:id="description" styleClass="cell_small_label_panel" text="\$description" wrapText="true"/>
                <Label fx:id="startDateTime" styleClass="cell_small_label" text="\$startDateTime"/>
                <Label fx:id="endDateTime" styleClass="cell_small_label" text="\$endDateTime"/>
            </children>
