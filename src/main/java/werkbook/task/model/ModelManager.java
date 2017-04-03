@@ -210,4 +210,11 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    //@@author A0162266E
+	@Override
+	public void sync(UniqueTaskList taskList) {
+		this.taskList.syncTaskListWith(taskList);
+	}
+	//@@author
+
 }

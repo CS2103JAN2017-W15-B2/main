@@ -6,10 +6,11 @@ import java.util.Optional;
 
 import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.model.ReadOnlyTaskList;
+import werkbook.task.model.task.UniqueTaskList;
 
 public interface GTasks {
     /** Retrieves user credentials from Google
-     * @throws IOException 
+     * @throws IOException
      * @throws CredentialsException */
     void login() throws IOException, CredentialsException;
 
@@ -17,8 +18,13 @@ public interface GTasks {
      * @throws CredentialsException */
     void logout() throws CredentialsException;
 
-    /** Syncs current tasks with the ones stored on Google Tasks
+    /** Retrieves current tasks with the ones stored on Google Tasks
      * @throws IOException
      * @throws CredentialsException */
-    Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) throws IOException, CredentialsException;
+    UniqueTaskList retrieve() throws IOException, CredentialsException;
+    
+    /** Updates tasks stored on Google Tasks with current tasks
+     * @throws IOException
+     * @throws CredentialsException */
+    void update(ReadOnlyTaskList taskList) throws IOException, CredentialsException;
 }

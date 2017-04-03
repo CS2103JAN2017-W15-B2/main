@@ -200,4 +200,11 @@ public class TaskList implements ReadOnlyTaskList {
         // your own
         return Objects.hash(tasks, tags);
     }
+
+    //@@author A0162266E
+	public void syncTaskListWith(UniqueTaskList taskList) {
+		// TODO ACTUALLY SYNC PLOX
+		tasks.setTasks(taskList);
+	}
+	//@@author
 }

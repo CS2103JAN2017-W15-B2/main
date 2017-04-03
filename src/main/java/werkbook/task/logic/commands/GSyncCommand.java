@@ -15,10 +15,18 @@ public class GSyncCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         try {
-            gtasks.sync(model.getTaskList());
+            // UniqueTaskList gTaskList = gtasks.retrieve();
+            // model.sync(gTaskList);
+            gtasks.update(model.getTaskList());
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new CommandException(e.getMessage());
         }
         return new CommandResult(GOOGLE_SYNCED_ACKNOWLEDGEMENT);
+    }
+    
+    @Override
+    public boolean isMutable() {
+        return true;
     }
 }

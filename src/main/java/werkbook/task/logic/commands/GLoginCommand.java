@@ -24,6 +24,6 @@ public class GLoginCommand extends Command {
         } catch (CredentialsException e) {
             throw new CommandException(e.getMessage());
         }
-         return new CommandResult(GOOGLE_LOGIN_ACKNOWLEDGEMENT);
+        return new CommandResult(GOOGLE_LOGIN_ACKNOWLEDGEMENT);
     }
 }

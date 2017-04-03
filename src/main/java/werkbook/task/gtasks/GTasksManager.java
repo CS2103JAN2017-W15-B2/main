@@ -21,12 +21,16 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.tasks.Tasks;
 import com.google.api.services.tasks.TasksScopes;
+import com.google.api.services.tasks.model.Task;
 import com.google.api.services.tasks.model.TaskList;
 import com.google.api.services.tasks.model.TaskLists;
 
 import werkbook.task.commons.core.ComponentManager;
+import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.model.ReadOnlyTaskList;
+import werkbook.task.model.task.ReadOnlyTask;
+import werkbook.task.model.task.UniqueTaskList;
 
 public class GTasksManager extends ComponentManager implements GTasks {
 
@@ -123,7 +127,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) throws IOException, CredentialsException {
+    public UniqueTaskList retrieve() throws IOException, CredentialsException {
         if (credential == null) {
             throw new CredentialsException("You are not logged in");
         }
@@ -138,22 +142,84 @@ public class GTasksManager extends ComponentManager implements GTasks {
 
         // Get the tasklist with the name werkbook
         // Creates one if it does not exist
-        TaskList gWerkbook;
+        TaskList gTaskList;
         exist: {
             for (TaskList tl : taskLists.getItems()) {
                 if (tl.getTitle().equals("Werkbook")) {
-                    gWerkbook = tl;
+                    gTaskList = tl;
                     break exist;
                 }
             }
-            gWerkbook = service.tasklists().insert(
+            gTaskList = service.tasklists().insert(
                     (new TaskList()).setTitle("Werkbook"))
                 .execute();
         }
 
-        System.out.println(gWerkbook.toString());
+        // Retrieve tasks from the tasklist
+        List<Task> gTasks = service.tasks().list(gTaskList.getId())
+                .execute()
+                .getItems();
 
-        return null;
+        UniqueTaskList gTaskAdaptedTaskList = new UniqueTaskList();
+        for (Task t : gTasks) {
+        	try {
+				gTaskAdaptedTaskList.add(new werkbook.task.model.task.Task(new GTaskToTaskAdapter(t)));
+			} catch (IllegalValueException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+
+        return gTaskAdaptedTaskList;
     }
 
+	@Override
+	public void update(ReadOnlyTaskList taskList) throws IOException, CredentialsException {
+        if (credential == null) {
+            throw new CredentialsException("You are not logged in");
+        }
+
+        // Retrieve user's tasklists
+        Tasks service = (new Tasks.Builder(
+                HTTP_TRANSPORT, JSON_FACTORY, credential))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        TaskLists taskLists = service.tasklists().list()
+                .execute();
+
+        // Get the tasklist with the name werkbook
+        // Deletes it and create a new one if it exist
+        // Creates one if it does not exist
+        TaskList gTaskList;
+        for (TaskList tl : taskLists.getItems()) {
+            if (tl.getTitle().equals("Werkbook")) {
+                service.tasklists().delete(tl.getId())
+                    .execute();
+            }
+        }
+        gTaskList = service.tasklists().insert(
+                (new TaskList()).setTitle("Werkbook"))
+                .execute();
+        
+        // Add tasks from Werkbook to Google Tasks
+        for (ReadOnlyTask t : taskList.getTaskList()) {
+            try {
+                System.out.println(t.toString());
+                service.tasks().insert(gTaskList.getId(), TaskToGTaskAdapter.getGTask(t))
+                .execute();
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+            }
+        }
+
+//        UniqueTaskList gTaskAdaptedTaskList = new UniqueTaskList();
+//        for (Task t : gTasks) {
+//            try {
+//                gTaskAdaptedTaskList.add(new werkbook.task.model.task.Task(new GTaskToTaskAdapter(t)));
+//            } catch (IllegalValueException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
+	}
 }
