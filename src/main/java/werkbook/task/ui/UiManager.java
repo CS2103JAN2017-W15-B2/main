@@ -14,10 +14,10 @@ import werkbook.task.commons.core.ComponentManager;
 import werkbook.task.commons.core.Config;
 import werkbook.task.commons.core.LogsCenter;
 import werkbook.task.commons.events.storage.DataSavingExceptionEvent;
-//import werkbook.task.commons.events.ui.ClearTaskPanelEvent;
+import werkbook.task.commons.events.ui.ClearTaskPanelEvent;
 import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.events.ui.ShowHelpRequestEvent;
-//import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
+import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
 import werkbook.task.commons.events.ui.ExpandTaskListEvent;
 import werkbook.task.commons.util.StringUtil;
 import werkbook.task.logic.Logic;
@@ -128,16 +128,17 @@ public class UiManager extends ComponentManager implements Ui {
     }
    //@@ author
 
-/* 
+ //??????????
     @Subscribe
-   
     public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.loadTaskPanel(event.getNewSelection());
+        mainWindow.getTaskListPanel();
+//      mainWindow.loadTaskPanel(event.getNewSelection());
     }
-*/
+
+/*
     //@@author A0139903B
-/*    @Subscribe
+    @Subscribe
     public void handleClearTaskPanelSelectionEvent(ClearTaskPanelEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.clearTaskPanel();
