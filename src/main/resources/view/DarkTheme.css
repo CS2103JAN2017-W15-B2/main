@@ -1,16 +1,16 @@
 .background {
-    -fx-background-color: #FAEBD7;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Tempus Sans ITC";
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
-    -fx-font-size: 12pt;
+    -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
@@ -39,16 +39,16 @@
 }
 
 .table-view {
-    -fx-base: #000000;
-    -fx-control-inner-background: #000000;
-    -fx-background-color: #000000;
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #000000;
+    -fx-background-color: transparent;
 }
 
 .table-view .column-header, .table-view .filler {
@@ -76,14 +76,14 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-border-color: transparent #F5F5DC transparent #F5F5DC;
-    -fx-background-color: #000000, derive(#F5F5DC, 10%);
+    -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
+    -fx-background-color: transparent, derive(#1d1d1d, 10%);
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#F5F5DC, 20%);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell {
@@ -93,36 +93,36 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: black;
+    -fx-text-fill: #010504;
 }
 
 .cell_big_label {
     -fx-font-size: 16px;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #010504;
 }
 
 .cell_small_label {
     -fx-font-size: 11px;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #010504;
 }
 
 .desc_big_label {
     -fx-font-size: 32px;
-    -fx-text-fill: #79CDCD;
+    -fx-text-fill: #000fff;
 }
 
 .anchor-pane {
-     -fx-background-color: derive(#F5F5DC, 20%);
+     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .anchor-pane-with-border {
-     -fx-background-color: derive(#F5F5DC, 0%);
-     -fx-border-color: derive(#F5F5DC, 0%);
+     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#00FFFF, 20%);
+    -fx-background-color: derive(#1d1d1d, 20%);
     -fx-text-fill: black;
 }
 
@@ -139,47 +139,46 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: #F5F5DC;
-    -fx-border-color: #F5F5DC;
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 25%);
     -fx-border-width: 1px;
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .grid-pane {
-    -fx-background-color: derive(#8B7355, 30%);
-    -fx-border-color: derive(#8B7355, 30%);
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .anchor-pane {
-    -fx-background-color: derive(#8B3E2F, 30%);
+    -fx-background-color: derive(#1d1d1d, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#F5F5DC, 50%);
+    -fx-background-color: derive(#1d1d1d, 50%);
 }
 
 .context-menu .label {
-    -fx-text-fill: #8B8878;
+    -fx-text-fill: white;
 }
 
 .menu-bar {
-    -fx-background-color: #F5F5DC;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .menu-bar .label {
-    -fx-font-size: 13.5pt;
-    -fx-font-family: "Lucida Console";
-    -fx-font-weight: bold;
-    -fx-text-fill: black;
-    -fx-opacity: 1;
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
 }
 
 .menu .left-container {
-    -fx-background-color: #00EEEE;
+    -fx-background-color: black;
 }
 
 /*
@@ -232,11 +231,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #BEBEBE;
+    -fx-background-color: #1d1d1d;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #BEBEBE;
+    -fx-background-color: #1d1d1d;
 }
 
 .dialog-pane > *.label.content {
@@ -280,13 +279,13 @@
 
 #cardPane {
     -fx-background-color: transparent;
-    -fx-border-color: #FFE4C4;
+    -fx-border-color: #d6d6d6;
     -fx-border-width: 1 1 1 1;
 }
 
 #commandTypeLabel {
     -fx-font-size: 11px;
-    -fx-text-fill: #DC143C;
+    -fx-text-fill: #F70D1A;
 }
 
 #filterField, #taskListPanel, #taskWebpage {
