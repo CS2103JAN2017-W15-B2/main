@@ -6,7 +6,6 @@ import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTIONEND;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_ENDDATETIME;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
-import static werkbook.task.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,7 +31,7 @@ public class EditCommandParser {
     public Command parse(String args) {
         assert args != null;
         ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_DESCRIPTIONEND,
-                PREFIX_STARTDATETIME, PREFIX_ENDDATETIME, PREFIX_DEADLINE, PREFIX_TAG);
+                PREFIX_STARTDATETIME, PREFIX_ENDDATETIME, PREFIX_DEADLINE);
         try {
             argsTokenizer.tokenize(args);
         } catch (IllegalValueException ive) {
@@ -61,8 +60,6 @@ public class EditCommandParser {
             editTaskDescriptor.setStartDateTime(
                     ParserUtil.createStartDateTime(argsTokenizer.getValue(PREFIX_STARTDATETIME)));
             editTaskDescriptor.setEndDateTime(ParserUtil.createEndDateTime(endDatePrefix));
-            editTaskDescriptor
-                    .setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
             //@@author
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());

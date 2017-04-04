@@ -43,7 +43,7 @@ public interface ReadOnlyTask {
                 .append(getStartDateTime())
                 .append(" End Date/Time: ")
                 .append(getEndDateTime())
-                .append(" Tags: ");
+                .append(" Status: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
