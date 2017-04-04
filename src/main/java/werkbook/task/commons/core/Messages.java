@@ -10,6 +10,7 @@ public class Messages {
             + "\nTry typing in 'help' to see the list of commands you can use!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "You've got the wrong command format! \n%1$s";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "I can't seem to find this task :(";
-    public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
+    public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "I found %1$d task(s)! :D";
+    public static final String MESSAGE_NO_TASKS_LISTED = "I can't seem to find anything :(";
 
 }
