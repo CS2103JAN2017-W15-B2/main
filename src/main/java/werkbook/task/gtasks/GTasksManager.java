@@ -160,6 +160,9 @@ public class GTasksManager extends ComponentManager implements GTasks {
                 .getItems();
 
         UniqueTaskList gTaskAdaptedTaskList = new UniqueTaskList();
+        if (gTasks == null) {
+        	return gTaskAdaptedTaskList;
+        }
         for (Task t : gTasks) {
             try {
                 gTaskAdaptedTaskList.add(new werkbook.task.model.task.Task(new GTaskToTaskAdapter(t)));
