@@ -212,8 +212,11 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author A0162266E
     @Override
-    public void importTaskList(UniqueTaskList taskList) {
-        this.taskList.syncTaskListWith(taskList);
+    public void importTaskList(UniqueTaskList importedTaskList) {
+        undoStack.push(new TaskList(taskList));
+        redoStack.clear();
+        this.taskList.syncTaskListWith(importedTaskList);
+        updateFilteredListToShowAll();
         indicateTaskListChanged();
     }
     //@@author
