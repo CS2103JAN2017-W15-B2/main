@@ -161,7 +161,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
 
         UniqueTaskList gTaskAdaptedTaskList = new UniqueTaskList();
         if (gTasks == null) {
-        	return gTaskAdaptedTaskList;
+            return gTaskAdaptedTaskList;
         }
         for (Task t : gTasks) {
             try {

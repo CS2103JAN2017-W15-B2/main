@@ -61,7 +61,7 @@ public class TaskBuilder {
         this.task.setLastUpdated(new Date(Long.parseLong(lastUpdated)));
         return this;
     }
-    
+
     public TestTask build() {
         return this.task;
     }

@@ -57,7 +57,7 @@ public abstract class Command {
         Command.clock = clock;
     }
     //@@author
-    
+
     /**
      * Checks if the command is mutable or not
      * @return true if command is mutable, false if not

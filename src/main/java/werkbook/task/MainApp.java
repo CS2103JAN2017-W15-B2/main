@@ -58,7 +58,7 @@ public class MainApp extends Application {
         super.init();
 
         clock = Clock.systemDefaultZone();
-        
+
         config = initConfig(getApplicationParameter("config"));
         storage = new StorageManager(config);
 

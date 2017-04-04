@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import guitests.guihandles.TaskCardHandle;
 import werkbook.task.commons.core.Messages;
-import werkbook.task.logic.commands.AddCommand;
 import werkbook.task.testutil.TestTask;
 import werkbook.task.testutil.TestUtil;
 
