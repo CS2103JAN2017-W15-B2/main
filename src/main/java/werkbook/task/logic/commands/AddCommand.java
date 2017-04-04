@@ -25,10 +25,9 @@ public class AddCommand extends Command {
             + "The task must have a task name, description is optional.\n"
             + "The task can optionally have an end date and time "
             + "but is required if it also has a start date and time.\n"
-            + "Parameters: Task name [(Description)] [from Start date and time] [to End date and time]  [t/Tag]...\n"
+            + "Parameters: Task name [(Description)] [from Start date and time] [to End date and time] \n"
             + "Example: " + COMMAND_WORD
-            + " Walk the dog (Take Zelda on a walk around the park) from 01/01/2017 1000 to 01/01/2017"
-            + " 1200 t/Important";
+            + " Walk the dog (Take Zelda on a walk around the park) from 10am to 12pm";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
