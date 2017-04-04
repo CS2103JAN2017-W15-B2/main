@@ -121,19 +121,19 @@ public class UiManager extends ComponentManager implements Ui {
 
     // @@author A0130183U
     // changes height of gbox
-    @Subscribe
-    public void expandListEvent(ExpandTaskListEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        //
-    }
-
-    // @@ author
-
-    @Subscribe
-    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.getTaskListPanel();
-    }
+//    @Subscribe
+//    public void expandListEvent(ExpandTaskListEvent event) {
+//        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+//        //
+//    }
+//
+//    // @@ author
+//
+//    @Subscribe
+//    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+//        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+//        mainWindow.getTaskListPanel();
+//    }
 
     /*
      * //@@author A0139903B

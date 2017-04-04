@@ -1,6 +1,5 @@
 package werkbook.task.model.task;
 
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 import werkbook.task.commons.exceptions.IllegalValueException;
@@ -17,7 +16,6 @@ public class Task implements ReadOnlyTask {
             "if Start Date/Time is specified";
     public static final String MESSAGE_END_BEFORE_START_CONSTRAINTS = "End Date/Time must occur after " +
             "Start Date/Time";
-    public static final SimpleDateFormat START_DATETIME_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HHmm");
 
     private Name name;
     private Description description;

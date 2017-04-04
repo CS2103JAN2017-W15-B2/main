@@ -49,7 +49,6 @@ public class TaskListPanel extends UiPart<Region> {
     private void setEventHandlerForSelectionChangeEvent() {
         taskListView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
-                    System.out.println(observable.getValue().getAsText());
                     if (newValue != null) {
                         logger.fine("Selection in task list panel changed to : '" + newValue + "'");
                         raise(new TaskPanelSelectionChangedEvent(newValue));

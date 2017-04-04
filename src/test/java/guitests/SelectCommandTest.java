@@ -36,7 +36,7 @@ public class SelectCommandTest extends TaskListGuiTest {
 
     private void assertSelectionInvalid(int index) {
         commandBox.runCommand("select " + index);
-        assertResultMessage("The task index provided is invalid");
+        assertResultMessage("I can't seem to find this task :(");
     }
 
     private void assertSelectionSuccess(int index) {

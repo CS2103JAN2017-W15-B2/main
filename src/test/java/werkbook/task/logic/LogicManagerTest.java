@@ -220,9 +220,6 @@ public class LogicManagerTest {
         //assertCommandFailure("add Valid Name d/12345 from 99/99/9999 9999 to 01/01/1980 1000",
         //        StartDateTime.MESSAGE_START_DATETIME_CONSTRAINTS);
         assertCommandFailure(
-                "add Valid Name (12345) from 01/01/1980 0000 to 01/01/1980 0100 t/invalid_-[.tag",
-                Tag.MESSAGE_TAG_CONSTRAINTS);
-        assertCommandFailure(
                 "add Valid Name (12345) from 01/01/1980 0000",
                 Task.MESSAGE_START_WITHOUT_END_CONSTRAINTS);
         assertCommandFailure(

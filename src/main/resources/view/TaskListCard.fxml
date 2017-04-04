@@ -19,11 +19,11 @@
             <children>
             <TitledPane fx:id="titledPane" animated="true" prefHeight="228.0" prefWidth="140.0">
               <content>
-                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="148.0">
+                <AnchorPane>
                      <children>
-                              <Label fx:id="description" layoutX="23.0" layoutY="40.0" styleClass="cell_small_label" text="\$description" />
-                              <Label fx:id="startDateTime" layoutX="72.0" layoutY="130.0" styleClass="cell_small_label" text="\$startDateTime" />
-                              <Label fx:id="endDateTime" layoutX="72.0" layoutY="146.0" styleClass="cell_small_label" text="\$endDateTime" />
+                              <Label fx:id="description" layoutX="23.0" layoutY="40.0" styleClass="cell_small_label" text="\$description" wrapText="true"/>
+                              <Label fx:id="startDateTime" layoutX="23.0" layoutY="130.0" styleClass="cell_small_label" text="\$startDateTime" />
+                              <Label fx:id="endDateTime" layoutX="23.0" layoutY="146.0" styleClass="cell_small_label" text="\$endDateTime" />
                               <FlowPane fx:id="tags" columnHalignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="23.0" prefWidth="71.0" />
                      </children>
                   </AnchorPane>
