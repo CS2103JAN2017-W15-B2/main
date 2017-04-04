@@ -40,16 +40,12 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, String description, String startDateTime, String endDateTime,
-            Set<String> tags) throws IllegalValueException {
+    public AddCommand(String name, String description, String startDateTime, String endDateTime)
+            throws IllegalValueException {
         final Set<Tag> tagSet = new LinkedHashSet<>();
 
-        // Starts with default "Incomplete" tag, followed by the rest that are
-        // specified
+        // Starts with default "Incomplete" tag
         tagSet.add(new Tag("Incomplete"));
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
         this.toAdd = new Task(new Name(name), new Description(description), new StartDateTime(startDateTime),
                 new EndDateTime(endDateTime), new UniqueTagList(tagSet));
     }

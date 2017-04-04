@@ -16,7 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_STARTDATETIME = new Prefix("from", true);
     public static final Prefix PREFIX_ENDDATETIME = new Prefix("to", true);
     public static final Prefix PREFIX_DEADLINE = new Prefix("by", true);
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
     //@author
 
     /* Patterns definitions */
