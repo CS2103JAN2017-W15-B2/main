@@ -1,6 +1,7 @@
 package werkbook.task;
 
 import java.io.IOException;
+import java.time.Clock;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -48,6 +49,7 @@ public class MainApp extends Application {
     protected GTasks gtasks;
     protected Config config;
     protected UserPrefs userPrefs;
+    protected Clock clock;
 
 
     @Override
@@ -55,6 +57,8 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing Werkbook ]===========================");
         super.init();
 
+        clock = Clock.systemDefaultZone();
+        
         config = initConfig(getApplicationParameter("config"));
         storage = new StorageManager(config);
 
@@ -62,11 +66,11 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(clock, storage, userPrefs);
 
         gtasks = new GTasksManager();
 
-        logic = new LogicManager(model, storage, gtasks);
+        logic = new LogicManager(model, storage, gtasks, clock);
 
         ui = new UiManager(logic, config, userPrefs);
 
@@ -78,7 +82,7 @@ public class MainApp extends Application {
         return applicationParameters.get(parameterName);
     }
 
-    private Model initModelManager(Storage storage, UserPrefs userPrefs) {
+    private Model initModelManager(Clock clock, Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyTaskList initialData;
         try {

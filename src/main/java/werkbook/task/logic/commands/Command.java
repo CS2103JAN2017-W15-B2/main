@@ -1,5 +1,7 @@
 package werkbook.task.logic.commands;
 
+import java.time.Clock;
+
 import werkbook.task.commons.core.Messages;
 import werkbook.task.gtasks.GTasks;
 import werkbook.task.logic.commands.exceptions.CommandException;
@@ -13,6 +15,7 @@ public abstract class Command {
     protected Model model;
     protected Storage storage;
     protected GTasks gtasks;
+    protected static Clock clock;
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of tasks.
@@ -49,6 +52,12 @@ public abstract class Command {
         this.gtasks = gtasks;
     }
 
+    //@@author A0162266E
+    public static void setClock(Clock clock) {
+        Command.clock = clock;
+    }
+    //@@author
+    
     /**
      * Checks if the command is mutable or not
      * @return true if command is mutable, false if not

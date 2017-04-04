@@ -1,6 +1,9 @@
 package werkbook.task.model.task;
 
 import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -51,6 +54,14 @@ public class Task implements ReadOnlyTask {
                                              // changes in the arg list
         this.lastUpdated = new Date();
     }
+
+    //@@author A0162266E
+    public Task(Name name, Description description, StartDateTime startDateTime, EndDateTime endDateTime,
+            UniqueTagList tags, Clock clock) throws IllegalValueException {
+        this(name, description, startDateTime, endDateTime, tags);
+        this.lastUpdated = Date.from(Instant.now(clock));
+    }
+    //@@author
 
     public Task(Name name, Description description, StartDateTime startDateTime, EndDateTime endDateTime,
             UniqueTagList tags, long lastUpdated) throws IllegalValueException {

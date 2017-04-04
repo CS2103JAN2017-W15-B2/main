@@ -51,7 +51,7 @@ public class AddCommand extends Command {
             tagSet.add(new Tag(tagName));
         }
         this.toAdd = new Task(new Name(name), new Description(description), new StartDateTime(startDateTime),
-                new EndDateTime(endDateTime), new UniqueTagList(tagSet));
+                new EndDateTime(endDateTime), new UniqueTagList(tagSet), clock);
     }
 
     @Override

@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
         return new Task(updatedName, updatedDescription, updatedStartDateTime, updatedEndDateTime,
-                updatedTags);
+                updatedTags, clock);
     }
 
     /**
