@@ -35,23 +35,22 @@ public interface ReadOnlyTask {
                 && other.getUpdated().equals(this.getUpdated());
     }
 
+    //@@author A0139903B
     /**
-     * Formats the task as text, showing all task details.
+     * Formats the task as text, showing task details if present
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Start Date/Time: ")
-                .append(getStartDateTime())
-                .append(" End Date/Time: ")
-                .append(getEndDateTime())
-                .append(" Last Updated: ")
-                .append(getUpdated())
-                .append(" Tags: ");
+            .append(getDescription().toString().isEmpty() ? "" : " Description: " + getDescription())
+            .append(!getStartDateTime().isPresent() ? "" : " From: " + getStartDateTime())
+            .append(!getEndDateTime().isPresent() ? "" : getStartDateTime().isPresent() ? " To: " : " By: ")
+            .append(!getEndDateTime().isPresent() ? "" : getEndDateTime())
+            .append(getUpdated())
+            .append(" Status: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
+    //@@author
 
 }

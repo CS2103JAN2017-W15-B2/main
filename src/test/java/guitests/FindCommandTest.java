@@ -34,7 +34,11 @@ public class FindCommandTest extends TaskListGuiTest {
     private void assertFindResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);
-        assertResultMessage(expectedHits.length + " tasks listed!");
+        if (expectedHits.length == 0) {
+            assertResultMessage("I can't seem to find anything :(");
+        } else {
+            assertResultMessage("I found " + expectedHits.length + " task(s)! :D");
+        }
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
 }

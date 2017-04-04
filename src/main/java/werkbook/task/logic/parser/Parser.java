@@ -1,5 +1,6 @@
 package werkbook.task.logic.parser;
 
+import static werkbook.task.commons.core.Messages.MESSAGE_EMPTY_COMMAND;
 import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static werkbook.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -34,7 +35,8 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern
+            .compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -45,7 +47,8 @@ public class Parser {
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return userInput.isEmpty() ? new IncorrectCommand(MESSAGE_EMPTY_COMMAND)
+                    : new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
