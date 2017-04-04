@@ -108,6 +108,7 @@ public abstract class TaskListGuiTest {
      * Asserts the task shown in the card is same as the given task
      */
     public void assertMatching(ReadOnlyTask task, TaskCardHandle card) {
+        System.out.println("Comparing " + task.getName() + " and " + card.getFullName());
         assertTrue(TestUtil.compareCardAndTask(card, task));
     }
 

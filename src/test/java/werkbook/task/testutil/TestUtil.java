@@ -360,6 +360,7 @@ public class TestUtil {
     }
 
     public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask task) {
+        System.out.println("test util");
         return card.isSameTask(task);
     }
 

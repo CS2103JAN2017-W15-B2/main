@@ -25,6 +25,7 @@ public class TaskCardHandle extends GuiHandle {
 
     public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
         super(guiRobot, primaryStage, null);
+        System.out.println("Creating handle");
         this.node = node;
     }
 
@@ -66,6 +67,12 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     public boolean isSameTask(ReadOnlyTask task) {
+        System.out.println("Comparing");
+        System.out.println("Name: " + getFullName() + " and " + task.getName().toString());
+        System.out.println("Desc: " + getDescription() + " and " + task.getDescription().toString());
+        System.out.println("End: " + getEndDateTime() + " and " + task.getEndDateTime().getPrettyString());
+        System.out.println("Start: " + getStartDateTime() + " and " + task.getStartDateTime().getPrettyString());
+
         return getFullName().equals(task.getName().toString())
                 && getDescription().equals(task.getDescription().toString())
                 && getEndDateTime().equals(task.getEndDateTime().getPrettyString())

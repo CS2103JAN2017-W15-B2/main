@@ -89,8 +89,11 @@ public class MarkCommandTest extends TaskListGuiTest {
             boolean hasMarked) {
         commandBox.runCommand("mark " + filteredTaskListIndex);
 
+        System.out.println("Trying: " + markedTask.getName().toString());
         // confirm the new card contains the right data
         TaskCardHandle existingTask = taskListPanel.navigateToTask(markedTask.getName().toString());
+        System.out.println("Navigating to " + existingTask.getFullName());
+
         assertMatching(markedTask, existingTask);
 
         // confirm the list now contains all previous tasks plus the task
