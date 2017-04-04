@@ -8,7 +8,6 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import werkbook.task.commons.core.Messages;
 import werkbook.task.logic.commands.EditCommand;
-import werkbook.task.model.tag.Tag;
 import werkbook.task.model.task.Name;
 // import werkbook.task.model.task.StartDateTime;
 import werkbook.task.testutil.TaskBuilder;
@@ -38,22 +37,22 @@ public class EditCommandTest extends TaskListGuiTest {
 
     @Test
     public void edit_notAllFieldsSpecified_success() throws Exception {
-        String detailsToEdit = "t/sweetie t/bestie";
+        String detailsToEdit = "(New description)";
         int taskListIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withTags("Incomplete", "sweetie", "bestie").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit).withDescription("New description").build();
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
 
     @Test
-    public void edit_clearTags_success() throws Exception {
-        String detailsToEdit = "t/";
+    public void edit_clearDescription_success() throws Exception {
+        String detailsToEdit = "()";
         int taskListIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withTags("Incomplete").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit).withDescription("").build();
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
@@ -101,15 +100,12 @@ public class EditCommandTest extends TaskListGuiTest {
         // Constraints won't matter
         // commandBox.runCommand("edit 1 from yahoo!!!");
         // assertResultMessage(StartDateTime.MESSAGE_START_DATETIME_CONSTRAINTS);
-
-        commandBox.runCommand("edit 1 t/*&");
-        assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 
     @Test
     public void edit_duplicateTask_failure() {
         commandBox.runCommand("edit 3 Walk the dog (Take Zelda on a walk at the park)"
-                + "from 01/01/2016 0900 to 01/01/2016 1000 t/Important");
+                + "from 01/01/2016 0900 to 01/01/2016 1000");
     }
 
     /**
