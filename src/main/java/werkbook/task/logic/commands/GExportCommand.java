@@ -15,8 +15,6 @@ public class GExportCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         try {
-            // UniqueTaskList gTaskList = gtasks.retrieve();
-            // model.sync(gTaskList);
             gtasks.update(model.getTaskList());
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,6 +16,7 @@ import werkbook.task.logic.commands.FindCommand;
 import werkbook.task.logic.commands.GLoginCommand;
 import werkbook.task.logic.commands.GLogoutCommand;
 import werkbook.task.logic.commands.GExportCommand;
+import werkbook.task.logic.commands.GImportCommand;
 import werkbook.task.logic.commands.HelpCommand;
 import werkbook.task.logic.commands.IncorrectCommand;
 import werkbook.task.logic.commands.ListCommand;
@@ -99,6 +100,9 @@ public class Parser {
         case GExportCommand.COMMAND_WORD:
             return new GExportCommand();
 
+        case GImportCommand.COMMAND_WORD:
+            return new GImportCommand();
+            
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
