@@ -27,7 +27,7 @@ public class EditCommandTest extends TaskListGuiTest {
                 + "from 01/01/2016 0900 to 01/01/2016 1000 t/Incomplete";
         int taskListIndex = 1;
 
-        TestTask editedTask = new TaskBuilder().withName("Walk the dog")
+        TestTask editedTask = new TaskBuilder(clock).withName("Walk the dog")
                 .withDescription("Take Zelda on a walk around the park")
                 .withStartDateTime("01/01/2016 0900")
                 .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();

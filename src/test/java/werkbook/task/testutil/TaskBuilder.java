@@ -1,5 +1,6 @@
 package werkbook.task.testutil;
 
+import java.time.Clock;
 import java.util.Date;
 
 import werkbook.task.commons.exceptions.IllegalValueException;
@@ -20,6 +21,11 @@ public class TaskBuilder {
     public TaskBuilder() {
         this.task = new TestTask();
         this.task.setLastUpdated(new Date());
+    }
+
+    public TaskBuilder(Clock clock) {
+        this.task = new TestTask();
+        this.task.setLastUpdated(Date.from(clock.instant()));
     }
 
     /**
