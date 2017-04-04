@@ -61,7 +61,7 @@ public interface Model {
     //@@author
 
     //@@author A0162266E
-    /** Synchronize current task list with given task list **/
-    void sync(UniqueTaskList taskList);
+    /** Overwrite current task list with given task list **/
+    void importTaskList(UniqueTaskList taskList);
     //@@author
 }
