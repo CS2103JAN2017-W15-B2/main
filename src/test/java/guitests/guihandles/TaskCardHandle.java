@@ -25,7 +25,6 @@ public class TaskCardHandle extends GuiHandle {
 
     public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
         super(guiRobot, primaryStage, null);
-        System.out.println("Creating handle");
         this.node = node;
     }
 
@@ -67,14 +66,7 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     public boolean isSameTask(ReadOnlyTask task) {
-        System.out.println("Comparing");
-        System.out.println("Name: " + getFullName() + " and " + task.getName().toString());
-        System.out.println("Desc: " + getDescription() + " and " + task.getDescription().toString());
-        System.out.println("End: " + getEndDateTime() + " and " + task.getEndDateTime().getPrettyString());
-        System.out.println("Start: " + getStartDateTime() + " and " + task.getStartDateTime().getPrettyString());
-
         return getFullName().equals(task.getName().toString())
-                && getDescription().equals(task.getDescription().toString())
                 && getEndDateTime().equals(task.getEndDateTime().getPrettyString())
                 && getStartDateTime().equals(task.getStartDateTime().getPrettyString())
                 && getTags().equals(getTags(task.getTags()));
@@ -85,7 +77,6 @@ public class TaskCardHandle extends GuiHandle {
         if (obj instanceof TaskCardHandle) {
             TaskCardHandle handle = (TaskCardHandle) obj;
             return getFullName().equals(handle.getFullName())
-                    && getDescription().equals(handle.getDescription())
                     && getEndDateTime().equals(handle.getEndDateTime())
                     && getStartDateTime().equals(handle.getStartDateTime())
                     && getTags().equals(handle.getTags());
