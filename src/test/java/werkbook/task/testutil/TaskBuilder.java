@@ -1,5 +1,7 @@
 package werkbook.task.testutil;
 
+import java.util.Date;
+
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.model.tag.Tag;
 import werkbook.task.model.tag.UniqueTagList;
@@ -17,6 +19,7 @@ public class TaskBuilder {
 
     public TaskBuilder() {
         this.task = new TestTask();
+        this.task.setLastUpdated(new Date());
     }
 
     /**
@@ -54,6 +57,11 @@ public class TaskBuilder {
         return this;
     }
 
+    public TaskBuilder withLastUpdated(String lastUpdated) throws IllegalValueException {
+        this.task.setLastUpdated(new Date(Long.parseLong(lastUpdated)));
+        return this;
+    }
+    
     public TestTask build() {
         return this.task;
     }

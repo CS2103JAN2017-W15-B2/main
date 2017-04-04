@@ -57,6 +57,10 @@ public class TestTask implements ReadOnlyTask {
         this.tags = tags;
     }
 
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+    
     @Override
     public Name getName() {
         return name;
