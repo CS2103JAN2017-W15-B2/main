@@ -91,6 +91,7 @@ public class MarkCommandTest extends TaskListGuiTest {
 
         // confirm the new card contains the right data
         TaskCardHandle existingTask = taskListPanel.navigateToTask(markedTask.getName().toString());
+
         assertMatching(markedTask, existingTask);
 
         // confirm the list now contains all previous tasks plus the task

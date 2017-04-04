@@ -54,4 +54,15 @@ public class DateTimeUtil {
     public static int getDifferenceInDays(Date firstDate, Date secondDate) {
         return Math.abs((int) (firstDate.getTime() - secondDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
     }
+
+    /**
+     * Returns the difference between two dates
+     * @param firstDate first date to compare
+     * @param secondDate second date to compare
+     * @return 0 if dates are equal, -ve if firstDate is earlier than secondDate,
+     *           +ve if firstDate is later than secondDate
+     */
+    public static int getDifference(Date firstDate, Date secondDate) {
+        return firstDate.compareTo(secondDate);
+    }
 }
