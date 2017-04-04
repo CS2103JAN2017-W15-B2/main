@@ -12,12 +12,12 @@
 
 <HBox id="cardPane" fx:id="cardPane" prefWidth="171.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane fx:id="gridPane" prefHeight="224.0" prefWidth="170.0" HBox.hgrow="ALWAYS">
+        <GridPane fx:id="gridPane" prefHeight="0" prefWidth="150.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
             </columnConstraints>
             <children>
-            <TitledPane fx:id="titledPane" animated="true" prefHeight="228.0" prefWidth="140.0">
+            <TitledPane fx:id="titledPane" animated="true" prefHeight="200" prefWidth="150.0">
               <content>
                 <AnchorPane>
                      <children>

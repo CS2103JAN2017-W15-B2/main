@@ -42,12 +42,10 @@ public class TaskCard extends UiPart<Region> {
         endDateTime.setText(task.getEndDateTime().getPrettyString());
         initTags(task);
 
-        titledPane.setAnimated(true);
         titledPane.setExpanded(false);
 
         if (selectionIndex + 1 == displayedIndex) {
             titledPane.setExpanded(true);
-            gridPane.setPrefHeight(titledPane.getPrefHeight());
         }
     }
 
