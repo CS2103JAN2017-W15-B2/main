@@ -6,11 +6,11 @@ import werkbook.task.logic.commands.exceptions.CommandException;
 /**
  * Terminates the program.
  */
-public class GSyncCommand extends Command {
+public class GExportCommand extends Command {
 
-    public static final String COMMAND_WORD = "gsync";
+    public static final String COMMAND_WORD = "gexport";
 
-    public static final String GOOGLE_SYNCED_ACKNOWLEDGEMENT = "Synced TaskList with Google Tasks";
+    public static final String GOOGLE_EXPORTED_ACKNOWLEDGEMENT = "Exported Tasks to Google Tasks";
 
     @Override
     public CommandResult execute() throws CommandException {
@@ -22,7 +22,7 @@ public class GSyncCommand extends Command {
             e.printStackTrace();
             throw new CommandException(e.getMessage());
         }
-        return new CommandResult(GOOGLE_SYNCED_ACKNOWLEDGEMENT);
+        return new CommandResult(GOOGLE_EXPORTED_ACKNOWLEDGEMENT);
     }
 
     @Override
