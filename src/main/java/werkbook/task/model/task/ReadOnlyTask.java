@@ -46,7 +46,7 @@ public interface ReadOnlyTask {
             .append(!getStartDateTime().isPresent() ? "" : " From: " + getStartDateTime())
             .append(!getEndDateTime().isPresent() ? "" : getStartDateTime().isPresent() ? " To: " : " By: ")
             .append(!getEndDateTime().isPresent() ? "" : getEndDateTime())
-            .append(getUpdated())
+            .append(" Last Updated: " + getUpdated())
             .append(" Status: ");
         getTags().forEach(builder::append);
         return builder.toString();

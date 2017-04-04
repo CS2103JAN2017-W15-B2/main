@@ -51,13 +51,14 @@ public class MainApp extends Application {
     protected UserPrefs userPrefs;
     protected Clock clock;
 
-
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing Werkbook ]===========================");
         super.init();
 
-        clock = Clock.systemDefaultZone();
+        if (clock == null) {
+            clock = Clock.systemDefaultZone();
+        }
 
         config = initConfig(getApplicationParameter("config"));
         storage = new StorageManager(config);
@@ -66,7 +67,7 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(clock, storage, userPrefs);
+        model = initModelManager(storage, userPrefs);
 
         gtasks = new GTasksManager();
 
@@ -82,7 +83,7 @@ public class MainApp extends Application {
         return applicationParameters.get(parameterName);
     }
 
-    private Model initModelManager(Clock clock, Storage storage, UserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyTaskList initialData;
         try {

@@ -34,6 +34,10 @@ public class TaskBuilder {
     public TaskBuilder(TestTask taskToCopy) {
         this.task = new TestTask(taskToCopy);
     }
+    public TaskBuilder(TestTask taskToCopy, Clock clock) {
+        this.task = new TestTask(taskToCopy);
+        this.task.setLastUpdated(Date.from(clock.instant()));
+    }
 
     public TaskBuilder withName(String name) throws IllegalValueException {
         this.task.setName(new Name(name));

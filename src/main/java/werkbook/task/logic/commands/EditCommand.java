@@ -76,7 +76,7 @@ public class EditCommand extends Command {
         }
 
         model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
     /**
@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
         return new Task(updatedName, updatedDescription, updatedStartDateTime, updatedEndDateTime,
-                updatedTags, clock);
+                updatedTags, Command.clock);
     }
 
     /**

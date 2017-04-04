@@ -41,7 +41,7 @@ public class EditCommandTest extends TaskListGuiTest {
         int taskListIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withDescription("New description").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit, clock).withDescription("New description").build();
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
@@ -52,7 +52,7 @@ public class EditCommandTest extends TaskListGuiTest {
         int taskListIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withDescription("").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit, clock).withDescription("").build();
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
@@ -66,7 +66,7 @@ public class EditCommandTest extends TaskListGuiTest {
         int taskListIndex = 5;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withName("Walk the goldfish").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit, clock).withName("Walk the goldfish").build();
 
         assertEditSuccess(filteredTaskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
