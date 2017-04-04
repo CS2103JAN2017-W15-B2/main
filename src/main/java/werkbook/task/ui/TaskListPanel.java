@@ -9,6 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import werkbook.task.commons.core.LogsCenter;
 import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
@@ -24,6 +25,8 @@ public class TaskListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<ReadOnlyTask> taskListView;
+    @FXML
+    private HBox cardPane;
 
     public TaskListPanel(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
         super(FXML);
@@ -33,7 +36,7 @@ public class TaskListPanel extends UiPart<Region> {
 
     private void setConnections(ObservableList<ReadOnlyTask> taskList) {
         taskListView.setItems(taskList);
-        taskListView.setCellFactory(listView -> new TaskListViewCell());
+        taskListView.setCellFactory(listView -> new TaskListViewCell(-1));
         setEventHandlerForSelectionChangeEvent();
     }
 
@@ -46,6 +49,7 @@ public class TaskListPanel extends UiPart<Region> {
     private void setEventHandlerForSelectionChangeEvent() {
         taskListView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
+                    System.out.println(observable.getValue().getAsText());
                     if (newValue != null) {
                         logger.fine("Selection in task list panel changed to : '" + newValue + "'");
                         raise(new TaskPanelSelectionChangedEvent(newValue));
@@ -57,10 +61,15 @@ public class TaskListPanel extends UiPart<Region> {
         Platform.runLater(() -> {
             taskListView.scrollTo(index);
             taskListView.getSelectionModel().clearAndSelect(index);
+            taskListView.setCellFactory(listView -> new TaskListViewCell(index));
         });
     }
 
     class TaskListViewCell extends ListCell<ReadOnlyTask> {
+        private int index = -1;
+        public TaskListViewCell(int index) {
+            this.index = index == -1 ? -1 : index;
+        }
 
         @Override
         protected void updateItem(ReadOnlyTask task, boolean empty) {
@@ -70,7 +79,8 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText("");
             } else {
-                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
+                TaskCard temp = new TaskCard(task, getIndex() + 1, index);
+                setGraphic(temp.getRoot());
             }
         }
     }
