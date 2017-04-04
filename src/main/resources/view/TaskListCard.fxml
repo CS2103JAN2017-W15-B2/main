@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,49 +8,36 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="171.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="224.0" prefWidth="170.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
             </columnConstraints>
             <children>
-                <VBox alignment="CENTER_LEFT" minHeight="105.0" prefHeight="243.0" prefWidth="137.0" GridPane.columnIndex="0">
-                    <stylesheets>
-                        <URL value="@DarkTheme.css" />
-                        <URL value="@Extensions.css" />
-                    </stylesheets>
-                    <padding>
-                        <Insets bottom="5" left="15" right="5" top="5" />
-                    </padding>
-
-                    <children>
-                  <TitledPane fx:id="titledpane" animated="false" prefHeight="228.0" prefWidth="140.0">
-                    <content>
-                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="148.0">
-                           <children>
-                                    <Label fx:id="description" layoutX="23.0" layoutY="40.0" styleClass="cell_small_label" text="\$description" />
-                                    <Label fx:id="startDateTime" layoutX="72.0" layoutY="130.0" styleClass="cell_small_label" text="\$startDateTime" />
-                                    <Label fx:id="endDateTime" layoutX="72.0" layoutY="146.0" styleClass="cell_small_label" text="\$endDateTime" />
-                                    <FlowPane fx:id="tags" columnHalignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="23.0" prefWidth="71.0" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                     <graphic>
-                              <HBox alignment="CENTER_LEFT" spacing="5">
-                                  <children>
-                                      <HBox>
-                                          <Label fx:id="id" styleClass="cell_big_label" />
-                                          <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-                                      </HBox>
-                                  </children>
-                              </HBox>
-                     </graphic>
-                  </TitledPane>
-                    </children>
-                </VBox>
+            <TitledPane fx:id="titledpane" animated="false" prefHeight="228.0" prefWidth="140.0">
+              <content>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="148.0">
+                     <children>
+                              <Label fx:id="description" layoutX="23.0" layoutY="40.0" styleClass="cell_small_label" text="\$description" />
+                              <Label fx:id="startDateTime" layoutX="72.0" layoutY="130.0" styleClass="cell_small_label" text="\$startDateTime" />
+                              <Label fx:id="endDateTime" layoutX="72.0" layoutY="146.0" styleClass="cell_small_label" text="\$endDateTime" />
+                              <FlowPane fx:id="tags" columnHalignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="23.0" prefWidth="71.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+               <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="5">
+                            <children>
+                                <HBox>
+                                    <Label fx:id="id" styleClass="cell_big_label" />
+                                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                                </HBox>
+                            </children>
+                        </HBox>
+               </graphic>
+            </TitledPane>
             </children>
          <rowConstraints>
             <RowConstraints />

@@ -68,7 +68,7 @@ public class TaskListPanel extends UiPart<Region> {
 
             if (empty || task == null) {
                 setGraphic(null);
-                setText(null);
+                setText("There is nothing here. Add a task to begin!");
             } else {
                 setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
             }

@@ -25,6 +25,7 @@ public class TaskCard extends UiPart<Region> {
     private Label endDateTime;
     @FXML
     private FlowPane tags;
+    
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
@@ -39,6 +40,5 @@ public class TaskCard extends UiPart<Region> {
     private void initTags(ReadOnlyTask task) {
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-    
     
 }
