@@ -9,6 +9,7 @@ import werkbook.task.commons.core.UnmodifiableObservableList;
 import werkbook.task.commons.exceptions.DuplicateDataException;
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.commons.util.CollectionUtil;
+import werkbook.task.model.util.TaskComparator;
 /**
  * A list of tasks that enforces uniqueness between its elements and does not
  * allow nulls.
@@ -21,6 +22,7 @@ import werkbook.task.commons.util.CollectionUtil;
 public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
+    private final TaskComparator taskComparator = new TaskComparator();
 
     /**
      * Returns true if the list contains an equivalent task as the given
@@ -43,6 +45,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList, taskComparator);
     }
 
     /**
@@ -71,6 +74,7 @@ public class UniqueTaskList implements Iterable<Task> {
         // Then, TaskCard should then bind its text labels to those observable
         // properties.
         internalList.set(index, taskToUpdate);
+        FXCollections.sort(internalList, taskComparator);
     }
 
     /**
