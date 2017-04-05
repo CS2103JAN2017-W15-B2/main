@@ -1,16 +1,17 @@
+//@@author A0130183U
 package werkbook.task.commons.events.ui;
 
 import werkbook.task.commons.events.BaseEvent;
 import werkbook.task.model.task.ReadOnlyTask;
 
 /**
- * Represents a selection change in the Task List Panel
+ * Expands each task card for more details about the task
  */
-public class TaskPanelSelectionChangedEvent extends BaseEvent {
+public class ExpandTaskListEvent extends BaseEvent {
 
-    private final ReadOnlyTask newSelection;
+    public final ReadOnlyTask newSelection;
 
-    public TaskPanelSelectionChangedEvent(ReadOnlyTask newSelection) {
+    public ExpandTaskListEvent(ReadOnlyTask newSelection) {
         this.newSelection = newSelection;
     }
 
@@ -23,3 +24,4 @@ public class TaskPanelSelectionChangedEvent extends BaseEvent {
         return newSelection;
     }
 }
+//@@author
