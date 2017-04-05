@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,12 +13,9 @@
 
 <HBox id="cardPane" fx:id="cardPane" prefWidth="171.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane fx:id="gridPane" prefHeight="0" prefWidth="150.0" HBox.hgrow="ALWAYS">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-            </columnConstraints>
-            <children>
-            <TitledPane fx:id="titledPane" animated="true" prefHeight="200" prefWidth="150.0">
+        <Accordion fx:id="accordion" prefHeight="0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+            <panes>
+            <TitledPane fx:id="titledPane" animated="true" prefHeight="200" prefWidth="150.0" maxWidth="150" wrapText="true">
               <content>
                 <AnchorPane>
                      <children>
@@ -42,10 +40,7 @@
                   <Font size="24.0" />
                </font>
             </TitledPane>
-            </children>
-         <rowConstraints>
-            <RowConstraints />
-         </rowConstraints>
-        </GridPane>
+            </panes>
+        </Accordion>
     </children>
 </HBox>

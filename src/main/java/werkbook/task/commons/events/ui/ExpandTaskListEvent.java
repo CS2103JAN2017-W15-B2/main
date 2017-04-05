@@ -9,10 +9,10 @@ import werkbook.task.model.task.ReadOnlyTask;
  */
 public class ExpandTaskListEvent extends BaseEvent {
 
-	public final ReadOnlyTask newSelection;
+    public final ReadOnlyTask newSelection;
 
     public ExpandTaskListEvent(ReadOnlyTask newSelection) {
-    	this.newSelection = newSelection;
+        this.newSelection = newSelection;
     }
 
     @Override
@@ -24,4 +24,4 @@ public class ExpandTaskListEvent extends BaseEvent {
         return newSelection;
     }
 }
-//@@ author
+//@@author

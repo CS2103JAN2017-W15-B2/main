@@ -1,10 +1,10 @@
 package werkbook.task.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import werkbook.task.model.task.ReadOnlyTask;
@@ -30,7 +30,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private TitledPane titledPane;
     @FXML
-    private GridPane gridPane;
+    private Accordion accordion;
 
 
     public TaskCard(ReadOnlyTask task, int displayedIndex, int selectionIndex) {
@@ -42,10 +42,8 @@ public class TaskCard extends UiPart<Region> {
         endDateTime.setText(task.getEndDateTime().getPrettyString());
         initTags(task);
 
-        titledPane.setExpanded(false);
-
-        if (selectionIndex + 1 == displayedIndex) {
-            titledPane.setExpanded(true);
+        if (selectionIndex == displayedIndex - 1) {
+            accordion.setExpandedPane(titledPane);
         }
     }
 
