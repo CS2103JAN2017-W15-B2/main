@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked %1$s as complete!";
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmark %1$s as complete!";
-    public static final String MESSAGE_TASK_NOT_FOUND = "This task cannot be found";
+    public static final String MESSAGE_TASK_NOT_FOUND = "I can't seem to find this task!";
 
     private final int targetIndex;
     private MarkTaskDescriptor markTaskDescriptor;
@@ -105,7 +105,7 @@ public class MarkCommand extends Command {
 
         try {
             taskToReturn = new Task(taskToEdit.getName(), taskToEdit.getDescription(),
-                    taskToEdit.getStartDateTime(), taskToEdit.getEndDateTime(), updatedTags);
+                    taskToEdit.getStartDateTime(), taskToEdit.getEndDateTime(), updatedTags, clock);
         } catch (IllegalValueException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

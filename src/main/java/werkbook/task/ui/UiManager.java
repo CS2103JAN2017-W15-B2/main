@@ -14,10 +14,8 @@ import werkbook.task.commons.core.ComponentManager;
 import werkbook.task.commons.core.Config;
 import werkbook.task.commons.core.LogsCenter;
 import werkbook.task.commons.events.storage.DataSavingExceptionEvent;
-import werkbook.task.commons.events.ui.ClearTaskPanelEvent;
 import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.events.ui.ShowHelpRequestEvent;
-import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
 import werkbook.task.commons.util.StringUtil;
 import werkbook.task.logic.Logic;
 import werkbook.task.model.UserPrefs;
@@ -47,14 +45,15 @@ public class UiManager extends ComponentManager implements Ui {
         logger.info("Starting UI...");
         primaryStage.setTitle(config.getAppTitle());
 
-        //Set the application icon.
+        // Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
             mainWindow = new MainWindow(primaryStage, config, prefs, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
+            mainWindow.show(); // This should be called before creating other UI
+                               // parts
             mainWindow.fillInnerParts();
-            mainWindow.initTaskPanel();
+            // mainWindow.initTaskPanel();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -81,7 +80,7 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
-                                               String contentText) {
+            String contentText) {
         final Alert alert = new Alert(type);
         alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
         alert.initOwner(owner);
@@ -99,37 +98,50 @@ public class UiManager extends ComponentManager implements Ui {
         System.exit(1);
     }
 
-    //==================== Event Handling Code ===============================================================
+    // ==================== Event Handling Code
+    // ===============================================================
 
     @Subscribe
-    private void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
+    public void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
     }
 
     @Subscribe
-    private void handleShowHelpEvent(ShowHelpRequestEvent event) {
+    public void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.handleHelp();
     }
 
     @Subscribe
-    private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
+    public void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
-    @Subscribe
-    private void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.loadTaskPanel(event.getNewSelection());
-    }
+    // @@author A0130183U
+    // changes height of gbox
+//    @Subscribe
+//    public void expandListEvent(ExpandTaskListEvent event) {
+//        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+//        //
+//    }
+//
+//    // @@ author
+//
+//    @Subscribe
+//    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+//        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+//        mainWindow.getTaskListPanel();
+//    }
 
-    //@@author A0139903B
-    @Subscribe
-    private void handleClearTaskPanelSelectionEvent(ClearTaskPanelEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.clearTaskPanel();
-    }
-    //@@author
+    /*
+     * //@@author A0139903B
+     *
+     * @Subscribe public void
+     * handleClearTaskPanelSelectionEvent(ClearTaskPanelEvent event) {
+     * logger.info(LogsCenter.getEventHandlingLogMessage(event));
+     * mainWindow.clearTaskPanel(); }
+     */
+    // @@author
 }

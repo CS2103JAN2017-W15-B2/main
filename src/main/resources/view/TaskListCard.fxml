@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="171.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane HBox.hgrow="ALWAYS">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-            </columnConstraints>
-            <children>
-                <VBox alignment="CENTER_LEFT" minHeight="105.0" GridPane.columnIndex="0">
-                    <stylesheets>
-                        <URL value="@DarkTheme.css" />
-                        <URL value="@Extensions.css" />
-                    </stylesheets>
-                    <padding>
-                        <Insets bottom="5" left="15" right="5" top="5" />
-                    </padding>
-
-                    <children>
+        <Accordion fx:id="accordion" prefHeight="0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+            <panes>
+            <TitledPane fx:id="titledPane" animated="true" prefHeight="200" prefWidth="150.0" maxWidth="150" wrapText="true">
+              <content>
+                <AnchorPane>
+                     <children>
+                              <Label fx:id="description" layoutX="23.0" layoutY="40.0" styleClass="cell_small_label" text="\$description" wrapText="true"/>
+                              <Label fx:id="startDateTime" layoutX="23.0" layoutY="130.0" styleClass="cell_small_label" text="\$startDateTime" />
+                              <Label fx:id="endDateTime" layoutX="23.0" layoutY="146.0" styleClass="cell_small_label" text="\$endDateTime" />
+                              <FlowPane fx:id="tags" columnHalignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="23.0" prefWidth="71.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+               <graphic>
                         <HBox alignment="CENTER_LEFT" spacing="5">
                             <children>
                                 <HBox>
@@ -35,16 +35,12 @@
                                 </HBox>
                             </children>
                         </HBox>
-                        <FlowPane fx:id="tags" />
-                        <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-                        <Label fx:id="startDateTime" styleClass="cell_small_label" text="\$startDateTime" />
-                        <Label fx:id="endDateTime" styleClass="cell_small_label" text="\$endDateTime" />
-                    </children>
-                </VBox>
-            </children>
-         <rowConstraints>
-            <RowConstraints />
-         </rowConstraints>
-        </GridPane>
+               </graphic>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TitledPane>
+            </panes>
+        </Accordion>
     </children>
 </HBox>

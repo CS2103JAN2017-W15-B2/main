@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import guitests.guihandles.TaskCardHandle;
 import werkbook.task.commons.core.Messages;
-import werkbook.task.logic.commands.AddCommand;
 import werkbook.task.testutil.TestTask;
 import werkbook.task.testutil.TestUtil;
 
@@ -24,11 +23,6 @@ public class AddCommandTest extends TaskListGuiTest {
         taskToAdd = td.ida;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTaskToList(currentList, taskToAdd);
-
-        //add duplicate task
-        commandBox.runCommand(td.hoon.getAddCommand());
-        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
-        assertTrue(taskListPanel.isListMatching(currentList));
 
         //add to empty list
         commandBox.runCommand("clear");

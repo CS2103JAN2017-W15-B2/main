@@ -1,5 +1,8 @@
 package werkbook.task.testutil;
 
+import java.time.Clock;
+import java.util.Date;
+
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.model.tag.Tag;
 import werkbook.task.model.tag.UniqueTagList;
@@ -17,6 +20,12 @@ public class TaskBuilder {
 
     public TaskBuilder() {
         this.task = new TestTask();
+        this.task.setLastUpdated(new Date());
+    }
+
+    public TaskBuilder(Clock clock) {
+        this.task = new TestTask();
+        this.task.setLastUpdated(Date.from(clock.instant()));
     }
 
     /**
@@ -24,6 +33,10 @@ public class TaskBuilder {
      */
     public TaskBuilder(TestTask taskToCopy) {
         this.task = new TestTask(taskToCopy);
+    }
+    public TaskBuilder(TestTask taskToCopy, Clock clock) {
+        this.task = new TestTask(taskToCopy);
+        this.task.setLastUpdated(Date.from(clock.instant()));
     }
 
     public TaskBuilder withName(String name) throws IllegalValueException {
@@ -51,6 +64,11 @@ public class TaskBuilder {
 
     public TaskBuilder withEndDateTime(String endDateTime) throws IllegalValueException {
         this.task.setEndDateTime(new EndDateTime(endDateTime));
+        return this;
+    }
+
+    public TaskBuilder withLastUpdated(String lastUpdated) throws IllegalValueException {
+        this.task.setLastUpdated(new Date(Long.parseLong(lastUpdated)));
         return this;
     }
 

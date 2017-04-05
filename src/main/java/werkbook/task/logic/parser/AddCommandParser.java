@@ -3,9 +3,9 @@ package werkbook.task.logic.parser;
 import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static werkbook.task.logic.parser.CliSyntax.PREFIX_DESCRIPTIONEND;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_ENDDATETIME;
 import static werkbook.task.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
-import static werkbook.task.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.NoSuchElementException;
 
@@ -25,8 +25,8 @@ public class AddCommandParser {
      * AddCommand and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTDATETIME,
-                PREFIX_ENDDATETIME, PREFIX_DEADLINE, PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_DESCRIPTIONEND,
+                PREFIX_STARTDATETIME, PREFIX_ENDDATETIME, PREFIX_DEADLINE);
         try {
             argsTokenizer.tokenize(args);
 
@@ -34,8 +34,7 @@ public class AddCommandParser {
                     argsTokenizer.getValue(PREFIX_DESCRIPTION).orElse(""),
                     argsTokenizer.getValue(PREFIX_STARTDATETIME).orElse(""),
                     argsTokenizer.getValue(PREFIX_ENDDATETIME)
-                            .orElse(argsTokenizer.getValue(PREFIX_DEADLINE).orElse("")),
-                    ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG)));
+                            .orElse(argsTokenizer.getValue(PREFIX_DEADLINE).orElse("")));
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

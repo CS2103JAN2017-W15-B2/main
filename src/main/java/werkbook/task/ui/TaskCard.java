@@ -1,7 +1,9 @@
 package werkbook.task.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -25,18 +27,28 @@ public class TaskCard extends UiPart<Region> {
     private Label endDateTime;
     @FXML
     private FlowPane tags;
+    @FXML
+    private TitledPane titledPane;
+    @FXML
+    private Accordion accordion;
 
-    public TaskCard(ReadOnlyTask task, int displayedIndex) {
+
+    public TaskCard(ReadOnlyTask task, int displayedIndex, int selectionIndex) {
         super(FXML);
         name.setText(task.getName().taskName);
         id.setText(displayedIndex + ". ");
         description.setText(task.getDescription().toString());
-        startDateTime.setText(task.getStartDateTime().toString());
-        endDateTime.setText(task.getEndDateTime().toString());
+        startDateTime.setText(task.getStartDateTime().getPrettyString());
+        endDateTime.setText(task.getEndDateTime().getPrettyString());
         initTags(task);
+
+        if (selectionIndex == displayedIndex - 1) {
+            accordion.setExpandedPane(titledPane);
+        }
     }
 
     private void initTags(ReadOnlyTask task) {
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
 }

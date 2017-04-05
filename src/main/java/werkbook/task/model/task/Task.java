@@ -1,6 +1,9 @@
 package werkbook.task.model.task;
 
 import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 import werkbook.task.commons.exceptions.IllegalValueException;
@@ -23,6 +26,7 @@ public class Task implements ReadOnlyTask {
     private Description description;
     private StartDateTime startDateTime;
     private EndDateTime endDateTime;
+    private Date lastUpdated;
 
     private UniqueTagList tags;
 
@@ -47,6 +51,21 @@ public class Task implements ReadOnlyTask {
         this.endDateTime = endDateTime;
         this.tags = new UniqueTagList(tags); // protect internal tags from
                                              // changes in the arg list
+        this.lastUpdated = new Date();
+    }
+
+    //@@author A0162266E
+    public Task(Name name, Description description, StartDateTime startDateTime, EndDateTime endDateTime,
+            UniqueTagList tags, Clock clock) throws IllegalValueException {
+        this(name, description, startDateTime, endDateTime, tags);
+        this.lastUpdated = Date.from(Instant.now(clock));
+    }
+    //@@author
+
+    public Task(Name name, Description description, StartDateTime startDateTime, EndDateTime endDateTime,
+            UniqueTagList tags, long lastUpdated) throws IllegalValueException {
+        this(name, description, startDateTime, endDateTime, tags);
+        this.lastUpdated = new Date(lastUpdated);
     }
 
     /**
@@ -55,7 +74,7 @@ public class Task implements ReadOnlyTask {
      */
     public Task(ReadOnlyTask source) throws IllegalValueException {
         this(source.getName(), source.getDescription(), source.getStartDateTime(), source.getEndDateTime(),
-                source.getTags());
+                source.getTags(), source.getUpdated().getTime());
     }
 
     @Override
@@ -136,6 +155,15 @@ public class Task implements ReadOnlyTask {
     @Override
     public String toString() {
         return getAsText();
+    }
+
+    @Override
+    public Date getUpdated() {
+        return this.lastUpdated;
+    }
+
+    public void setUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
 }

@@ -11,6 +11,7 @@ import werkbook.task.logic.commands.MarkCommand;
 import werkbook.task.testutil.TaskBuilder;
 import werkbook.task.testutil.TestTask;
 
+//@@author A0139903B
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 public class MarkCommandTest extends TaskListGuiTest {
 
@@ -91,6 +92,7 @@ public class MarkCommandTest extends TaskListGuiTest {
 
         // confirm the new card contains the right data
         TaskCardHandle existingTask = taskListPanel.navigateToTask(markedTask.getName().toString());
+
         assertMatching(markedTask, existingTask);
 
         // confirm the list now contains all previous tasks plus the task

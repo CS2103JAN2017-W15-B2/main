@@ -137,7 +137,7 @@ Format: `add NAME [(DESCRIPTION)] [by END_DATETIME]`
 
 Example: `add Get the groceries (Milk, eggs, and cheese) by 10/03/2017 1400`
 
-And if you plan to get it done in a particular timespan, you can specify the duration by using `from` and `to`!<br> 
+And if you plan to get it done in a particular timespan, you can specify the duration by using `from` and `to`!<br>
 Format: `add NAME [(DESCRIPTION)] [from START_DATETIME] [to END_DATETIME]`
 
 Example: `add Get the groceries (Milk, eggs, and cheese) from 10/03/2017 1400 to 10/03/2017 1600`

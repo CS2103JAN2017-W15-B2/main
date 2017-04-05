@@ -1,6 +1,7 @@
 package werkbook.task;
 
 import java.io.IOException;
+import java.time.Clock;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -18,6 +19,8 @@ import werkbook.task.commons.events.ui.ExitAppRequestEvent;
 import werkbook.task.commons.exceptions.DataConversionException;
 import werkbook.task.commons.util.ConfigUtil;
 import werkbook.task.commons.util.StringUtil;
+import werkbook.task.gtasks.GTasks;
+import werkbook.task.gtasks.GTasksManager;
 import werkbook.task.logic.Logic;
 import werkbook.task.logic.LogicManager;
 import werkbook.task.model.Model;
@@ -43,14 +46,19 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected Model model;
+    protected GTasks gtasks;
     protected Config config;
     protected UserPrefs userPrefs;
-
+    protected Clock clock;
 
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing Werkbook ]===========================");
         super.init();
+
+        if (clock == null) {
+            clock = Clock.systemDefaultZone();
+        }
 
         config = initConfig(getApplicationParameter("config"));
         storage = new StorageManager(config);
@@ -61,7 +69,9 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        gtasks = new GTasksManager();
+
+        logic = new LogicManager(model, storage, gtasks, clock);
 
         ui = new UiManager(logic, config, userPrefs);
 

@@ -16,33 +16,42 @@ public class TypicalTestTasks {
         try {
             alice = new TaskBuilder().withName("Walk the dog")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").withLastUpdated("1491317771675")
+                    .build();
             benson = new TaskBuilder().withName("Walk the cat")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").withLastUpdated("1491317771676")
+                    .build();
             carl = new TaskBuilder().withName("Walk the cow")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").withLastUpdated("1491317771677")
+                    .build();
             daniel = new TaskBuilder().withName("Walk the nyan cat")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").withLastUpdated("1491317771678")
+                    .build();
             elle = new TaskBuilder().withName("Walk the fish")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Complete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Complete").withLastUpdated("1491317771679")
+                    .build();
             fiona = new TaskBuilder().withName("Walk the lion")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Complete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Complete").withLastUpdated("1491317771680")
+                    .build();
             george = new TaskBuilder().withName("Walk the elephant")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Complete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Complete").withLastUpdated("1491317771681")
+                    .build();
 
             // Manually added
             hoon = new TaskBuilder().withName("Walk the tiger")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").withLastUpdated("1491317771682")
+                    .build();
             ida = new TaskBuilder().withName("Walk the zebra")
                     .withDescription("Take Zelda on a walk at the park").withStartDateTime("01/01/2016 0900")
-                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
+                    .withEndDateTime("01/01/2016 1000").withTags("Incomplete").withLastUpdated("1491317771683")
+                    .build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";

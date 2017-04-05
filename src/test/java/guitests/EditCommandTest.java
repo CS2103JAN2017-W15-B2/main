@@ -8,7 +8,6 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import werkbook.task.commons.core.Messages;
 import werkbook.task.logic.commands.EditCommand;
-import werkbook.task.model.tag.Tag;
 import werkbook.task.model.task.Name;
 // import werkbook.task.model.task.StartDateTime;
 import werkbook.task.testutil.TaskBuilder;
@@ -24,11 +23,11 @@ public class EditCommandTest extends TaskListGuiTest {
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
-        String detailsToEdit = "Walk the dog d/Take Zelda on a walk around the park "
+        String detailsToEdit = "Walk the dog(Take Zelda on a walk around the park) "
                 + "from 01/01/2016 0900 to 01/01/2016 1000 t/Incomplete";
         int taskListIndex = 1;
 
-        TestTask editedTask = new TaskBuilder().withName("Walk the dog")
+        TestTask editedTask = new TaskBuilder(clock).withName("Walk the dog")
                 .withDescription("Take Zelda on a walk around the park")
                 .withStartDateTime("01/01/2016 0900")
                 .withEndDateTime("01/01/2016 1000").withTags("Incomplete").build();
@@ -38,25 +37,27 @@ public class EditCommandTest extends TaskListGuiTest {
 
     @Test
     public void edit_notAllFieldsSpecified_success() throws Exception {
-        String detailsToEdit = "t/sweetie t/bestie";
+        String detailsToEdit = "(New description)";
         int taskListIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withTags("Incomplete", "sweetie", "bestie").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit, clock).withDescription("New description").build();
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
 
+    //@@author A0139903B
     @Test
-    public void edit_clearTags_success() throws Exception {
-        String detailsToEdit = "t/";
+    public void edit_clearDescription_success() throws Exception {
+        String detailsToEdit = "()";
         int taskListIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withTags("Incomplete").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit, clock).withDescription("").build();
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
+    //@@author
 
     @Test
     public void edit_findThenEdit_success() throws Exception {
@@ -67,7 +68,7 @@ public class EditCommandTest extends TaskListGuiTest {
         int taskListIndex = 5;
 
         TestTask taskToEdit = expectedTaskList[taskListIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withName("Walk the goldfish").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit, clock).withName("Walk the goldfish").build();
 
         assertEditSuccess(filteredTaskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
@@ -101,15 +102,12 @@ public class EditCommandTest extends TaskListGuiTest {
         // Constraints won't matter
         // commandBox.runCommand("edit 1 from yahoo!!!");
         // assertResultMessage(StartDateTime.MESSAGE_START_DATETIME_CONSTRAINTS);
-
-        commandBox.runCommand("edit 1 t/*&");
-        assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 
     @Test
     public void edit_duplicateTask_failure() {
-        commandBox.runCommand("edit 3 Walk the dog d/Take Zelda on a walk at the park"
-                + "from 01/01/2016 0900 to 01/01/2016 1000 t/Important");
+        commandBox.runCommand("edit 3 Walk the dog (Take Zelda on a walk at the park)"
+                + "from 01/01/2016 0900 to 01/01/2016 1000");
     }
 
     /**
