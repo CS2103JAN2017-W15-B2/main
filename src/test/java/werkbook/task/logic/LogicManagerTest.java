@@ -411,9 +411,13 @@ public class LogicManagerTest {
                 Command.getMessageForTaskListShownSummary(expectedList.size()), expectedTaskList,
                 expectedList);
     }
-
+    //@@author A0140462R
+    /**
+     * Creates a task list, executes add command, then executes undo command
+     * to confirm that the add is undone.
+     */
     @Test
-    public void execute_undo_withPriorMutablePriorAction() throws Exception {
+    public void execute_undo_withPriorMutableAction() throws Exception {
 
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.adam();
@@ -438,7 +442,16 @@ public class LogicManagerTest {
 
         assertCommandSuccess("undo", UndoCommand.MESSAGE_SUCCESS, expectedTaskList, expectedTaskList.getTaskList());
     }
-
+    /**
+     * Confirms that undo fails and an error message is shown when there are no
+     * prior mutable commands executed
+     */
+    @Test
+    public void execute_undo_withNoPriorMutableAction() throws Exception {
+	assertCommandFailure("undo", UndoCommand.MESSAGE_NO_LAST_ACTION);
+    }
+    
+    //@@author
     /**
      * A utility class to generate test data.
      */
