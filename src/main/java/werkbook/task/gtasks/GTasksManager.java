@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -19,11 +18,18 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.tasks.Tasks;
 import com.google.api.services.tasks.TasksScopes;
+import com.google.api.services.tasks.model.Task;
+import com.google.api.services.tasks.model.TaskList;
+import com.google.api.services.tasks.model.TaskLists;
 
 import werkbook.task.commons.core.ComponentManager;
-import werkbook.task.gtasks.exceptions.NoCredentialsException;
+import werkbook.task.commons.exceptions.IllegalValueException;
+import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.model.ReadOnlyTaskList;
+import werkbook.task.model.task.ReadOnlyTask;
+import werkbook.task.model.task.UniqueTaskList;
 
 public class GTasksManager extends ComponentManager implements GTasks {
 
@@ -51,7 +57,7 @@ public class GTasksManager extends ComponentManager implements GTasks {
      * at /credentials
      */
     private static final List<String> SCOPES =
-        Arrays.asList(TasksScopes.TASKS_READONLY);
+        Arrays.asList(TasksScopes.TASKS);
 
     /** Global instance of client secrets */
     private static GoogleClientSecrets clientSecrets;
@@ -75,12 +81,19 @@ public class GTasksManager extends ComponentManager implements GTasks {
         clientSecrets =
             GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
         if (DATA_STORE_FACTORY.getDataDirectory().list().length != 0) {
-            login();
+            try {
+                login();
+            } catch (CredentialsException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
-    public void login() throws IOException {
+    public void login() throws IOException, CredentialsException {
+        if (credential != null) {
+            throw new CredentialsException("You are already logged in.");
+        }
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow =
                 new GoogleAuthorizationCodeFlow.Builder(
@@ -95,11 +108,11 @@ public class GTasksManager extends ComponentManager implements GTasks {
     }
 
     @Override
-    public void logout() throws NoCredentialsException {
+    public void logout() throws CredentialsException {
         // Delete credentials from data store directory
         File dataStoreDirectory = DATA_STORE_FACTORY.getDataDirectory();
         if (dataStoreDirectory.list().length == 0) {
-            throw new NoCredentialsException("No user logged in");
+            throw new CredentialsException("You are not logged in");
         }
         for (File file : dataStoreDirectory.listFiles()) {
             file.delete();
@@ -113,9 +126,92 @@ public class GTasksManager extends ComponentManager implements GTasks {
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> sync(ReadOnlyTaskList taskList) {
-        // TODO Auto-generated method stub
-        return null;
+    public UniqueTaskList retrieve() throws IOException, CredentialsException {
+        if (credential == null) {
+            throw new CredentialsException("You are not logged in");
+        }
+
+        // Retrieve user's tasklists
+        Tasks service = (new Tasks.Builder(
+                HTTP_TRANSPORT, JSON_FACTORY, credential))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        TaskLists taskLists = service.tasklists().list()
+                .execute();
+
+        // Get the tasklist with the name werkbook
+        // Creates one if it does not exist
+        TaskList gTaskList;
+        exist: {
+            for (TaskList tl : taskLists.getItems()) {
+                if (tl.getTitle().equals("Werkbook")) {
+                    gTaskList = tl;
+                    break exist;
+                }
+            }
+            gTaskList = service.tasklists().insert(
+                    (new TaskList()).setTitle("Werkbook"))
+                .execute();
+        }
+
+        // Retrieve tasks from the tasklist
+        List<Task> gTasks = service.tasks().list(gTaskList.getId())
+                .execute()
+                .getItems();
+
+        UniqueTaskList gTaskAdaptedTaskList = new UniqueTaskList();
+        if (gTasks == null) {
+            return gTaskAdaptedTaskList;
+        }
+        for (Task t : gTasks) {
+            try {
+                gTaskAdaptedTaskList.add(new werkbook.task.model.task.Task(new GTaskToTaskAdapter(t)));
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return gTaskAdaptedTaskList;
     }
 
+    @Override
+    public void update(ReadOnlyTaskList taskList) throws IOException, CredentialsException {
+        if (credential == null) {
+            throw new CredentialsException("You are not logged in");
+        }
+
+        // Retrieve user's tasklists
+        Tasks service = (new Tasks.Builder(
+                HTTP_TRANSPORT, JSON_FACTORY, credential))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        TaskLists taskLists = service.tasklists().list()
+                .execute();
+
+        // Get the tasklist with the name werkbook
+        // Deletes it and create a new one if it exist
+        // Creates one if it does not exist
+        TaskList gTaskList;
+        for (TaskList tl : taskLists.getItems()) {
+            if (tl.getTitle().equals("Werkbook")) {
+                service.tasklists().delete(tl.getId())
+                    .execute();
+            }
+        }
+        gTaskList = service.tasklists().insert(
+                (new TaskList()).setTitle("Werkbook"))
+                .execute();
+
+        // Add tasks from Werkbook to Google Tasks
+        for (ReadOnlyTask t : taskList.getTaskList()) {
+            try {
+                System.out.println(t.toString());
+                service.tasks().insert(gTaskList.getId(), TaskToGTaskAdapter.getGTask(t))
+                .execute();
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

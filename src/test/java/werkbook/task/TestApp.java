@@ -1,5 +1,6 @@
 package werkbook.task;
 
+import java.time.Clock;
 import java.util.function.Supplier;
 
 import javafx.stage.Screen;
@@ -28,8 +29,9 @@ public class TestApp extends MainApp {
     public TestApp() {
     }
 
-    public TestApp(Supplier<ReadOnlyTaskList> initialDataSupplier, String saveFileLocation) {
+    public TestApp(Clock clock, Supplier<ReadOnlyTaskList> initialDataSupplier, String saveFileLocation) {
         super();
+        super.clock = clock;
         this.initialDataSupplier = initialDataSupplier;
         this.saveFileLocation = saveFileLocation;
 

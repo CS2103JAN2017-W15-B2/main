@@ -1,7 +1,7 @@
 //@@author A0162266E
 package werkbook.task.logic.commands;
 
-import werkbook.task.gtasks.exceptions.NoCredentialsException;
+import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 
 /**
@@ -11,15 +11,15 @@ public class GLogoutCommand extends Command {
 
     public static final String COMMAND_WORD = "glogout";
 
-    public static final String GOOGLE_LOGIN_ACKNOWLEDGEMENT = "Logged out of Google";
+    public static final String GOOGLE_LOGOUT_ACKNOWLEDGEMENT = "Logged out of Google";
 
     @Override
     public CommandResult execute() throws CommandException {
         try {
             gtasks.logout();
-        } catch (NoCredentialsException e) {
+        } catch (CredentialsException e) {
             throw new CommandException(e.getMessage());
         }
-        return new CommandResult(GOOGLE_LOGIN_ACKNOWLEDGEMENT);
+        return new CommandResult(GOOGLE_LOGOUT_ACKNOWLEDGEMENT);
     }
 }

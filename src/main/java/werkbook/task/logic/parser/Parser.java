@@ -14,6 +14,8 @@ import werkbook.task.logic.commands.DeleteCommand;
 import werkbook.task.logic.commands.EditCommand;
 import werkbook.task.logic.commands.ExitCommand;
 import werkbook.task.logic.commands.FindCommand;
+import werkbook.task.logic.commands.GExportCommand;
+import werkbook.task.logic.commands.GImportCommand;
 import werkbook.task.logic.commands.GLoginCommand;
 import werkbook.task.logic.commands.GLogoutCommand;
 import werkbook.task.logic.commands.HelpCommand;
@@ -97,6 +99,12 @@ public class Parser {
 
         case GLogoutCommand.COMMAND_WORD:
             return new GLogoutCommand();
+
+        case GExportCommand.COMMAND_WORD:
+            return new GExportCommand();
+
+        case GImportCommand.COMMAND_WORD:
+            return new GImportCommand();
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);

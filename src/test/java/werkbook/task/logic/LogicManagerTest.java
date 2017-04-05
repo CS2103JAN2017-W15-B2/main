@@ -8,6 +8,9 @@ import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED
 import static werkbook.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.io.IOException;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -64,6 +67,7 @@ public class LogicManagerTest {
     private Model model;
     private Logic logic;
     private GTasks gtasks;
+    private Clock clock;
 
     // These are for checking the correctness of the events raised
     private ReadOnlyTaskList latestSavedTaskList;
@@ -87,11 +91,12 @@ public class LogicManagerTest {
 
     @Before
     public void setUp() throws IOException {
+        clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
         model = new ModelManager();
         gtasks = new GTasksManager();
         String tempTaskListFile = saveFolder.getRoot().getPath() + "TempTaskList.xml";
         String tempPreferencesFile = saveFolder.getRoot().getPath() + "TempPreferences.json";
-        logic = new LogicManager(model, new StorageManager(tempTaskListFile, tempPreferencesFile), gtasks);
+        logic = new LogicManager(model, new StorageManager(tempTaskListFile, tempPreferencesFile), gtasks, clock);
         EventsCenter.getInstance().registerHandler(this);
 
         latestSavedTaskList = new TaskList(model.getTaskList()); // last saved
@@ -240,20 +245,6 @@ public class LogicManagerTest {
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedTaskList,
                 expectedTaskList.getTaskList());
-
-    }
-
-    @Test
-    public void execute_addDuplicate_notAllowed() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
-
-        // setup starting state
-        model.addTask(toBeAdded); // task already in internal task ist
-
-        // execute command and verify result
-        assertCommandFailure(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
     }
 
@@ -460,7 +451,7 @@ public class LogicManagerTest {
             EndDateTime endDateTime = new EndDateTime("01/01/1980 0500");
             Tag tag1 = new Tag("Incomplete");
             UniqueTagList tags = new UniqueTagList(tag1);
-            return new Task(name, description, startDateTime, endDateTime, tags);
+            return new Task(name, description, startDateTime, endDateTime, tags, clock);
         }
 
         /**
@@ -473,7 +464,7 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(new Name("Task " + seed), new Description("" + Math.abs(seed)),
                     new StartDateTime("10/10/2016 0900"), new EndDateTime("10/10/2016 1000"),
-                    new UniqueTagList("Incomplete"));
+                    new UniqueTagList("Incomplete"), clock);
         }
 
         /** Generates the correct add command based on the task given */
@@ -570,7 +561,7 @@ public class LogicManagerTest {
          */
         Task generateTaskWithName(String name) throws Exception {
             return new Task(new Name(name), new Description("1"), new StartDateTime("01/01/1980 0000"),
-                    new EndDateTime("01/01/1980 0100"), new UniqueTagList());
+                    new EndDateTime("01/01/1980 0100"), new UniqueTagList(), clock);
         }
     }
 }

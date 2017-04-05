@@ -1,5 +1,7 @@
 package werkbook.task.testutil;
 
+import java.util.Date;
+
 import werkbook.task.model.tag.UniqueTagList;
 import werkbook.task.model.task.Description;
 import werkbook.task.model.task.EndDateTime;
@@ -17,6 +19,7 @@ public class TestTask implements ReadOnlyTask {
     private StartDateTime startDateTime;
     private EndDateTime endDateTime;
     private UniqueTagList tags;
+    private Date lastUpdated;
 
     public TestTask() {
         tags = new UniqueTagList();
@@ -31,6 +34,7 @@ public class TestTask implements ReadOnlyTask {
         this.startDateTime = taskToCopy.getStartDateTime();
         this.endDateTime = taskToCopy.getEndDateTime();
         this.tags = taskToCopy.getTags();
+        this.lastUpdated = taskToCopy.lastUpdated;
     }
 
     public void setName(Name name) {
@@ -51,6 +55,10 @@ public class TestTask implements ReadOnlyTask {
 
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     @Override
@@ -91,5 +99,10 @@ public class TestTask implements ReadOnlyTask {
         sb.append("to " + this.getEndDateTime().toString() + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
+    }
+
+    @Override
+    public Date getUpdated() {
+        return lastUpdated;
     }
 }

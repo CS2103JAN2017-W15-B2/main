@@ -1,5 +1,6 @@
 package werkbook.task.logic;
 
+import java.time.Clock;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -24,11 +25,14 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Parser parser;
     private final Storage storage;
     private final GTasks gtasks;
+    private final Clock clock;
 
-    public LogicManager(Model model, Storage storage, GTasks gtasks) {
+    public LogicManager(Model model, Storage storage, GTasks gtasks, Clock clock) {
         this.model = model;
         this.storage = storage;
         this.gtasks = gtasks;
+        this.clock = clock;
+        Command.setClock(clock);
         this.parser = new Parser();
     }
 

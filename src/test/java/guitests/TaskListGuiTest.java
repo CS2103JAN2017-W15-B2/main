@@ -3,6 +3,9 @@ package guitests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.After;
@@ -39,7 +42,7 @@ public abstract class TaskListGuiTest {
     public TestName name = new TestName();
 
     TestApp testApp;
-
+    Clock clock;
     protected TypicalTestTasks td = new TypicalTestTasks();
 
     /*
@@ -66,6 +69,7 @@ public abstract class TaskListGuiTest {
 
     @Before
     public void setup() throws Exception {
+        clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
         FxToolkit.setupStage((stage) -> {
             mainGui = new MainGuiHandle(new GuiRobot(), stage);
             mainMenu = mainGui.getMainMenu();
@@ -76,7 +80,9 @@ public abstract class TaskListGuiTest {
             this.stage = stage;
         });
         EventsCenter.clearSubscribers();
-        testApp = (TestApp) FxToolkit.setupApplication(() -> new TestApp(this::getInitialData, getDataFileLocation()));
+        testApp = (TestApp) FxToolkit.setupApplication(() -> new TestApp(
+                clock,
+                this::getInitialData, getDataFileLocation()));
         FxToolkit.showStage();
         while (!stage.isShowing());
         mainGui.focusOnMainApp();

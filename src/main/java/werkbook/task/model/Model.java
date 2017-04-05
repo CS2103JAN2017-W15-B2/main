@@ -60,4 +60,8 @@ public interface Model {
     void indicateTaskListEmpty();
     //@@author
 
+    //@@author A0162266E
+    /** Overwrite current task list with given task list **/
+    void importTaskList(UniqueTaskList taskList);
+    //@@author
 }

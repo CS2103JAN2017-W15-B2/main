@@ -1,5 +1,7 @@
 package werkbook.task.model.task;
 
+import java.util.Date;
+
 import werkbook.task.model.tag.UniqueTagList;
 
 /**
@@ -12,6 +14,7 @@ public interface ReadOnlyTask {
     Description getDescription();
     StartDateTime getStartDateTime();
     EndDateTime getEndDateTime();
+    Date getUpdated();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -28,7 +31,8 @@ public interface ReadOnlyTask {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getDescription().equals(this.getDescription())
                 && other.getStartDateTime().equals(this.getStartDateTime())
-                && other.getEndDateTime().equals(this.getEndDateTime()));
+                && other.getEndDateTime().equals(this.getEndDateTime()))
+                && other.getUpdated().equals(this.getUpdated());
     }
 
     //@@author A0139903B
@@ -42,6 +46,7 @@ public interface ReadOnlyTask {
             .append(!getStartDateTime().isPresent() ? "" : " From: " + getStartDateTime())
             .append(!getEndDateTime().isPresent() ? "" : getStartDateTime().isPresent() ? " To: " : " By: ")
             .append(!getEndDateTime().isPresent() ? "" : getEndDateTime())
+            .append(" Last Updated: " + getUpdated())
             .append(" Status: ");
         getTags().forEach(builder::append);
         return builder.toString();

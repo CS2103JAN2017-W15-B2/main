@@ -46,7 +46,7 @@ public class AddCommand extends Command {
         // Starts with default "Incomplete" tag
         tagSet.add(new Tag("Incomplete"));
         this.toAdd = new Task(new Name(name), new Description(description), new StartDateTime(startDateTime),
-                new EndDateTime(endDateTime), new UniqueTagList(tagSet));
+                new EndDateTime(endDateTime), new UniqueTagList(tagSet), clock);
     }
 
     @Override
