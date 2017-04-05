@@ -486,6 +486,11 @@ public class LogicManagerTest {
         assertCommandSuccess("redo", RedoCommand.MESSAGE_SUCCESS, newExpectedTaskList, newExpectedTaskList.getTaskList());
     }
     
+    @Test
+    public void execute_redo_withNoPriorUndo() throws Exception {
+	
+	assertCommandFailure("redo", RedoCommand.MESSAGE_NO_LAST_ACTION);
+    }
     //@@author
     /**
      * A utility class to generate test data.
