@@ -258,7 +258,7 @@ public class LogicManagerTest {
         // prepare task list state
         helper.addToModel(model, 2);
 
-        assertCommandSuccess("list", ListCommand.MESSAGE_SUCCESS, expectedTaskList, expectedList);
+        assertCommandSuccess("list all", ListCommand.MESSAGE_SUCCESS, expectedTaskList, expectedList);
     }
 
     /**

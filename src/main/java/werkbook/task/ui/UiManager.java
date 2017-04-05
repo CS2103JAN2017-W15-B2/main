@@ -16,6 +16,7 @@ import werkbook.task.commons.core.LogsCenter;
 import werkbook.task.commons.events.storage.DataSavingExceptionEvent;
 import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.events.ui.ShowHelpRequestEvent;
+import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
 import werkbook.task.commons.util.StringUtil;
 import werkbook.task.logic.Logic;
 import werkbook.task.model.UserPrefs;
@@ -116,6 +117,7 @@ public class UiManager extends ComponentManager implements Ui {
     @Subscribe
     public void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        System.out.println("JUMPING");
         mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
@@ -129,11 +131,10 @@ public class UiManager extends ComponentManager implements Ui {
 //
 //    // @@ author
 //
-//    @Subscribe
-//    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
-//        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-//        mainWindow.getTaskListPanel();
-//    }
+    @Subscribe
+    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    }
 
     /*
      * //@@author A0139903B
