@@ -24,7 +24,7 @@
 }
 
 .text-field {
-    -fx-font-size: 20pt;
+    -fx-font-size: 16pt;
     -fx-font-family: "Segoe UI Semibold";
 }
 
@@ -138,6 +138,7 @@
 
 .result-display {
     -fx-background-color: #ffffff;
+    -fx-font-size: 12pt;
 }
 
 .result-display .label {
@@ -294,7 +295,7 @@
 }
 
 #commandTypeLabel {
-    -fx-font-size: 20px;
+    -fx-font-size: 16px;
     -fx-text-fill: #F70D1A;
 }
 
