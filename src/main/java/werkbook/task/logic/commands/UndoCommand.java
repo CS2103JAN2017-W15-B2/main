@@ -1,3 +1,4 @@
+//@@author A0140462R
 package werkbook.task.logic.commands;
 
 import java.util.EmptyStackException;
@@ -5,8 +6,7 @@ import java.util.EmptyStackException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 
 /**
- * TODO fill this in
- * @author
+ * Undoes the previous mutable command executed
  *
  */
 public class UndoCommand extends Command {
@@ -15,8 +15,8 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the last mutable action performed. ";
 
-
     public static final String MESSAGE_SUCCESS = "Last action undone. ";
+
     public static final String MESSAGE_NO_LAST_ACTION = "No previous action has been performed. ";
 
     @Override

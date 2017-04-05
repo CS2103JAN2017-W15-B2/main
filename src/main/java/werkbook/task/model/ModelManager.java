@@ -117,6 +117,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskListChanged();
     }
 
+//@@author A0140462R
     @Override
     public void undo() throws EmptyStackException {
         if (undoStack.isEmpty()) {
@@ -136,7 +137,7 @@ public class ModelManager extends ComponentManager implements Model {
         taskList.resetData(redoStack.pop());
         indicateTaskListChanged();
     }
-
+//@author
     //=========== Filtered Task List Accessors =============================================================
 
     @Override
