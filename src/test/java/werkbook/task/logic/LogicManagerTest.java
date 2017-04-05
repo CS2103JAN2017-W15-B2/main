@@ -449,12 +449,12 @@ public class LogicManagerTest {
      */
     @Test
     public void execute_undo_withNoPriorMutableAction() throws Exception {
-	
+
 	assertCommandFailure("undo", UndoCommand.MESSAGE_NO_LAST_ACTION);
     }
     /**
-     * Creates a new taskList, executes add command, executes undo command, then 
-     * confirms that the redo command returns the task list to the original state 
+     * Creates a new taskList, executes add command, executes undo command, then
+     * confirms that the redo command returns the task list to the original state
      * before the undo command
      */
     @Test
@@ -485,10 +485,10 @@ public class LogicManagerTest {
         //executes redo
         assertCommandSuccess("redo", RedoCommand.MESSAGE_SUCCESS, newExpectedTaskList, newExpectedTaskList.getTaskList());
     }
-    
+
     @Test
     public void execute_redo_withNoPriorUndo() throws Exception {
-	
+
 	assertCommandFailure("redo", RedoCommand.MESSAGE_NO_LAST_ACTION);
     }
     //@@author

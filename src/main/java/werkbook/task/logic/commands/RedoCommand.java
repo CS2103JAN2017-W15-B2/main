@@ -6,7 +6,7 @@ import java.util.EmptyStackException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 
 /**
- * Redoes the last undo 
+ * Redoes the last undo
  *
  */
 public class RedoCommand extends Command {
