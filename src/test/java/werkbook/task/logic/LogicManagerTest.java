@@ -39,6 +39,7 @@ import werkbook.task.logic.commands.ExitCommand;
 import werkbook.task.logic.commands.FindCommand;
 import werkbook.task.logic.commands.HelpCommand;
 import werkbook.task.logic.commands.ListCommand;
+import werkbook.task.logic.commands.RedoCommand;
 import werkbook.task.logic.commands.SelectCommand;
 import werkbook.task.logic.commands.UndoCommand;
 import werkbook.task.logic.commands.exceptions.CommandException;
@@ -448,7 +449,41 @@ public class LogicManagerTest {
      */
     @Test
     public void execute_undo_withNoPriorMutableAction() throws Exception {
+	
 	assertCommandFailure("undo", UndoCommand.MESSAGE_NO_LAST_ACTION);
+    }
+    /**
+     * Creates a new taskList, executes add command, executes undo command, then 
+     * confirms that the redo command returns the task list to the original state 
+     * before the undo command
+     */
+    @Test
+    public void execute_redo_withPriorUndo() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task toBeAdded = helper.adam();
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.addTask(toBeAdded);
+
+        // execute command and verify result
+        assertCommandSuccess(helper.generateAddCommand(toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
+                expectedTaskList,
+                expectedTaskList.getTaskList());
+
+        //add one more task
+        Task newTask = helper.generateTask(1);
+        TaskList newExpectedTaskList = new TaskList();
+        newExpectedTaskList.addTask(toBeAdded);
+        newExpectedTaskList.addTask(newTask);
+        assertCommandSuccess(helper.generateAddCommand(newTask),
+                String.format(AddCommand.MESSAGE_SUCCESS, newTask),
+                newExpectedTaskList,
+                newExpectedTaskList.getTaskList());
+
+        //executes undo
+        assertCommandSuccess("undo", UndoCommand.MESSAGE_SUCCESS, expectedTaskList, expectedTaskList.getTaskList());
+        //executes redo
+        assertCommandSuccess("redo", RedoCommand.MESSAGE_SUCCESS, newExpectedTaskList, newExpectedTaskList.getTaskList());
     }
     
     //@@author
