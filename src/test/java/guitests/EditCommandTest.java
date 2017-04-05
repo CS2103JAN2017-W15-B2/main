@@ -46,6 +46,7 @@ public class EditCommandTest extends TaskListGuiTest {
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
 
+    //@@author A0139903B
     @Test
     public void edit_clearDescription_success() throws Exception {
         String detailsToEdit = "()";
@@ -56,6 +57,7 @@ public class EditCommandTest extends TaskListGuiTest {
 
         assertEditSuccess(taskListIndex, taskListIndex, detailsToEdit, editedTask);
     }
+    //@@author
 
     @Test
     public void edit_findThenEdit_success() throws Exception {

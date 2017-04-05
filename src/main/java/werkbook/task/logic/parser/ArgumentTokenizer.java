@@ -266,7 +266,7 @@ public class ArgumentTokenizer {
             prefixPositions.remove(endIndex);
         }
     }
-    // @@author
+    //@@author
 
     /**
      * Returns the trimmed value of the argument specified by
@@ -280,13 +280,13 @@ public class ArgumentTokenizer {
         int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
-        // @@author A0139903B
+        //@@author A0139903B
         // Should already be filtered by now, time to convert to fit date time
         // format
         if (prefix.isDateTime()) {
             value = DateTimeParser.parse(value);
         }
-        // @@author
+        //@@author
         return value.trim();
     }
 
