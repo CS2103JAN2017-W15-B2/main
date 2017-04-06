@@ -38,7 +38,7 @@
                <graphic>
                   <AnchorPane maxWidth="1.7976931348623157E308" minWidth="400.0">
                      <children>
-                        <VBox fx:id="header">
+                        <VBox fx:id="titledPaneHeader">
                            <children>
                               <HBox alignment="CENTER_LEFT">
                                  <children>

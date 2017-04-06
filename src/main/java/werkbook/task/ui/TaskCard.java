@@ -25,17 +25,17 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label startDateTime;
     @FXML
-    private Label headerStartDateTime;
-    @FXML
     private Label endDateTime;
-    @FXML
-    private Label headerEndDateTime;
     @FXML
     private FlowPane tags;
     @FXML
     private TitledPane titledPane;
     @FXML
-    private VBox header;
+    private VBox titledPaneHeader;
+    @FXML
+    private Label headerStartDateTime;
+    @FXML
+    private Label headerEndDateTime;
 
     public TaskCard(ReadOnlyTask task, int displayedIndex, int selectionIndex) {
         super(FXML);
@@ -44,17 +44,17 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().toString());
         startDateTime.setText(task.getStartDateTime().toString());
         endDateTime.setText(task.getEndDateTime().toString());
+        initTags(task);
 
         headerStartDateTime.setText(task.getStartDateTime().getPrettyString());
         headerEndDateTime.setText(task.getEndDateTime().getPrettyString());
-        initTags(task);
 
         // If start date time is not present, then remove
         if (!task.getStartDateTime().isPresent()) {
-            header.getChildren().remove(1);
+            titledPaneHeader.getChildren().remove(1);
             // If end date time is not present, then remove
             if (!task.getEndDateTime().isPresent()) {
-                header.getChildren().remove(1);
+                titledPaneHeader.getChildren().remove(1);
             }
         }
 
