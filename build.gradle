@@ -99,6 +99,13 @@ allprojects {
 
         destinationDir = file("${buildDir}/jar/")
     }
+
+    test {
+        testLogging {
+            events "failed"
+            exceptionFormat "short"
+        }
+    }
 }
 
 task wrapper(type: Wrapper) {
