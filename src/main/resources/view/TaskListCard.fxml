@@ -43,7 +43,7 @@
                               <HBox alignment="CENTER_LEFT">
                                  <children>
                                     <Label fx:id="id" styleClass="header_name" text="\\$id" />
-                                    <Label fx:id="name" styleClass="header_name" text="\\$name" />
+                                    <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_name" text="\\$name" />
                                  </children>
                               </HBox>
                               <Label fx:id="headerStartDateTime" styleClass="header_time_label" text="\\$headerStartDateTime" textFill="#00c911" />
