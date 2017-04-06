@@ -3,8 +3,6 @@ package werkbook.task.logic.commands;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import werkbook.task.commons.core.EventsCenter;
-import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 import werkbook.task.model.tag.Tag;
@@ -57,8 +55,8 @@ public class AddCommand extends Command {
         try {
             model.addTask(toAdd);
 
-            int updatedIndex = model.getFilteredTaskList().indexOf(toAdd);
-            EventsCenter.getInstance().post(new JumpToListRequestEvent(updatedIndex));
+//            int updatedIndex = model.getFilteredTaskList().indexOf(toAdd);
+//            EventsCenter.getInstance().post(new JumpToListRequestEvent(updatedIndex));
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {

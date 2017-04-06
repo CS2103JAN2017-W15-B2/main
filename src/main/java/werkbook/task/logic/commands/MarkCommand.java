@@ -6,9 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import werkbook.task.commons.core.EventsCenter;
 import werkbook.task.commons.core.Messages;
-import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 import werkbook.task.logic.parser.ParserUtil;
@@ -89,9 +87,6 @@ public class MarkCommand extends Command {
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             dpe.printStackTrace();
         }
-
-        model.updateFilteredListToShowAll();
-        EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
 
         return new CommandResult(String.format(statusMessage, taskToMark.getName()));
     }
