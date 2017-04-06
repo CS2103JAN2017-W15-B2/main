@@ -27,7 +27,7 @@ public class SampleDataUtil {
                         new UniqueTagList("Incomplete")),
                 new Task(new Name("Take out the trash"), new Description(""),
                         new StartDateTime("25/12/2015 1400"), new EndDateTime("25/12/2015 1415"),
-                        new UniqueTagList("Completed")),
+                        new UniqueTagList("Complete")),
                 new Task(new Name("Do Christmas shopping"), new Description("Compare prices with Amazon"),
                         new StartDateTime("20/12/2015 1200"), new EndDateTime("24/12/2015 2200"),
                         new UniqueTagList("Complete")),
