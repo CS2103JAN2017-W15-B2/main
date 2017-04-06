@@ -61,7 +61,7 @@ public class TaskListPanel extends UiPart<Region> {
 
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-            taskListView.scrollTo(index);
+            taskListView.scrollTo(index - 1);
             taskListView.getSelectionModel().clearAndSelect(index);
             taskListView.setCellFactory(listView -> new TaskListViewCell(index));
         });
