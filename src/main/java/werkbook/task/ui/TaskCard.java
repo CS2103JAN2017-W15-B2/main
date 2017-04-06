@@ -7,6 +7,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import werkbook.task.model.task.ReadOnlyTask;
 
 public class TaskCard extends UiPart<Region> {
@@ -16,7 +17,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Text name;
     @FXML
     private Label id;
     @FXML
@@ -59,6 +60,7 @@ public class TaskCard extends UiPart<Region> {
 
         // Set strikethrough if task is complete
         if (task.getTags().asObservableList().get(0).tagName.equals("Complete")) {
+            name.setStrikethrough(true);
         }
 
         titledPane.setExpanded(false);
