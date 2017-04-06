@@ -17,7 +17,7 @@ public class ListCommandParser {
      */
     public Command parse(String args) {
         if (args.trim().toLowerCase().equals(ListCommand.SHOW_COMPLETE)
-                || args.trim().toLowerCase().equals(ListCommand.SHOW_ALL) || args.isEmpty()) {
+                || args.trim().toLowerCase().equals(ListCommand.SHOW_INCOMPLETE) || args.isEmpty()) {
             return new ListCommand(args);
         } else {
             return new IncorrectCommand(
