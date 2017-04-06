@@ -3,7 +3,9 @@ package werkbook.task.logic.commands;
 import java.util.List;
 import java.util.Optional;
 
+import werkbook.task.commons.core.EventsCenter;
 import werkbook.task.commons.core.Messages;
+import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.commons.util.CollectionUtil;
 import werkbook.task.logic.commands.exceptions.CommandException;
@@ -77,9 +79,9 @@ public class EditCommand extends Command {
 
         model.updateFilteredListToShowAll();
 
-//        int updatedIndex = model.getFilteredTaskList().indexOf(taskToEdit);
-//
-//        EventsCenter.getInstance().post(new JumpToListRequestEvent(updatedIndex));
+        int updatedIndex = model.getFilteredTaskList().indexOf(taskToEdit);
+
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(updatedIndex));
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
