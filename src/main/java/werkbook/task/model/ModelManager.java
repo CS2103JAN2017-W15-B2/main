@@ -155,14 +155,14 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
-    
+
     @Override
     public void updateFilteredTaskListToShowIncomplete() {
         Set<String> keywords = new HashSet<String>();
         keywords.add("Incomplete");
         updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
     }
-    
+
     @Override
     public void updateFilteredTaskListToShowComplete() {
         Set<String> keywords = new HashSet<String>();
