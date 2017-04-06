@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
@@ -11,36 +17,51 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" prefWidth="171.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <Accordion fx:id="accordion" prefHeight="0" prefWidth="150.0" HBox.hgrow="ALWAYS">
-            <panes>
-            <TitledPane fx:id="titledPane" animated="true" prefHeight="200" prefWidth="150.0" maxWidth="150" wrapText="true">
-              <content>
-                <AnchorPane>
+<HBox fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane prefWidth="400.0" HBox.hgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+         <children>
+            <TitledPane fx:id="titledPane" expanded="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
+               <content>
+                  <VBox>
                      <children>
-                              <Label fx:id="description" layoutX="23.0" layoutY="40.0" styleClass="cell_small_label" text="\$description" wrapText="true"/>
-                              <Label fx:id="startDateTime" layoutX="23.0" layoutY="130.0" styleClass="cell_small_label" text="\$startDateTime" />
-                              <Label fx:id="endDateTime" layoutX="23.0" layoutY="146.0" styleClass="cell_small_label" text="\$endDateTime" />
-                              <FlowPane fx:id="tags" columnHalignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="23.0" prefWidth="71.0" />
+                        <FlowPane fx:id="tags" />
+                        <Label fx:id="description" styleClass="description_label" text="\\$description" wrapText="true" />
+                        <Label fx:id="startDateTime" styleClass="header_time_label" text="\\$startDateTime" />
+                        <Label fx:id="endDateTime" styleClass="header_time_label" text="\\$endDateTime" />
+                     </children>
+                  </VBox>
+               </content>
+               <graphic>
+                  <AnchorPane maxWidth="1.7976931348623157E308" minWidth="400.0">
+                     <children>
+                        <VBox fx:id="header">
+                           <children>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label fx:id="id" styleClass="header_name" text="\\$id" />
+                                    <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_name" text="\\$name" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="headerStartDateTime" styleClass="header_time_label" text="\\$headerStartDateTime" textFill="#00c911" />
+                              <Label fx:id="headerEndDateTime" styleClass="header_time_label" text="\\$headerEndDateTime" />
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
-              </content>
-               <graphic>
-                        <HBox alignment="CENTER_LEFT" spacing="5">
-                            <children>
-                                <HBox>
-                                    <Label fx:id="id" styleClass="cell_big_label" />
-                                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-                                </HBox>
-                            </children>
-                        </HBox>
                </graphic>
-               <font>
-                  <Font size="24.0" />
-               </font>
             </TitledPane>
-            </panes>
-        </Accordion>
-    </children>
+         </children>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+      </GridPane>
+   </children>
+   <stylesheets>
+      <URL value="@DarkTheme.css" />
+      <URL value="@Extensions.css" />
+   </stylesheets>
 </HBox>
