@@ -156,6 +156,10 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
+    private void updateFilteredTaskList(Expression expression) {
+        filteredTasks.setPredicate(expression::satisfies);
+    }
+
     @Override
     public void updateFilteredTaskListToShowIncomplete() {
         Set<String> keywords = new HashSet<String>();
@@ -168,10 +172,6 @@ public class ModelManager extends ComponentManager implements Model {
         Set<String> keywords = new HashSet<String>();
         keywords.add("Complete");
         updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
-    }
-
-    private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
     }
 
     // ========== Inner classes/interfaces used for filtering
