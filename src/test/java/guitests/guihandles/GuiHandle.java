@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import werkbook.task.TestApp;
@@ -72,11 +71,7 @@ public class GuiHandle {
     }
 
     protected String getTextFromLabel(String fieldId, Node parentNode) {
-        if (guiRobot.from(parentNode).lookup(fieldId).tryQuery().get().getClass().equals(Label.class)) {
-            return ((Label) guiRobot.from(parentNode).lookup(fieldId).tryQuery().get()).getText();
-        } else {
-            return ((Text) guiRobot.from(parentNode).lookup(fieldId).tryQuery().get()).getText();
-        }
+        return ((Label) guiRobot.from(parentNode).lookup(fieldId).tryQuery().get()).getText();
     }
 
     public void focusOnSelf() {
