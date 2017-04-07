@@ -32,25 +32,25 @@
                   <VBox>
                      <children>
                         <FlowPane fx:id="tags" />
-                        <Label fx:id="description" styleClass="description_label" text="\\$description" wrapText="true" />
-                        <Label fx:id="startDateTime" styleClass="header_time_label" text="\\$startDateTime" />
-                        <Label fx:id="endDateTime" styleClass="header_time_label" text="\\$endDateTime" />
+                        <Label fx:id="description" styleClass="description_label" text="\$description" wrapText="true" />
+                        <Label fx:id="startDateTime" styleClass="header_time_label" text="\$startDateTime" />
+                        <Label fx:id="endDateTime" styleClass="header_time_label" text="\$endDateTime" />
                      </children>
                   </VBox>
                </content>
                <graphic>
                   <AnchorPane maxWidth="1.7976931348623157E308" minWidth="400.0">
                      <children>
-                        <VBox fx:id="header">
+                        <VBox fx:id="titledPaneHeader">
                            <children>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
-                                    <Label fx:id="id" styleClass="header_name" text="\\$id" />
-                                    <Label fx:id="name" styleClass="header_name" text="\\$name" />
+                                    <Label fx:id="id" styleClass="header_name" text="\$id" />
+                                    <Text fx:id="name" styleClass="header_name" text="\$name" />
                                  </children>
                               </HBox>
-                              <Label fx:id="headerStartDateTime" styleClass="header_time_label" text="\\$headerStartDateTime" textFill="#00c911" />
-                              <Label fx:id="headerEndDateTime" styleClass="header_time_label" text="\\$headerEndDateTime" />
+                              <Label fx:id="headerStartDateTime" styleClass="header_time_label" text="\$headerStartDateTime" textFill="#00c911" />
+                              <Label fx:id="headerEndDateTime" styleClass="header_time_label" text="\$headerEndDateTime" />
                            </children>
                         </VBox>
                      </children>
