@@ -86,29 +86,35 @@ public class TaskCard extends UiPart<Region> {
         String startDatePrefix = "From: ";
         String endDatePrefix = "To:     ";
 
-        // Prefix check
+        // If start date time is not present, then remove
         if (!task.getStartDateTime().isPresent()) {
             startDatePrefix = "";
             endDatePrefix = "By: ";
-        }
-
-        prefixStartDateTime.setText(startDatePrefix);
-        startDateTime.setText(task.getStartDateTime().getPrettyString());
-        headerStartDateTime.setText(startDatePrefix + task.getStartDateTime().getPrettyString());
-
-        prefixEndDateTime.setText(endDatePrefix);
-        endDateTime.setText(task.getEndDateTime().getPrettyString());
-        headerEndDateTime.setText(endDatePrefix + task.getEndDateTime().getPrettyString());
-
-        // If start date time is not present, then remove
-        if (!task.getStartDateTime().isPresent()) {
             titledPaneHeader.getChildren().remove(1);
+            startDateTime.setText("");
 
             // If end date time is not present, then remove
             if (!task.getEndDateTime().isPresent()) {
+                endDatePrefix = "";
                 titledPaneHeader.getChildren().remove(1);
+                endDateTime.setText("");
             }
         }
+
+        prefixStartDateTime.setText(startDatePrefix);
+        prefixEndDateTime.setText(endDatePrefix);
+
+        // Only set date time if present
+        if (task.getStartDateTime().isPresent()) {
+            startDateTime.setText(task.getStartDateTime().getPrettyString());
+            headerStartDateTime.setText(startDatePrefix + task.getStartDateTime().getPrettyString());
+        }
+
+        if (task.getEndDateTime().isPresent()) {
+            endDateTime.setText(task.getEndDateTime().getPrettyString());
+            headerEndDateTime.setText(endDatePrefix + task.getEndDateTime().getPrettyString());
+        }
+
     }
 //@@author
     private void initTags(ReadOnlyTask task) {
