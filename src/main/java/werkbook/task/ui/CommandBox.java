@@ -93,9 +93,13 @@ public class CommandBox extends UiPart<Region> {
         }
     }
     //@@author A0140462R
+    /**
+     * Searches through list of available commands and displays the commands containing
+     * the user input in a dropdown list.
+     */
     private void handleInputMethodTextChanged() {
         String userInput = new String(commandTextField.getEditor().getText());
-        int initialCaretPosition = commandTextField.getEditor().getCaretPosition();
+        int initialCaretPosition = commandTextField.getEditor().getCaretPosition(); //saves the caret position
 
         commandTextField.getItems().clear();
         ArrayList<String> suggestions = new ArrayList<String>();
@@ -106,8 +110,8 @@ public class CommandBox extends UiPart<Region> {
         }
         commandTextField.getItems().addAll(suggestions);
         commandTextField.getEditor().setText(userInput);
-        commandTextField.getEditor().positionCaret(initialCaretPosition);
-        commandTextField.hide();
+        commandTextField.getEditor().positionCaret(initialCaretPosition); //set caret position back
+        commandTextField.hide();       //hides the dropdown list so that the visible row count can be updated
         commandTextField.setVisibleRowCount(suggestions.size());
         if (suggestions.size() > 0) {
             commandTextField.show();
@@ -129,4 +133,8 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.getStyleClass().add(ERROR_STYLE_CLASS);
     }
 
+    public void focusOnTextField() {
+        commandTextField.requestFocus();
+        setStyleToIndicateCommandSuccess();
+    }
 }
