@@ -46,10 +46,10 @@
                               <HBox alignment="CENTER_LEFT">
                                  <children>
                                     <Label fx:id="id" styleClass="header_name" text="\$id" />
-                                    <Text fx:id="name" styleClass="header_name" text="\$name" />
+                                    <Text fx:id="name" styleClass="header_name" text="\$name"/>
                                  </children>
                               </HBox>
-                              <Label fx:id="headerStartDateTime" styleClass="header_time_label" text="\$headerStartDateTime" textFill="#00c911" />
+                              <Label fx:id="headerStartDateTime" styleClass="header_time_label" text="\$headerStartDateTime" />
                               <Label fx:id="headerEndDateTime" styleClass="header_time_label" text="\$headerEndDateTime" />
                            </children>
                         </VBox>
