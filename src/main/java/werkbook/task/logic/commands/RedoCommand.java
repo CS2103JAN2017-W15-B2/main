@@ -1,3 +1,4 @@
+//@@author A0140462R
 package werkbook.task.logic.commands;
 
 import java.util.EmptyStackException;
@@ -5,8 +6,7 @@ import java.util.EmptyStackException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 
 /**
- * TODO fill this in
- * @author
+ * Redoes the last undo
  *
  */
 public class RedoCommand extends Command {
@@ -15,8 +15,8 @@ public class RedoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redoes the last undo. ";
 
-
     public static final String MESSAGE_SUCCESS = "Last action redone. ";
+
     public static final String MESSAGE_NO_LAST_ACTION = "No undos have been performed. ";
 
     @Override
