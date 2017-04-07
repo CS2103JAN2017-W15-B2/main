@@ -9,7 +9,7 @@ public class ListCommand extends Command {
     public static final String SHOW_INCOMPLETE = "incomplete";
     public static final String SHOW_COMPLETE = "complete";
 
-    public static final String MESSAGE_SUCCESS = "Here's all your tasks!";
+    public static final String MESSAGE_SUCCESS = "Here are all your tasks!";
     public static final String MESSAGE_SHOW_COMPLETE_SUCCESS = "These are your completed tasks!";
     public static final String MESSAGE_SHOW_INCOMPLETE_SUCCESS = "These are your uncompleted tasks!";
 
