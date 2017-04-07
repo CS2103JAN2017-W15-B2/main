@@ -86,6 +86,24 @@
     -fx-background-color: derive(#F5F5DC, 20%);
 }
 
+.titled-pane {   
+    -fx-text-fill: -fx-text-base-color;
+}
+
+.titled-pane:focused {
+    -fx-text-fill: white;
+}
+
+.titled-pane > *.content {
+    -fx-background-color: #f2f3f4;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #f2f4f7;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+}
+
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
@@ -130,7 +148,7 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#00ffff, 20%);
+    -fx-background-color: #98c9f9;
     -fx-text-fill: black;
 }
 

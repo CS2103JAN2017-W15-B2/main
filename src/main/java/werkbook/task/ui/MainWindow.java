@@ -16,7 +16,6 @@ import werkbook.task.commons.events.ui.ExitAppRequestEvent;
 import werkbook.task.commons.util.FxViewUtil;
 import werkbook.task.logic.Logic;
 import werkbook.task.model.UserPrefs;
-//import werkbook.task.model.task.ReadOnlyTask;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,7 +32,6 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-//  private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
     private CommandBox commandBox;
     private Config config;
@@ -118,7 +116,6 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-//      browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskListFilePath());
