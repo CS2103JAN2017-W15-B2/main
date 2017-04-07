@@ -1,6 +1,7 @@
 package werkbook.task.model;
 
 import java.util.EmptyStackException;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
@@ -137,8 +138,9 @@ public class ModelManager extends ComponentManager implements Model {
         taskList.resetData(redoStack.pop());
         indicateTaskListChanged();
     }
-    // @author
-    // =========== Filtered Task List Accessors
+    //@@author
+
+  // =========== Filtered Task List Accessors
     // =============================================================
 
     @Override
@@ -158,6 +160,20 @@ public class ModelManager extends ComponentManager implements Model {
 
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
+    }
+
+    @Override
+    public void updateFilteredTaskListToShowIncomplete() {
+        Set<String> keywords = new HashSet<String>();
+        keywords.add("Incomplete");
+        updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
+    }
+
+    @Override
+    public void updateFilteredTaskListToShowComplete() {
+        Set<String> keywords = new HashSet<String>();
+        keywords.add("Complete");
+        updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
     }
 
     // ========== Inner classes/interfaces used for filtering
@@ -214,6 +230,26 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    private class StatusQualifier implements Qualifier {
+        private Set<String> statusKeyWords;
+
+        StatusQualifier(Set<String> statusKeyWords) {
+            this.statusKeyWords = statusKeyWords;
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return statusKeyWords.stream().filter(keyword -> StringUtil
+                    .containsWordIgnoreCase(task.getTags().asObservableList().get(0).tagName, keyword))
+                    .findAny().isPresent();
+        }
+
+        @Override
+        public String toString() {
+            return "status=" + String.join(", ", statusKeyWords);
+        }
+    }
+
     // @@author A0162266E
     @Override
     public void importTaskList(UniqueTaskList importedTaskList) {
@@ -224,5 +260,4 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskListChanged();
     }
     // @@author
-
 }

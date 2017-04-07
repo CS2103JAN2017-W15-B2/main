@@ -41,14 +41,13 @@ public interface ReadOnlyTask {
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-            .append(getDescription().toString().isEmpty() ? "" : " Description: " + getDescription())
-            .append(!getStartDateTime().isPresent() ? "" : " From: " + getStartDateTime())
+        builder.append(getName());
+        getTags().forEach(builder::append);
+        builder.append(getDescription().toString().isEmpty() ? "" : "\nDescription: " + getDescription() + "\n")
+            .append(!getStartDateTime().isPresent() ? "" : "From: " + getStartDateTime())
             .append(!getEndDateTime().isPresent() ? "" : getStartDateTime().isPresent() ? " To: " : " By: ")
             .append(!getEndDateTime().isPresent() ? "" : getEndDateTime())
-            .append(" Last Updated: " + getUpdated())
-            .append(" Status: ");
-        getTags().forEach(builder::append);
+            .append("\nLast Updated: " + getUpdated());
         return builder.toString();
     }
     //@@author

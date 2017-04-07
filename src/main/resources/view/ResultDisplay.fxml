@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import java.net.URL?>
 <?import javafx.scene.control.TextArea?>
-<AnchorPane fx:id="placeHolder" styleClass="anchor-pane-with-border" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane fx:id="placeHolder" styleClass="anchor-pane-with-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
-        <URL value="@DarkTheme.css"/>
-        <URL value="@Extensions.css"/>
+        <URL value="@DarkTheme.css" />
+        <URL value="@Extensions.css" />
     </stylesheets>
-    <AnchorPane fx:id="mainPane">
-        <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
-    </AnchorPane>
+   <children>
+       <AnchorPane fx:id="mainPane">
+          <children>
+              <TextArea fx:id="resultDisplay" editable="false" promptText="Hello, what would you like to do today?" styleClass="result-display" wrapText="true" />
+          </children>
+       </AnchorPane>
+   </children>
 </AnchorPane>
