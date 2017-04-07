@@ -37,6 +37,10 @@ public class TaskCard extends UiPart<Region> {
     private Label headerStartDateTime;
     @FXML
     private Label headerEndDateTime;
+    @FXML
+    private Label prefixStartDateTime;
+    @FXML
+    private Label prefixEndDateTime;
 
     public TaskCard(ReadOnlyTask task, int displayedIndex, int selectionIndex) {
         super(FXML);
@@ -88,10 +92,12 @@ public class TaskCard extends UiPart<Region> {
             endDatePrefix = "By: ";
         }
 
-        startDateTime.setText(startDatePrefix + task.getStartDateTime().getPrettyString());
+        prefixStartDateTime.setText(startDatePrefix);
+        startDateTime.setText(task.getStartDateTime().getPrettyString());
         headerStartDateTime.setText(startDatePrefix + task.getStartDateTime().getPrettyString());
 
-        endDateTime.setText(endDatePrefix + task.getEndDateTime().getPrettyString());
+        prefixEndDateTime.setText(endDatePrefix);
+        endDateTime.setText(task.getEndDateTime().getPrettyString());
         headerEndDateTime.setText(endDatePrefix + task.getEndDateTime().getPrettyString());
 
         // If start date time is not present, then remove
