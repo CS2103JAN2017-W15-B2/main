@@ -41,7 +41,7 @@ public interface ReadOnlyTask {
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getName() + " ");
         getTags().forEach(builder::append);
         builder.append(getDescription().toString().isEmpty() ? "" : "\nDescription: " + getDescription() + "\n")
             .append(!getStartDateTime().isPresent() ? "" : "From: " + getStartDateTime())

@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Region> {
     // Independent Ui parts residing in this Ui container
 //  private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
+    private CommandBox commandBox;
     private Config config;
 
     @FXML
@@ -108,6 +109,10 @@ public class MainWindow extends UiPart<Region> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
+            } else {
+                if (event.getCode().isLetterKey()) {
+                    commandBox.focusOnTextField();
+                }
             }
         });
     }
@@ -117,7 +122,7 @@ public class MainWindow extends UiPart<Region> {
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskListFilePath());
-        new CommandBox(getCommandBoxPlaceholder(), logic);
+        commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
