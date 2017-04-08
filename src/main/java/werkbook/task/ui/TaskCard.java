@@ -16,6 +16,8 @@ public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
     private static final String DESCRIPTION_PLACEHOLDER_TEXT = "No description available";
 
+    private static final String TUTORIAL_TASK = "use werkbook for a week";
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -62,6 +64,12 @@ public class TaskCard extends UiPart<Region> {
     private void setDescription(ReadOnlyTask task) {
         if (task.getDescription().toString().isEmpty()) {
             description.setText(DESCRIPTION_PLACEHOLDER_TEXT);
+
+            // For tutorial
+            if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASK)) {
+                description.setText("You're doing an awesome job! Feel free to explore the different types of commands"
+                        + " by typing in `help`. Get out there and werk it!");
+            }
         } else {
             description.setText(task.getDescription().toString());
         }

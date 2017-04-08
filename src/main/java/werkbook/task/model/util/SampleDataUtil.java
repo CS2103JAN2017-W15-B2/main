@@ -22,7 +22,7 @@ public class SampleDataUtil {
         try {
             return new Task[] {
                 new Task(new Name("Welcome to Werkbook! Select this task by typing 'select 1'"),
-                new Description("Now, add a new task by typing: 'add This is a floating task "
+                new Description("Now, add a new task by typing: 'add This is how I can add a floating task "
                         + "(Descriptions are optional, and they go inside brackets)'"),
                 new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
                 new UniqueTagList("Incomplete")),
