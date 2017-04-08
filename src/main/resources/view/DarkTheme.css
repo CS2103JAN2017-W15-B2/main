@@ -86,7 +86,7 @@
     -fx-background-color: derive(#F5F5DC, 20%);
 }
 
-.titled-pane {   
+.titled-pane {
     -fx-text-fill: -fx-text-base-color;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .list-cell .label {
-	
+
 }
 
 .desc_big_label {

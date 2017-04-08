@@ -49,9 +49,9 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().toString());
         initTags(task);
 
-        setDateTime(task);
         setStrikethrough(task);
         setExpansion(displayedIndex, selectionIndex);
+        setDateTime(task);
     }
 
     /**
@@ -90,31 +90,37 @@ public class TaskCard extends UiPart<Region> {
         if (!task.getStartDateTime().isPresent()) {
             startDatePrefix = "";
             endDatePrefix = "By: ";
-            titledPaneHeader.getChildren().remove(1);
+            titledPaneHeader.getChildren().remove(headerStartDateTime);
             startDateTime.setText("");
 
             // If end date time is not present, then remove
             if (!task.getEndDateTime().isPresent()) {
                 endDatePrefix = "";
-                titledPaneHeader.getChildren().remove(1);
+                titledPaneHeader.getChildren().remove(headerEndDateTime);
                 endDateTime.setText("");
             }
         }
 
+        // Add prefix
         prefixStartDateTime.setText(startDatePrefix);
         prefixEndDateTime.setText(endDatePrefix);
 
         // Only set date time if present
         if (task.getStartDateTime().isPresent()) {
-            startDateTime.setText(task.getStartDateTime().getPrettyString());
+            startDateTime.setText(task.getStartDateTime().toString());
             headerStartDateTime.setText(startDatePrefix + task.getStartDateTime().getPrettyString());
         }
 
         if (task.getEndDateTime().isPresent()) {
-            endDateTime.setText(task.getEndDateTime().getPrettyString());
+            endDateTime.setText(task.getEndDateTime().toString());
             headerEndDateTime.setText(endDatePrefix + task.getEndDateTime().getPrettyString());
         }
 
+        // If expanded, remove header to save space
+        if (titledPane.isExpanded()) {
+            titledPaneHeader.getChildren().remove(headerStartDateTime);
+            titledPaneHeader.getChildren().remove(headerEndDateTime);
+        }
     }
 //@@author
     private void initTags(ReadOnlyTask task) {
