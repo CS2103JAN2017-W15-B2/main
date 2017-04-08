@@ -124,7 +124,16 @@ public class TaskCard extends UiPart<Region> {
     }
 //@@author
     private void initTags(ReadOnlyTask task) {
-        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        String tagName = task.getTags().asObservableList().get(0).tagName;
+        Label tag = new Label(tagName);
+
+        if (tagName.equals("Complete")) {
+            tag.getStyleClass().add("completeLabel");
+        } else {
+            tag.getStyleClass().remove("completeLabel");
+        }
+        tags.getChildren().add(tag);
+        //task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
 }

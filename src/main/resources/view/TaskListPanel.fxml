@@ -16,7 +16,7 @@
     <children>
         <ListView fx:id="taskListView" VBox.vgrow="ALWAYS">
             <placeholder>
-                <Label text="Nothing to see here, move along now."/>
+                <Label text="There are no tasks here ✧*｡٩(ˊᗜˋ*)و✧*｡"/>
             </placeholder>
         </ListView>
     </children>

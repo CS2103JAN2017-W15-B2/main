@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "٩(｡•ω•｡)و" + "\nThis is gone now: %1$s";
 
     public final int targetIndex;
 

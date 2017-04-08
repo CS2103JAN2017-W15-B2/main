@@ -80,6 +80,7 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.getEditor().clear();
             commandTextField.getEditor().setText("");
             commandTextField.getSelectionModel().clearSelection();
+            commandTextField.getParent().requestFocus();
             commandTextField.hide();
             logger.info("Result: " + commandResult.feedbackToUser);
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
@@ -113,8 +114,9 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.getEditor().positionCaret(initialCaretPosition); //set caret position back
         commandTextField.hide();       //hides the dropdown list so that the visible row count can be updated
         commandTextField.setVisibleRowCount(suggestions.size());
-        if (suggestions.size() > 0) {
+        if (suggestions.size() > 0 && userInput.length() > 0) {
             commandTextField.show();
+            setStyleToIndicateCommandSuccess();
         }
     }
 
@@ -133,6 +135,9 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.getStyleClass().add(ERROR_STYLE_CLASS);
     }
 
+    /**
+     * Focuses on text field and reverts back to default style
+     */
     public void focusOnTextField() {
         commandTextField.requestFocus();
         setStyleToIndicateCommandSuccess();
