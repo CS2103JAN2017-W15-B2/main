@@ -22,6 +22,8 @@ import werkbook.task.logic.commands.exceptions.CommandException;
 public class CommandBox extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private static final String FXML = "CommandBox.fxml";
+    public static final String DEFAULT_STYLE_CLASS = "default";
+    public static final String SUCCESS_STYLE_CLASS = "success";
     public static final String ERROR_STYLE_CLASS = "error";
     private static final int SUGGESTION_COUNT = 5;
 
@@ -42,6 +44,7 @@ public class CommandBox extends UiPart<Region> {
         placeHolderPane.getChildren().add(commandTextField);
         FxViewUtil.applyAnchorBoundaryParameters(getRoot(), 0.0, 0.0, 0.0, 0.0);
         FxViewUtil.applyAnchorBoundaryParameters(commandTextField, 0.0, 0.0, 0.0, 0.0);
+        setStyleToDefault();
 
         //@@author A0140462R
         Platform.runLater(() -> {
@@ -101,7 +104,6 @@ public class CommandBox extends UiPart<Region> {
     private void handleInputMethodTextChanged() {
         String userInput = new String(commandTextField.getEditor().getText());
         int initialCaretPosition = commandTextField.getEditor().getCaretPosition(); //saves the caret position
-
         commandTextField.getItems().clear();
         ArrayList<String> suggestions = new ArrayList<String>();
         for (String s : CommandTexts.COMMAND_TEXT_LIST) {
@@ -116,8 +118,8 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.setVisibleRowCount(suggestions.size());
         if (suggestions.size() > 0 && userInput.length() > 0) {
             commandTextField.show();
-            setStyleToIndicateCommandSuccess();
         }
+        setStyleToDefault();
     }
 
     //@@author
@@ -126,13 +128,28 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToIndicateCommandSuccess() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+        commandTextField.getStyleClass().remove(DEFAULT_STYLE_CLASS);
+        commandTextField.getStyleClass().add(SUCCESS_STYLE_CLASS);
     }
 
     /**
      * Sets the command box style to indicate a failed command.
      */
     private void setStyleToIndicateCommandFailure() {
+        commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
+        commandTextField.getStyleClass().remove(DEFAULT_STYLE_CLASS);
         commandTextField.getStyleClass().add(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Sets the command box style to default.
+     */
+    private void setStyleToDefault() {
+        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+        commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
+        if (!commandTextField.getStyleClass().contains(DEFAULT_STYLE_CLASS)) {
+            commandTextField.getStyleClass().add(DEFAULT_STYLE_CLASS);
+        }
     }
 
     /**
@@ -140,6 +157,6 @@ public class CommandBox extends UiPart<Region> {
      */
     public void focusOnTextField() {
         commandTextField.requestFocus();
-        setStyleToIndicateCommandSuccess();
+        setStyleToDefault();
     }
 }

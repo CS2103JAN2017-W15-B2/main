@@ -77,13 +77,13 @@
 
 .split-pane:horizontal .split-pane-divider {
     -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
-    -fx-background-color: transparent, derive(#F5F5DC, 10%);
+    -fx-background-color: transparent, derive(#A2B5BF, 10%);
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#F5F5DC, 20%);
+    -fx-background-color: derive(#A2B5BF, 20%);
 }
 
 .titled-pane {
@@ -138,11 +138,11 @@
 }
 
 .anchor-pane {
-     -fx-background-color: derive(#f5f5dc, 20%);
+     -fx-background-color: derive(#A2B5BF, 20%);
 }
 
 .anchor-pane-with-border {
-     -fx-background-color: derive(#f5f5dc, 20%);
+     -fx-background-color: derive(#A2B5BF, 20%);
      -fx-border-width: 0px;
 }
 
@@ -168,8 +168,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#f5f5dc, 30%);
-    -fx-border-color: derive(#f5f5dc, 25%);
+    -fx-background-color: derive(#A2B5BF, 30%);
+    -fx-border-color: derive(#A2B5BF, 25%);
     -fx-border-width: 1px;
 }
 
@@ -178,13 +178,13 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#8b7355, 30%);
-    -fx-border-color: derive(#8b7355, 30%);
+    -fx-background-color: derive(#5f8ca3, 30%);
+    -fx-border-color: derive(#5f8ca3, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .anchor-pane {
-    -fx-background-color: derive(#8b3e2f, 30%);
+    -fx-background-color: derive(#C44C51, 30%);
 }
 
 .context-menu {
@@ -196,7 +196,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: #f5f5dc;
+    -fx-background-color: derive(#A2B5BF, 20%);
 }
 
 .menu-bar .label {
@@ -306,7 +306,7 @@
 
 #cardPane {
     -fx-background-color: transparent;
-    -fx-border-color: #ead0d0;
+    -fx-border-color: #A2B5BF;
     -fx-border-width: 1 1 1 1;
 }
 

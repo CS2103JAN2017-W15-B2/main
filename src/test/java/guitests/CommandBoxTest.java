@@ -17,6 +17,7 @@ public class CommandBoxTest extends TaskListGuiTest {
 
     private ArrayList<String> defaultStyleOfCommandBox;
     private ArrayList<String> errorStyleOfCommandBox;
+    private ArrayList<String> successStyleOfCommandBox;
 
     @Before
     public void setUp() {
@@ -26,14 +27,20 @@ public class CommandBoxTest extends TaskListGuiTest {
 
         // build style class for error
         errorStyleOfCommandBox = new ArrayList<>(defaultStyleOfCommandBox);
+        errorStyleOfCommandBox.remove(CommandBox.DEFAULT_STYLE_CLASS);
         errorStyleOfCommandBox.add(CommandBox.ERROR_STYLE_CLASS);
+
+        // build style class for success
+        successStyleOfCommandBox = new ArrayList<>(defaultStyleOfCommandBox);
+        successStyleOfCommandBox.remove(CommandBox.DEFAULT_STYLE_CLASS);
+        successStyleOfCommandBox.add(CommandBox.SUCCESS_STYLE_CLASS);
     }
 
     @Test
     public void commandBox_commandSucceeds_textClearedAndStyleClassRemainsTheSame() {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
         assertEquals("", commandBox.getCommandInput());
-        assertEquals(defaultStyleOfCommandBox, commandBox.getStyleClass());
+        assertEquals(successStyleOfCommandBox, commandBox.getStyleClass());
     }
 
     @Test
@@ -52,7 +59,7 @@ public class CommandBoxTest extends TaskListGuiTest {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
 
         assertEquals("", commandBox.getCommandInput());
-        assertEquals(defaultStyleOfCommandBox, commandBox.getStyleClass());
+        assertEquals(successStyleOfCommandBox, commandBox.getStyleClass());
     }
 
 }
