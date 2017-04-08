@@ -84,8 +84,10 @@ public class TaskCard extends UiPart<Region> {
     private void setExpansion(int displayedIndex, int selectionIndex) {
         // Default is not expanded unless index is the same as selection
         titledPane.setExpanded(false);
+        name.setUnderline(false);
         if (selectionIndex == displayedIndex - 1) {
             titledPane.setExpanded(true);
+            name.setUnderline(true);
         }
     }
 
@@ -106,7 +108,7 @@ public class TaskCard extends UiPart<Region> {
      */
     private void setDateTime(ReadOnlyTask task) {
         String startDatePrefix = "From: ";
-        String endDatePrefix = "To:     ";
+        String endDatePrefix = "To: ";
 
         // If start date time is not present, then remove
         if (!task.getStartDateTime().isPresent()) {

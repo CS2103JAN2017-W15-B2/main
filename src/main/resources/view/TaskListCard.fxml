@@ -31,7 +31,7 @@
          <children>
             <TitledPane fx:id="titledPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
                <content>
-                  <VBox fx:id="titledPaneContainer" style="-fx-padding: 0;" translateX="20.0">
+                  <VBox fx:id="titledPaneContainer" style="-fx-padding: 0 20 0 10;" translateX="20.0">
                      <children>
                         <Label fx:id="description" styleClass="description_label" text="\$description" wrapText="true" />
                         <HBox>

@@ -95,7 +95,7 @@
 }
 
 .titled-pane > *.content {
-    -fx-background-color: #f2f3f4;
+    -fx-background-color: derive(#f2f3f4, 0%);
 }
 
 .titled-pane > .title {

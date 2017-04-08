@@ -22,7 +22,7 @@ public class SampleDataUtil {
         try {
             return new Task[] {
                 new Task(new Name("Welcome to Werkbook! Select this task by typing 'select 1'"),
-                new Description("Now, add a new task by typing: 'add This is how I can add a floating task "
+                new Description("Now, add a new task by typing: 'add This is a floating task "
                         + "(Descriptions are optional, and they go inside brackets)'"),
                 new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
                 new UniqueTagList("Incomplete")),
@@ -34,9 +34,8 @@ public class SampleDataUtil {
                 new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
                 new UniqueTagList("Incomplete")),
                 new Task(new Name("Finally, select this task!"),
-                    new Description("Now that you have learnt how to add a deadlined task, it's time to add an event "
-                            + "Type in: `add Use Werkbook for a week from today to next week` "
-                            + "Lastly, if you need any help, simply type in `help`!"),
+                    new Description("Now that you have learnt how to add a deadlined task, it's time to add an event. "
+                            + "Type in: `add Use Werkbook for a week from today to next week`"),
                     new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
                     new UniqueTagList("Incomplete"))};
             // @@author
