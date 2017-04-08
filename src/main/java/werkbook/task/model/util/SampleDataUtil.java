@@ -20,10 +20,25 @@ public class SampleDataUtil {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HHmm");
         try {
-            return new Task[] { new Task(new Name("Welcome to Werkbook! Start by adding a task."),
-                    new Description("Try: add <name of task> (description of task)"),
-                    new StartDateTime("03/01/2016 1100"), new EndDateTime(sdf.format(cal.getTime())),
-                    new UniqueTagList("Incomplete")), };
+            return new Task[] {
+                new Task(new Name("Welcome to Werkbook! Select this task by typing 'select 1'"),
+                new Description("Now, add a new task by typing: 'add This is how I can add a floating task "
+                        + "(Descriptions are optional, and they go inside brackets)'"),
+                new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
+                new UniqueTagList("Incomplete")),
+                new Task(new Name("Now try to select this task!"),
+                new Description("As you have already figured, typing `select` followed by a number lets you choose "
+                        + "the specific task from the list you see here. "
+                        + "You can specify start and end date times using `from` and `to`, as well as `by`. "
+                        + "Try typing in: `add Learn how to create a deadlined task by today`"),
+                new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
+                new UniqueTagList("Incomplete")),
+                new Task(new Name("Finally, select this task!"),
+                    new Description("Now that you have learnt how to add a deadlined task, it's time to add an event "
+                            + "Type in: `add Use Werkbook for a week from today to next week` "
+                            + "Lastly, if you need any help, simply type in `help`!"),
+                    new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
+                    new UniqueTagList("Incomplete"))};
             // @@author
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);

@@ -11,7 +11,8 @@ public class GImportCommand extends Command {
 
     public static final String COMMAND_WORD = "gimport";
 
-    public static final String GOOGLE_IMPORTED_ACKNOWLEDGEMENT = "Imported Tasks from Google Tasks";
+    public static final String GOOGLE_IMPORTED_ACKNOWLEDGEMENT = "°˖✧◝(⁰▿⁰)◜✧˖°"
+            + "\nImported Tasks from Google Tasks";
 
     @Override
     public CommandResult execute() throws CommandException {

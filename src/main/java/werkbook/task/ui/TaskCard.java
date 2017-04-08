@@ -14,6 +14,9 @@ import werkbook.task.model.task.ReadOnlyTask;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    private static final String DESCRIPTION_PLACEHOLDER_TEXT = "No description available";
+
+    private static final String TUTORIAL_TASK = "use werkbook for a week";
 
     @FXML
     private HBox cardPane;
@@ -34,6 +37,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private VBox titledPaneHeader;
     @FXML
+    private VBox titledPaneContainer;
+    @FXML
     private Label headerStartDateTime;
     @FXML
     private Label headerEndDateTime;
@@ -46,12 +51,29 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         name.setText(task.getName().taskName);
         id.setText(displayedIndex + ". ");
-        description.setText(task.getDescription().toString());
-        initTags(task);
 
+        setDescription(task);
         setStrikethrough(task);
         setExpansion(displayedIndex, selectionIndex);
         setDateTime(task);
+    }
+
+    /**
+     * Set placeholder as description if it is not present, also handles one tutorial task
+     * @param task task to be checked
+     */
+    private void setDescription(ReadOnlyTask task) {
+        if (task.getDescription().toString().isEmpty()) {
+            description.setText(DESCRIPTION_PLACEHOLDER_TEXT);
+
+            // For tutorial
+            if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASK)) {
+                description.setText("You're doing an awesome job! Feel free to explore the different types of commands"
+                        + " by typing in `help`. Get out there and werk it!");
+            }
+        } else {
+            description.setText(task.getDescription().toString());
+        }
     }
 
     /**
@@ -91,13 +113,13 @@ public class TaskCard extends UiPart<Region> {
             startDatePrefix = "";
             endDatePrefix = "By: ";
             titledPaneHeader.getChildren().remove(headerStartDateTime);
-            startDateTime.setText("");
+            titledPaneContainer.getChildren().remove(startDateTime.getParent());
 
             // If end date time is not present, then remove
             if (!task.getEndDateTime().isPresent()) {
                 endDatePrefix = "";
                 titledPaneHeader.getChildren().remove(headerEndDateTime);
-                endDateTime.setText("");
+                titledPaneContainer.getChildren().remove(endDateTime.getParent());
             }
         }
 
@@ -123,8 +145,4 @@ public class TaskCard extends UiPart<Region> {
         }
     }
 //@@author
-    private void initTags(ReadOnlyTask task) {
-        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
 }

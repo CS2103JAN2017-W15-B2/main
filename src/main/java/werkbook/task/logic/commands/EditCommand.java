@@ -33,8 +33,9 @@ public class EditCommand extends Command {
             + "[from Start date and time] [to End date and time]\n" + "Example: " + COMMAND_WORD
             + " 1 (Walk the dog) to 08/03/2017 0300";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "( ´ ▽ ` )ﾉ" + "\nHere's what you changed: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "(　ﾟДﾟ)＜!!"
+            + "\nAt least one field to edit must be provided";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list!";
 
     private final int filteredTaskListIndex;

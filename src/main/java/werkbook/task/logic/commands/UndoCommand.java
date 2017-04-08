@@ -13,11 +13,11 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the last mutable action performed. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the last action performed";
 
-    public static final String MESSAGE_SUCCESS = "Last action undone. ";
+    public static final String MESSAGE_SUCCESS = "╰(・∇・╰)" + "\nLast action undone";
 
-    public static final String MESSAGE_NO_LAST_ACTION = "No previous action has been performed. ";
+    public static final String MESSAGE_NO_LAST_ACTION = "(・_・ヾ" + "\nNo previous action has been performed";
 
     @Override
     public CommandResult execute() throws CommandException {

@@ -16,7 +16,7 @@
    <children>
        <AnchorPane fx:id="mainPane">
           <children>
-              <TextArea fx:id="resultDisplay" editable="false" promptText="Hello, what would you like to do today?" styleClass="result-display" wrapText="true" />
+              <TextArea fx:id="resultDisplay" editable="false" promptText="╰( ･ ᗜ ･ )╯ Hello, what would you like to do today?" styleClass="result-display" wrapText="true" />
           </children>
        </AnchorPane>
    </children>

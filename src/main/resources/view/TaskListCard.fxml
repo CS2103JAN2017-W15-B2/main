@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@DarkTheme.css" />
       <URL value="@Extensions.css" />
@@ -24,11 +29,10 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
          <children>
-            <TitledPane fx:id="titledPane" expanded="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
+            <TitledPane fx:id="titledPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
                <content>
-                  <VBox>
+                  <VBox fx:id="titledPaneContainer" style="-fx-padding: 0;" translateX="20.0">
                      <children>
-                        <FlowPane fx:id="tags" />
                         <Label fx:id="description" styleClass="description_label" text="\$description" wrapText="true" />
                         <HBox>
                            <children>
@@ -43,12 +47,15 @@
                            </children>
                         </HBox>
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </VBox>
                </content>
                <graphic>
-                  <AnchorPane maxWidth="1.7976931348623157E308" minWidth="400.0">
+                  <AnchorPane maxWidth="1.7976931348623157E308" minWidth="400.0" style="-fx-padding: 0;">
                      <children>
-                        <VBox fx:id="titledPaneHeader">
+                        <VBox fx:id="titledPaneHeader" style="-fx-padding: 0;">
                            <children>
                               <HBox alignment="CENTER_LEFT">
                                  <children>

@@ -3,28 +3,28 @@
 }
 
 .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
-    -fx-font-size: 16pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
 }
 
@@ -64,7 +64,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 16pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
@@ -127,12 +127,12 @@
 
 .description_label {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: #000000;
 }
 
 .header_name {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #000000;
 }
@@ -143,18 +143,19 @@
 
 .anchor-pane-with-border {
      -fx-background-color: derive(#f5f5dc, 20%);
-     -fx-border-color: derive(#f5f5dc, 10%);
-     -fx-border-top-width: 1px;
+     -fx-border-width: 0px;
 }
 
 .status-bar {
-    -fx-background-color: #98c9f9;
+    -fx-background-color: #ffffff;
     -fx-text-fill: black;
 }
 
 .result-display {
     -fx-background-color: #ffffff;
+    -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 12pt;
+    -fx-text-fill: #424242;
 }
 
 .result-display .label {
@@ -163,6 +164,7 @@
 
 .status-bar .label {
     -fx-text-fill: white;
+    -fx-font-size: 12pt;
 }
 
 .status-bar-with-border {
@@ -198,10 +200,8 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 16pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 12pt;
     -fx-text-fill: black;
-    -fx-opacity: 1;
 }
 
 .menu .left-container {
@@ -330,5 +330,9 @@
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 16;
+    -fx-font-size: 14;
+}
+
+#tags .completeLabel {
+    -fx-background-color: #5cb85c;
 }
