@@ -10,7 +10,7 @@ public class Description {
 
     public static final String MESSAGE_DESCRIPTION_CONSTRAINTS = "Description can be empty and "
             + "can contain any characters";
-    public static final String DESCRIPTION_VALIDATION_REGEX = ".*";
+    public static final String DESCRIPTION_VALIDATION_REGEX = "(?s).*";
 
     public final String value;
 

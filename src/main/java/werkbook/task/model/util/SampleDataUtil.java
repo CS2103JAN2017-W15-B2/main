@@ -29,13 +29,13 @@ public class SampleDataUtil {
                 new Task(new Name("Now try to select this task!"),
                 new Description("As you have already figured, typing `select` followed by a number lets you choose "
                         + "the specific task from the list you see here. "
-                        + "You can specify start and end date times using `from` and `to`, as well as `by`. "
-                        + "Try typing in: `add Learn how to create a deadlined task by today`"),
+                        + "\nYou can specify start and end date times using `from` and `to`, as well as `by`. "
+                        + "\nTry typing in: `add Learn how to create a deadlined task by today`"),
                 new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
                 new UniqueTagList("Incomplete")),
                 new Task(new Name("Finally, select this task!"),
                     new Description("Now that you have learnt how to add a deadlined task, it's time to add an event. "
-                            + "Type in: `add Use Werkbook for a week from today to next week`"),
+                            + "\nType in: `add Use Werkbook for a week from today to next week`"),
                     new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
                     new UniqueTagList("Incomplete"))};
             // @@author

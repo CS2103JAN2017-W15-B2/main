@@ -29,9 +29,9 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
          <children>
-            <TitledPane fx:id="titledPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
+            <TitledPane fx:id="titledPane" animated="false" collapsible="false" expanded="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
                <content>
-                  <VBox fx:id="titledPaneContainer" style="-fx-padding: 0 20 0 10;" translateX="20.0">
+                  <VBox fx:id="titledPaneContainer" style="-fx-padding: 0 20 0 0;" translateX="20.0">
                      <children>
                         <Label fx:id="description" styleClass="description_label" text="\$description" wrapText="true" />
                         <HBox>
@@ -63,8 +63,8 @@
                                     <Text fx:id="name" styleClass="header_name" text="\$name" />
                                  </children>
                               </HBox>
-                              <Label fx:id="headerStartDateTime" styleClass="header_time_label" text="\$headerStartDateTime" />
-                              <Label fx:id="headerEndDateTime" styleClass="header_time_label" text="\$headerEndDateTime" />
+                              <Label fx:id="headerStartDateTime" style="-fx-padding: 0 0 0 10;" styleClass="header_time_label" text="\$headerStartDateTime" />
+                              <Label fx:id="headerEndDateTime" style="-fx-padding: 0 0 0 10;" styleClass="header_time_label" text="\$headerEndDateTime" />
                            </children>
                         </VBox>
                      </children>

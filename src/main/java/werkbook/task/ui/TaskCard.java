@@ -16,7 +16,11 @@ public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
     private static final String DESCRIPTION_PLACEHOLDER_TEXT = "No description available";
 
-    private static final String TUTORIAL_TASK = "use werkbook for a week";
+    private static final String[] TUTORIAL_TASKS = {
+        "this is a floating task",
+        "learn how to create a deadlined task",
+        "use werkbook for a week"
+    };
 
     @FXML
     private HBox cardPane;
@@ -56,6 +60,32 @@ public class TaskCard extends UiPart<Region> {
         setStrikethrough(task);
         setExpansion(displayedIndex, selectionIndex);
         setDateTime(task);
+
+        tutorialHandler(task);
+    }
+
+    /**
+     * Handles the starting tutorial by modifying the description of the task
+     * @param task task to modify
+     */
+    private void tutorialHandler(ReadOnlyTask task) {
+        if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASKS[0])) {
+            description.setText(description.getText() + "\nNotice how the task name is right at the top of this task,"
+                    + " and the description only shows up when you select it?\nNow try to select the 2nd task!");
+        }
+
+        if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASKS[1])) {
+            description.setText(description.getText() + "\nSetting a deadline is as easy as talking to another person,"
+                    + " you can use dates such as 10 minutes later, Monday, next Friday, 10 June, and many more!"
+                    + "\nNow select the 3rd task!");
+        }
+
+        if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASKS[2])) {
+            description.setText("You're doing an awesome job!\nFeel free to explore the different types of commands"
+                    + " such as `edit`, `delete`, `mark`, `undo`, `clear`!"
+                    + "\nAnd of course, this is not all, you can type in `help` to learn much more."
+                    + "\nGet out there and werk it!");
+        }
     }
 
     /**
@@ -65,12 +95,6 @@ public class TaskCard extends UiPart<Region> {
     private void setDescription(ReadOnlyTask task) {
         if (task.getDescription().toString().isEmpty()) {
             description.setText(DESCRIPTION_PLACEHOLDER_TEXT);
-
-            // For tutorial
-            if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASK)) {
-                description.setText("You're doing an awesome job! Feel free to explore the different types of commands"
-                        + " by typing in `help`. Get out there and werk it!");
-            }
         } else {
             description.setText(task.getDescription().toString());
         }
