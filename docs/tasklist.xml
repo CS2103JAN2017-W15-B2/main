@@ -11,7 +11,7 @@
     <tasks>
         <name>Walk the dog</name>
         <description>Take Zelda on a walk around the park</description>
-        <startDateTime>16/04/2017 1800</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Incomplete</tagged>
@@ -43,7 +43,7 @@
     <tasks>
         <name>Buy flowers for my dear</name>
         <description>Anniversary coming up!!!</description>
-        <startDateTime>08/04/2017 2000</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Complete</tagged>
@@ -75,7 +75,7 @@
     <tasks>
         <name>Cook lunch</name>
         <description></description>
-        <startDateTime>01/04/2017 1200</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Complete</tagged>
@@ -235,7 +235,7 @@
     <tasks>
         <name>Watch Smurfs</name>
         <description>At GV</description>
-        <startDateTime>02/04/2017 1610</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Complete</tagged>
@@ -259,7 +259,7 @@
     <tasks>
         <name>Help cousin with his homework</name>
         <description>Math and Geography</description>
-        <startDateTime>05/04/2017 1426</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Incomplete</tagged>
@@ -267,7 +267,7 @@
     <tasks>
         <name>Meeting for Phase 1 of mobile app</name>
         <description>At meeting room 1, right after lunch...</description>
-        <startDateTime>08/04/2017 1400</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Complete</tagged>
@@ -363,7 +363,7 @@
     <tasks>
         <name>Go to the beach</name>
         <description></description>
-        <startDateTime>12/04/2017 1830</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Incomplete</tagged>
@@ -371,7 +371,7 @@
     <tasks>
         <name>Eat dinner at the beach</name>
         <description>with the darling</description>
-        <startDateTime>12/04/2017 1900</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Incomplete</tagged>
@@ -395,7 +395,7 @@
     <tasks>
         <name>Help friend pick up their son from school</name>
         <description>On off day</description>
-        <startDateTime>14/04/2017 1800</startDateTime>
+        <startDateTime></startDateTime>
         <endDateTime></endDateTime>
         <lastUpdated>1491342522309</lastUpdated>
         <tagged>Incomplete</tagged>
