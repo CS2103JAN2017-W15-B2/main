@@ -13,7 +13,7 @@ public class GLoginCommand extends Command {
 
     public static final String COMMAND_WORD = "glogin";
 
-    public static final String GOOGLE_LOGIN_ACKNOWLEDGEMENT = "ヽ(*・ω・)ﾉ" + "\nLogged in to Google";
+    public static final String GOOGLE_LOGIN_ACKNOWLEDGEMENT = "(ﾉ･д･)ﾉ" + "\nLogged in to Google";
 
     @Override
     public CommandResult execute() throws CommandException {

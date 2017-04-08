@@ -10,7 +10,7 @@ public class GExportCommand extends Command {
 
     public static final String COMMAND_WORD = "gexport";
 
-    public static final String GOOGLE_EXPORTED_ACKNOWLEDGEMENT = "°˖✧◝(⁰▿⁰)◜✧˖°"
+    public static final String GOOGLE_EXPORTED_ACKNOWLEDGEMENT = "ヽ(｡･ω･｡)ﾉ"
             + "\nExported Tasks to Google Tasks";
 
     @Override
