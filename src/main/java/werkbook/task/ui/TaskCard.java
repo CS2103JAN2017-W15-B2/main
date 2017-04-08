@@ -59,7 +59,8 @@ public class TaskCard extends UiPart<Region> {
     }
 
     /**
-     * @param task
+     * Set placeholder as description if it is not present, also handles one tutorial task
+     * @param task task to be checked
      */
     private void setDescription(ReadOnlyTask task) {
         if (task.getDescription().toString().isEmpty()) {
