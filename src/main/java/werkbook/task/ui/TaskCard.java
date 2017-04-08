@@ -14,6 +14,7 @@ import werkbook.task.model.task.ReadOnlyTask;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    private static final String DESCRIPTION_PLACEHOLDER_TEXT = "No description available";
 
     @FXML
     private HBox cardPane;
@@ -34,6 +35,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private VBox titledPaneHeader;
     @FXML
+    private VBox titledPaneContainer;
+    @FXML
     private Label headerStartDateTime;
     @FXML
     private Label headerEndDateTime;
@@ -46,12 +49,22 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         name.setText(task.getName().taskName);
         id.setText(displayedIndex + ". ");
-        description.setText(task.getDescription().toString());
-        initTags(task);
 
+        setDescription(task);
         setStrikethrough(task);
         setExpansion(displayedIndex, selectionIndex);
         setDateTime(task);
+    }
+
+    /**
+     * @param task
+     */
+    private void setDescription(ReadOnlyTask task) {
+        if (task.getDescription().toString().isEmpty()) {
+            description.setText(DESCRIPTION_PLACEHOLDER_TEXT);
+        } else {
+            description.setText(task.getDescription().toString());
+        }
     }
 
     /**
@@ -91,13 +104,13 @@ public class TaskCard extends UiPart<Region> {
             startDatePrefix = "";
             endDatePrefix = "By: ";
             titledPaneHeader.getChildren().remove(headerStartDateTime);
-            startDateTime.setText("");
+            titledPaneContainer.getChildren().remove(startDateTime.getParent());
 
             // If end date time is not present, then remove
             if (!task.getEndDateTime().isPresent()) {
                 endDatePrefix = "";
                 titledPaneHeader.getChildren().remove(headerEndDateTime);
-                endDateTime.setText("");
+                titledPaneContainer.getChildren().remove(endDateTime.getParent());
             }
         }
 
@@ -123,17 +136,4 @@ public class TaskCard extends UiPart<Region> {
         }
     }
 //@@author
-    private void initTags(ReadOnlyTask task) {
-        String tagName = task.getTags().asObservableList().get(0).tagName;
-        Label tag = new Label(tagName);
-
-        if (tagName.equals("Complete")) {
-            tag.getStyleClass().add("completeLabel");
-        } else {
-            tag.getStyleClass().remove("completeLabel");
-        }
-        tags.getChildren().add(tag);
-        //task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
 }
