@@ -40,17 +40,17 @@ App launches, listing 50+ sample tasks.
 ## 3. Command suggestions
 ### Showing command suggestions
 #### Actions
-1. Type `a` in the commandbox
+1. Type `a` in the command box.
 
 #### Results
-A list of commands containing `a` shows in a list below the commandbox.
+A list of commands containing `a` shows in a list below the command box.
 
 ### Selecting a command suggestion
 #### Actions
 2. Press <kbd>Down</kbd> on the keyboard
 
 #### Results
-`add` will be selected, autofilling the commandbox. Repeating pressing <kbd>Up</kbd> or <kbd>Down</kbd> will select different commands in the list and autofill the commandbox accordingly.
+`add` will be selected, autofilling the command box. Repeating pressing <kbd>Up</kbd> or <kbd>Down</kbd> will select different commands in the list and autofill the command box accordingly.
 
 ## 4. Adding tasks
 ### Adding a floating task without description
@@ -72,7 +72,7 @@ A new task with the title `Call event organizer` will be added. In the expanded 
 1. Enter `add Complete progress report by Friday`
 
 #### Results
-A new task with the title `Complete progress report` will be added. In the expanded view the deadline entered can be seen (e.g. `By: 29/04/2017 1245`). In the unexpanded view (select another task first) the deadline can be seen in a more naturual format (e.g. `By: 6 days from now`).
+A new task with the title `Complete progress report` will be added. In the expanded view the deadline entered can be seen (e.g. `By: 29/04/2017 1245`). In the unexpanded view (select another task first) the deadline can be seen in a more natural format (e.g. `By: 6 days from now`).
 
 Note: For dates entered without a time specified, the default time will be the current time.
 
@@ -81,14 +81,14 @@ Note: For dates entered without a time specified, the default time will be the c
 1. Enter `add Attend Google I/O from 17 May 9am to 20 May 9pm`
 
 #### Results
-A new task with the title `Attend Google I/O` will be added. In the expanded view the dates entered can be seen (e.g. `From: 17/05/2017 0900` and `To: 20/05/2017 2100`). In the unexpanded view (select another task first) the dates can be seen in a more naturual format (e.g. `From: 1 month from now` and `To:  month from now`).
+A new task with the title `Attend Google I/O` will be added. In the expanded view the dates entered can be seen (e.g. `From: 17/05/2017 0900` and `To: 20/05/2017 2100`). In the unexpanded view (select another task first) the dates can be seen in a more natural format (e.g. `From: 1 month from now` and `To:  month from now`).
 
 ## 5. Selecting tasks
 #### Actions
 1. Enter `select 3`
 
 #### Results
-The task list will scroll to the task at index 3 and expand it. In the expanded view more detailed dates and description of the task can ben seen.
+The task list will scroll to the task at index 3 and expand it. In the expanded view more detailed dates and description of the task can be seen.
 
 ## 6. Listing tasks
 ### Listing incomplete/complete tasks

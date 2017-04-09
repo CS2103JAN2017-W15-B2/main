@@ -26,10 +26,11 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
         3. [Import](#c-import)
         4. [Logout](#d-logout)
     3. [Program Usage](#iii-program-usage)
-        1. [Help](#a-help)
-        2. [Undo/Redo](#b-undo-redo)
-        3. [Change save location](#c-change-save-location)
-        4. [Exit program](#d-exit-program)
+        1. [Task Navigation](#a-task-navigation)
+        2. [Help](#b-help)
+        3. [Undo/Redo](#c-undo-redo)
+        4. [Change save location](#d-change-save-location)
+        5. [Exit program](#e-exit-program)
 4. [FAQ](#4-faq)
 5. [Commands Cheatsheet](#5-commands-cheatsheet)
 
@@ -310,7 +311,13 @@ Format: `gimport`
 
 ### iii. Program Usage
 
-#### a. Help
+#### a. Task Navigation
+
+When you have a whole bunch of tasks in your list, it will be handy for you to learn how to navigate through them!
+
+Pressing <kbd>tab</kbd> on the keyboard will allow you to cycle through the components in Werkbook, and it can be seen with a blue highlight. Scrolling through your tasks is as simple as pressing <kbd>PgUp</kbd> and <kbd>PgDn</kbd>. 
+
+#### b. Help
 
 Forgot the syntax of a command? You can open this user guide in-app with the `help` command.
 
@@ -318,7 +325,7 @@ Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
 
-#### b. Undo/Redo
+#### c. Undo/Redo
 
 Made a mistake while editing your tasks? You can use the `undo` command to undo the last command. If you feel it was right after all you can also use the `redo` command to redo the last command. This works for all task management commands and Google Tasks import command.
 
@@ -347,7 +354,7 @@ Examples:
 
 The final action would be the deletion of the 2nd task in the task list.
 
-#### c. Change save location
+#### d. Change save location
 
 Want to have your tasks synced on Dropbox instead? You can change the save location of your tasks with the `save` command.
 
@@ -355,7 +362,7 @@ Format: `save SAVE_LOCATION`
 
 Changes where tasks data and user config are saved to specified `SAVE_LOCATION`. `SAVE_LOCATION` must be an existing folder.
 
-#### d. Exit program
+#### e. Exit program
 
 Exits the program.<br>
 Format: `exit`
