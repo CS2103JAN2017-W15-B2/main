@@ -12,9 +12,14 @@ public class SaveCommandTest extends TaskListGuiTest {
 
 
     @Test
+    // Checks invalidPath only for Windows system
     public void save_invalidPath_failure() {
-        commandBox.runCommand("save \"\0\"");
-        assertResultMessage(SaveCommand.MESSAGE_INVALID_PATH);
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            commandBox.runCommand("save #ayy*");
+            assertResultMessage(SaveCommand.MESSAGE_INVALID_PATH);
+        } else {
+            assert(true);
+        }
     }
 
     @Test
