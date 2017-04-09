@@ -59,7 +59,7 @@ To start Werkbook, simply double click on `werkbook.jar`.
 ### iii. Interface Introduction
 After launching Werkbook, you will be greeted with the main interface.
 
-<img src="images/userguide-figure-3.png" width="600"><br>
+<img src="images/userguide-figure-3.jpg" width="580"><br>
 *Figure 3: Werkbook's main interface*
 
 You can find the **Command Box** at the top of the interface, this is where you type your commands!
@@ -71,27 +71,40 @@ All of your tasks can be found in the **Task Panel**, it is initially empty unti
 ### iv. Quick Start
 Here's a quick guide to get you started with Werkbook.
 
-**Feeling lost?**
-
-Typing **`help`** in the **Command Box** will bring up the help window with a list of all of the available commands.
-
 **Adding your first task**
 
 Let's start by adding a new task to Werkbook. Perhaps you want to remind yourself to get the groceries, you can type the following command in the **Command Box**:
 
 `> add Get Groceries`
 
+Notice how when you first type in the letter `a`, a list of commands containing the letter `a` automatically shows up below?
+
+Be sure to make use of this handy autocomplete feature to familiarize yourself with the commands!
+
 **Making changes**
 
-Say you want it done by 5th March 8:30pm, you can edit the task by using the following command:
+Now, say you want to get the groceries done by tonight, you can edit the task by using the following command:
 
-`> edit 1 by 05/03/2017 2030`
+`> edit 1 by tonight`
+
+Werkbook supports natural language input, so you can tell it what to do just like how you talk to another person. Telling Werkbook that you want to get the task done by tonight, will automatically set the deadline to 8pm on the same day.
+Alternatively, if you feel like you're up task, you can also provide an earlier time such as `7pm`, `1900`, `3 hours later`. You can learn more about the different ways you can specify the time in the [Features](#4-features) section.
 
 **Completing a task**
 
 Once you've finished getting the groceries, it's time to mark it as complete by typing the following command:
 
 `> mark 1`
+
+**Deleting a task**
+
+At the end of the day, you can delete the task as simply as typing in:
+
+`> delete 1`
+
+**Still feeling lost?**
+
+Typing `help` in the **Command Box** will bring up the help window with a list of all of the available commands.
 
 **Ready to go!**
 
@@ -127,7 +140,7 @@ Now you're all set to start managing your tasks! Feel free to refer to our [Feat
 
 #### a. Add task
 
-Once you receive a new task, you can add it to Werkbook using the `add` command. You can also add in extra information by surrounding them with round brackets.<br>
+Once you receive a new task, you can add it to Werkbook using the `add` command. You can also add in an extra description by surrounding it with round brackets.<br>
 Format: `add NAME [(DESCRIPTION)]`
 
 Example: `add Get the groceries (Milk, eggs, and cheese)`
@@ -135,21 +148,61 @@ Example: `add Get the groceries (Milk, eggs, and cheese)`
 But if you need to get it done by a certain date, use the `by` prefix to let Werkbook know!<br>
 Format: `add NAME [(DESCRIPTION)] [by END_DATETIME]`
 
-Example: `add Get the groceries (Milk, eggs, and cheese) by 10/03/2017 1400`
+Example: `add Get the groceries (Milk, eggs, and cheese) by Tuesday 5pm`
 
 And if you plan to get it done in a particular timespan, you can specify the duration by using `from` and `to`!<br>
 Format: `add NAME [(DESCRIPTION)] [from START_DATETIME] [to END_DATETIME]`
 
-Example: `add Get the groceries (Milk, eggs, and cheese) from 10/03/2017 1400 to 10/03/2017 1600`
+Example: `add Get the groceries (Milk, eggs, and cheese) from Tuesday 5pm to Tuesday 7pm`
 
-> * Date and time must be formatted as DD/MM/YYYY HHMM<br>
-> * A task must have a name, the description is optional<br>
-> * The task can also optionally have a End Date/Time, or both a Start Date/Time and End Date/Time<br>
+> * A task must have a name, while the description is optional<br>
+> * The task can also optionally have a either an end date time, or both a start date time and end date time<br>
+
+**Acceptable date and time formats**
+
+Formal dates:
+> 01/02/2017<br>
+> 5-6-17
+
+Relaxed dates:
+> 1st Jan<br>
+> Feb 21st, 2017
+
+Relative dates:
+> today<br>
+> tomorrow<br>
+> next Friday<br>
+> next week<br>
+> next month
+
+Time:
+> 0600<br>
+> 5pm<br>
+> 4<br>
+> noon<br>
+> tonight<br>
+> midnight
+
+Relative times:
+> 5 mins<br>
+> in 10 minutes<br>
+> 15 minutes from now
+
+You can find out more at: http://natty.joestelmach.com/doc.jsp.
 
 #### b. List tasks
 
-If you want to see a list of all the tasks you have added, you can use the `list` command.<br>
-Format: `list`
+The `list` command lets you view your tasks in a list depending on their completion status.<br>
+Format: `list [(complete/incomplete)]`
+
+To see the list of all your tasks, both completed or incomplete, simply type in: 
+Example: `list`
+
+For completed tasks, add the `complete` argument at the back
+Example: `list complete`
+
+Likewise, for incomplete tasks, add the `incomplete` argument at the back
+Example: `list incomplete`
 
 #### c. Edit task
 
@@ -157,10 +210,10 @@ Perhaps the deadline for your project has been pushed back, or maybe you want to
 Format: `edit INDEX [NAME] [(DESCRIPTION)] [from START_DATETIME] [to/by END_DATETIME]`
 
 Examples:
-* `edit 1 by 01/01/2018 2359`<br>
-  Edits the deadline of the 1st task to be `01/01/2018 2359`.<br>
-* `edit 2 (Help to finish up essay)`<br>
-  Edits the description of the 2nd task to be `Help to finish up essay`<br>
+* `edit 1 by next monday noon`<br>
+  Edits the deadline of the 1st task to be `next monday 12pm`.<br>
+* `edit 2 (Help to finish up report)`<br>
+  Edits the description of the 2nd task to be `Help to finish up report`<br>
 
 To remove the start/end date entirely, simply add the corresponding prefix without specifying a new date.
 
@@ -168,9 +221,14 @@ Example:
 * `edit 3 by`<br>
   Removes the deadline from task 3.<br>
 
+Similarly, to remove a description, add in this prefix without specifying anything.
+
+Example:
+* `edit 3 ()`<br>
+  Removes the description from task 3.<br>
+
 > * Edits the task at the specified `INDEX`.
     The index refers to the index number shown in the last task listing.<br>
-    The index **must be a positive integer** 1, 2, 3, ...
 > * At least one of the optional fields must be provided.
 > * Existing values will be updated to the input values.
 
@@ -226,7 +284,7 @@ Examples:
 >`list`
 >`delete 2`
 * Deletes the 2nd task in the task list.
->`find Betsy`
+>`find Report`
 >`delete 1`
 * Deletes the 1st task in the results of the `find` command.
 
@@ -251,12 +309,11 @@ Format: `help`
 
 #### b. Undo/Redo
 
-Undo the last command(s) executed.
+Undo the last command executed.
 
-Format: `undo [AMOUNT]`
+Format: `undo`
 
 > Undo the last command executed.
-> Repeated use of undo will undo the previous command from the last command undone
 
 Examples:
 
@@ -264,19 +321,13 @@ Examples:
 >`undo`
   Undo the deletion of the 2nd task in the task list.
 
->`delete 2`
->`delete 3`
->`undo 2`
-  Undo the deletion of the 2nd and 3rd task in the task list.
-
 Redo the last undo command(s) executed.
 
-Format: `undo [AMOUNT]`
+Format: `redo`
 
 > Redo the last undo command executed.
 
 Examples:
-
 
 >`delete 2`
 >`undo`
@@ -312,14 +363,14 @@ Format: `exit`
 Command | Purpose | Format
 --- | --- | ---
 `add` | Add a task | `add NAME [(DESCRIPTION)] [from START_DATETIME] [to/by END_DATETIME]`
-`list` | List all tasks | `list`
+`list` | List tasks based on completion status | `list [(complete/incomplete)]`
 `edit` | Edit specified task | `edit INDEX [NAME] [(DESCRIPTION)] [from START_DATETIME] [to/by END_DATETIME]`
 `find` | Find tasks based on specified keywords | `find KEYWORD [MORE_KEYWORD]`
 `mark` | Mark specified task as complete | `mark INDEX`
 `delete` | Delete specified task | `delete INDEX`
 `clear` | Clear all tasks | `clear`
 `help` | Display help page | `help`
-`undo` | Undo command(s) | `undo [AMOUNT]`
-`redo` | Redo command(s) | `redo [AMOUNT]`
+`undo` | Undo command(s) | `undo`
+`redo` | Redo command(s) | `redo`
 `save` | Change save location | `save SAVE_LOCATION`
 `exit` | Exit the program | `exit`
