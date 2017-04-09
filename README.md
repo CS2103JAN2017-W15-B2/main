@@ -5,7 +5,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/CS2103JAN2017-W15-B2/main/badge.svg?branch=master)](https://coveralls.io/github/CS2103JAN2017-W15-B2/main?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/af383e34b7e646d2893c81cd564bc671)](https://www.codacy.com/app/pzyu/main?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CS2103JAN2017-W15-B2/main&amp;utm_campaign=Badge_Grade)
 
-
 <img src="docs/images/ui.jpg" width="500"><br>
 
 Werkbook is a task manager for you to manage their schedules and tasks via a command-line interface.
