@@ -183,11 +183,6 @@ public class EditCommand extends Command {
             return endDateTime;
         }
 
-        public void setTags(Optional<UniqueTagList> tags) {
-            assert tags != null;
-            this.tags = tags;
-        }
-
         public Optional<UniqueTagList> getTags() {
             return tags;
         }
