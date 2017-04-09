@@ -95,15 +95,16 @@ public class MarkCommandTest extends TaskListGuiTest {
 
         assertMatching(markedTask, existingTask);
 
-        // confirm the list now contains all previous tasks plus the task
-        // with updated details
-        expectedTaskList[taskListIndex - 1] = markedTask;
-        assertTrue(taskListPanel.isListMatching(expectedTaskList));
-
         if (hasMarked) {
             assertResultMessage(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask.getName()));
         } else {
             assertResultMessage(String.format(MarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, markedTask.getName()));
         }
+
+        // confirm the list now contains all previous tasks plus the task
+        // with updated details
+        expectedTaskList[taskListIndex - 1] = markedTask;
+        commandBox.runCommand("list");
+        assertTrue(taskListPanel.isListMatching(expectedTaskList));
     }
 }

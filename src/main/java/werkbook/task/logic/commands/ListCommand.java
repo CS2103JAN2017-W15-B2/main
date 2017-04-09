@@ -13,7 +13,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SHOW_COMPLETE_SUCCESS = "(ﾉ´ヮ`)ﾉ*: ･ﾟ"
             + "\nThese are your completed tasks!";
     public static final String MESSAGE_SHOW_INCOMPLETE_SUCCESS = "(っ´ω`)ﾉ(╥ω╥)"
-            + "\nThese are your uncompleted tasks!";
+            + "\nThese are your incomplete tasks!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists tasks by completion status, lists all tasks by default\n"

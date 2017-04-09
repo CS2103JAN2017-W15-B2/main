@@ -8,8 +8,6 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import werkbook.task.commons.core.Messages;
 import werkbook.task.logic.commands.EditCommand;
-import werkbook.task.model.task.Name;
-// import werkbook.task.model.task.StartDateTime;
 import werkbook.task.testutil.TaskBuilder;
 import werkbook.task.testutil.TestTask;
 
@@ -93,8 +91,8 @@ public class EditCommandTest extends TaskListGuiTest {
 
     @Test
     public void edit_invalidValues_failure() {
-        commandBox.runCommand("edit 1 *&");
-        assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
+        commandBox.runCommand("edit 1 ");
+        assertResultMessage(EditCommand.MESSAGE_NOT_EDITED);
 
         // commandBox.runCommand("edit 1 d/abcd");
         // assertResultMessage(Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
@@ -124,6 +122,9 @@ public class EditCommandTest extends TaskListGuiTest {
             TestTask editedTask) {
         commandBox.runCommand("edit " + filteredTaskListIndex + " " + detailsToEdit);
 
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        commandBox.runCommand("list");
+
         // confirm the new card contains the right data
         TaskCardHandle editedCard = taskListPanel.navigateToTask(editedTask.getName().toString());
         assertMatching(editedTask, editedCard);
@@ -132,6 +133,5 @@ public class EditCommandTest extends TaskListGuiTest {
         // with updated details
         expectedTaskList[taskListIndex - 1] = editedTask;
         assertTrue(taskListPanel.isListMatching(expectedTaskList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 }
