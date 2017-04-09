@@ -1,4 +1,3 @@
-//@@author A0162266E
 package guitests;
 
 import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -10,6 +9,7 @@ import org.junit.Test;
 
 import werkbook.task.logic.commands.SaveCommand;
 
+//@@author A0162266E
 public class SaveCommandTest extends TaskListGuiTest {
 
 

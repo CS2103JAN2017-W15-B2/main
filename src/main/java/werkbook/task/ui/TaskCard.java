@@ -69,18 +69,20 @@ public class TaskCard extends UiPart<Region> {
      * @param task task to modify
      */
     private void tutorialHandler(ReadOnlyTask task) {
-        if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASKS[0])) {
+        String taskName = task.getName().taskName.toLowerCase();
+
+        if (taskName.equals(TUTORIAL_TASKS[0])) {
             description.setText(description.getText() + "\nNotice how the task name is right at the top of this task,"
                     + " and the description only shows up when you select it?\nNow try to select the 2nd task!");
         }
 
-        if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASKS[1])) {
+        if (taskName.equals(TUTORIAL_TASKS[1])) {
             description.setText(description.getText() + "\nSetting a deadline is as easy as talking to another person,"
                     + " you can use dates such as 10 minutes later, Monday, next Friday, 10 June, and many more!"
                     + "\nNow select the 3rd task!");
         }
 
-        if (task.getName().taskName.toLowerCase().equals(TUTORIAL_TASKS[2])) {
+        if (taskName.equals(TUTORIAL_TASKS[2])) {
             description.setText("You're doing an awesome job!\nFeel free to explore the different types of commands"
                     + " such as `edit`, `delete`, `mark`, `undo`, `clear`!"
                     + "\nAnd of course, this is not all, you can type in `help` to learn much more."

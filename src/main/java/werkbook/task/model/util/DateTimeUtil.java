@@ -24,7 +24,7 @@ public class DateTimeUtil {
     private static Date currentDate = new Date();
 
     /**
-     * Parses a string and extracts any values with resemblance to a date using natty time
+     * Parses a string and extracts any values with resemblance to a date using natty
      * @param dateToParse a string to be parsed
      * @return Date found in the string
      */
@@ -39,9 +39,9 @@ public class DateTimeUtil {
 
     /**
      * Returns prettified date time if the difference between {@code date} and
-     * the current date is within 14 days
+     * the current date is within {@code NUM_OF_DAYS_LIMIT}
      * @param date date to be formatted
-     * @return ~A pretty string~
+     * @return ~A pretty date string~
      */
     public static String getPrettyDateTime(Date date) {
         return getDifferenceInDays(date, currentDate) > NUM_OF_DAYS_LIMIT ? DATETIME_FORMATTER.format(date)

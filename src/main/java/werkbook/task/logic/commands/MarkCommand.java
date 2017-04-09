@@ -17,7 +17,7 @@ import werkbook.task.model.task.ReadOnlyTask;
 import werkbook.task.model.task.Task;
 import werkbook.task.model.task.UniqueTaskList;
 
-//@@author A0139930B
+//@@author A0139903B
 /**
  * Marks an existing task in the task list as done.
  */
@@ -37,9 +37,8 @@ public class MarkCommand extends Command {
     private MarkTaskDescriptor markTaskDescriptor;
 
     /**
-     * @param targetIndex the index of the task in the filtered task list to
-     *            edit
-     * @param markTaskDescriptor details to edit the task with
+     * @param targetIndex the index of the task in the filtered task list to mark
+     * @param markTaskDescriptor details to mark the task with
      */
     public MarkCommand(int targetIndex) {
         assert targetIndex > 0;

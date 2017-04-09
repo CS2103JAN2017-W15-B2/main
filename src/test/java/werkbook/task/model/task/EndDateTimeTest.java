@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.model.task;
 
 import static org.junit.Assert.assertFalse;
@@ -8,6 +7,7 @@ import org.junit.Test;
 
 import werkbook.task.commons.exceptions.IllegalValueException;
 
+//@@author A0162266E
 public class EndDateTimeTest {
 
     @Test

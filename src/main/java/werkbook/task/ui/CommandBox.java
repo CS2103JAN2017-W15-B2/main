@@ -123,6 +123,8 @@ public class CommandBox extends UiPart<Region> {
     }
 
     //@@author
+
+    //@@author A0139903B
     /**
      * Sets the command box style to indicate a successful command.
      */
@@ -151,6 +153,7 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.getStyleClass().add(DEFAULT_STYLE_CLASS);
         }
     }
+    //@@author A0139903B
 
     /**
      * Focuses on text field and reverts back to default style

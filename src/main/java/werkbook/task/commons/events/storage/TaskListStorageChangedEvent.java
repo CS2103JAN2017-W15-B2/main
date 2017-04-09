@@ -1,8 +1,8 @@
-//@@author A0162266E
 package werkbook.task.commons.events.storage;
 
 import werkbook.task.commons.events.BaseEvent;
 
+//@@author A0162266E
 /**
  * Indicates the storage location of the TaskList has changed
  */
