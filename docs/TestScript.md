@@ -83,6 +83,13 @@ Note: For dates entered without a time specified, the default time will be the c
 #### Results
 A new task with the title `Attend Google I/O` will be added. In the expanded view the dates entered can be seen (e.g. `From: 17/05/2017 0900` and `To: 20/05/2017 2100`). In the unexpanded view (select another task first) the dates can be seen in a more natural format (e.g. `From: 1 month from now` and `To:  month from now`).
 
+### Adding a task with only a start time
+#### Actions
+1. Enter `add Attend a Microsoft conference from next Monday 9am`
+
+#### Results
+Result box will show `End Date/Time must be specified if Start Date/Time is specified`, since tasks with only start dates are not supported.
+
 ## 5. Selecting tasks
 #### Actions
 1. Enter `select 3`
@@ -135,11 +142,20 @@ The first task will now have the name `Submit resume` with no description and a 
 The task list will be filtered to only display tasks with `client` in its name. Enter `list` to show all tasks again.
 
 ## 9. Marking tasks
+### Marking a task from the default list
 #### Actions
 1. Enter `mark 1`
 
 #### Results
 The first task will reverse the state of the first task, from Complete to Incomplete or Incomplete to Complete. Completion is denoted by a strikethrough in the task title.
+
+### Marking a task from a filtered list
+#### Actions
+1. Enter `list incomplete`
+2. Enter `mark 1`
+
+#### Results
+Task will disappear from the list of incomplete task. The task after it will be selected and its details expanded. Similar result when done with `list complete` command.
 
 ## 10. Deleting tasks
 #### Actions
