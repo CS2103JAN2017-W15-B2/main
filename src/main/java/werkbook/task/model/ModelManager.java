@@ -31,6 +31,16 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private static Stack<TaskList> undoStack, redoStack;
 
+    private enum LISTSTATUS {
+        ALL,
+        COMPLETE,
+        INCOMPLETE,
+        SEARCH
+    };
+
+    private LISTSTATUS listStatus;
+    private Set<String> lastSearchedKeywords;
+
     /**
      * Initializes a ModelManager with the given taskList and userPrefs.
      */
@@ -44,6 +54,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
         undoStack = new Stack<TaskList>();
         redoStack = new Stack<TaskList>();
+        listStatus = LISTSTATUS.ALL;
     }
 
     public ModelManager() {
@@ -149,12 +160,35 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void updateFilteredList() {
+        switch(listStatus) {
+        case ALL:
+            updateFilteredListToShowAll();
+            break;
+        case COMPLETE:
+            updateFilteredTaskListToShowComplete();
+            break;
+        case INCOMPLETE:
+            updateFilteredTaskListToShowIncomplete();
+            break;
+        case SEARCH:
+            updateFilteredTaskList(lastSearchedKeywords);
+            break;
+        default:
+            break;
+        }
+    }
+
+    @Override
     public void updateFilteredListToShowAll() {
+        listStatus = LISTSTATUS.ALL;
         filteredTasks.setPredicate(null);
     }
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
+        listStatus = LISTSTATUS.SEARCH;
+        lastSearchedKeywords = keywords;
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
@@ -166,6 +200,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskListToShowIncomplete() {
         Set<String> keywords = new HashSet<String>();
         keywords.add("Incomplete");
+        listStatus = LISTSTATUS.INCOMPLETE;
         updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
     }
 
@@ -173,6 +208,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskListToShowComplete() {
         Set<String> keywords = new HashSet<String>();
         keywords.add("Complete");
+        listStatus = LISTSTATUS.COMPLETE;
         updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
     }
 

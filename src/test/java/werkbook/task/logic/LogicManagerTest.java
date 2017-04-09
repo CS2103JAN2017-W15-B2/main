@@ -220,11 +220,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_add_invalidTaskData() {
-        assertCommandFailure("add []\\[;] (12345) from 01/01/1980 0000 to 01/01/1980 0100",
+        assertCommandFailure("add (12345) from 01/01/1980 0000 to 01/01/1980 0100",
                 Name.MESSAGE_NAME_CONSTRAINTS);
-        // To fix
-        //assertCommandFailure("add Valid Name d/12345 from 99/99/9999 9999 to 01/01/1980 1000",
-        //        StartDateTime.MESSAGE_START_DATETIME_CONSTRAINTS);
         assertCommandFailure(
                 "add Valid Name (12345) from 01/01/1980 0000",
                 Task.MESSAGE_START_WITHOUT_END_CONSTRAINTS);
