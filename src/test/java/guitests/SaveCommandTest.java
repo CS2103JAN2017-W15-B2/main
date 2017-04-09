@@ -1,6 +1,8 @@
 //@@author A0162266E
 package guitests;
 
+import static werkbook.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -10,6 +12,12 @@ import werkbook.task.logic.commands.SaveCommand;
 
 public class SaveCommandTest extends TaskListGuiTest {
 
+
+    @Test
+    public void save_invalidCommand_failure() {
+        commandBox.runCommand("save");
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SaveCommand.MESSAGE_USAGE));
+    }
 
     @Test
     // Checks invalidPath only for Windows system
