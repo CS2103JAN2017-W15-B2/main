@@ -125,14 +125,35 @@ The first task will have the name modified to `Prepare resume for job applicatio
 1. Enter `edit 1 (Tailor it for Microsoft)`
 
 #### Results
-The description of the first task will now be `Tailor it for Microsoft`.
+The description of the first task will now be `Tailor it for Microsoft`. It will automatically be selected, showing that other fields remain the same.
+
+### Edit time only
+#### Actions
+1. Enter `edit 1 next week`
+
+#### Results
+The first task will have the day and time modified to that of next week's. It will automatically be selected, showing that other fields remain the same.
 
 ### Edit multiple fields
 #### Actions
-1. Enter `edit 1 Submit resume in () by tomorrow`
+1. Enter `edit 1 Submit resume (urgent) by tomorrow`
 
 #### Results
-The first task will now have the name `Submit resume` with no description and a due date of tomorrow (relative to when you perform this action).
+The first task will now have the name `Submit resume` with a description of `urgent` and a due date of tomorrow (relative to when you perform this action).
+
+### Removing multiple fields
+#### Actions
+1. Enter `edit 1 Submit resume in () by`
+
+#### Results
+The first task will now have the name `Submit resume` with no description and no due date, becoming a floating task which will be sent near the bottom.
+
+### Removing task title
+#### Actions
+1. Enter `edit 1`
+
+#### Results
+An error message will show up: `At least one field to edit must be provided`. Task title is mandatory and must be provided, it cannot be blank.
 
 ## 8. Finding tasks
 #### Actions
@@ -187,6 +208,22 @@ The previous commands will be undone. If you are following this script, the firs
 
 #### Results
 Redo the previous `undo` commands. If you are following this script, the first `redo` will result in the one task being deleted, and the second `redo` will clear the task list. Before continuing, please enter `undo` so there are tasks in the task list.
+
+### Redo
+#### Actions
+1. Enter `redo`
+
+#### Results
+If you are following this script, there is nothing more to redo and the result box will show `No undos have been performed`.
+
+### Undo upon starting the app
+#### Actions
+1. Close the app
+2. Execute `werkbook.jar`
+3. Enter `undo`
+
+#### Results
+Result box will show `No previous action has been performed` since there were no actions performed before undo.
 
 ## 13. Logging into Google
 #### Actions
