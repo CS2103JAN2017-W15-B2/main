@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.logic.commands;
 
 import java.io.IOException;
@@ -6,8 +5,9 @@ import java.io.IOException;
 import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 
+//@@author A0162266E
 /**
- * Terminates the program.
+ * Login to Google
  */
 public class GLoginCommand extends Command {
 

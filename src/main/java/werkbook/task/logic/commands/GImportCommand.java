@@ -1,11 +1,11 @@
-//@@author A0162266E
 package werkbook.task.logic.commands;
 
 import werkbook.task.logic.commands.exceptions.CommandException;
 import werkbook.task.model.task.UniqueTaskList;
 
+//@@author A0162266E
 /**
- * Terminates the program.
+ * Import tasks from Google Tasks
  */
 public class GImportCommand extends Command {
 

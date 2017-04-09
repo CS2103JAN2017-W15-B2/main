@@ -1,11 +1,11 @@
-//@@author A0162266E
 package werkbook.task.logic.commands;
 
 import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 
+//@@author A0162266E
 /**
- * Terminates the program.
+ * Logout of Google
  */
 public class GLogoutCommand extends Command {
 

@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.gtasks;
 
 import java.util.Date;
@@ -15,6 +14,7 @@ import werkbook.task.model.task.ReadOnlyTask;
 import werkbook.task.model.task.StartDateTime;
 import werkbook.task.model.util.DateTimeUtil;
 
+//@@author A0162266E
 public class GTaskToTaskAdapter implements ReadOnlyTask {
     private Name name;
     private Description description;

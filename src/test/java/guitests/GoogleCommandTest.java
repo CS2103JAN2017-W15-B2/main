@@ -1,9 +1,9 @@
-//@@author A0162266E
 package guitests;
 
 import org.junit.Before;
 import org.junit.Test;
 
+//@@author A0162266E
 public class GoogleCommandTest extends TaskListGuiTest {
 
     @Before

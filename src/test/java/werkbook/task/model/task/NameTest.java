@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.model.task;
 
 import static org.junit.Assert.assertFalse;
@@ -6,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+//@@author A0162266E
 public class NameTest {
 
     @Test

@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.gtasks;
 
 import java.io.IOException;
@@ -7,6 +6,7 @@ import werkbook.task.gtasks.exceptions.CredentialsException;
 import werkbook.task.model.ReadOnlyTaskList;
 import werkbook.task.model.task.UniqueTaskList;
 
+//@@author A0162266E
 public interface GTasks {
     /** Retrieves user credentials from Google
      * @throws IOException
