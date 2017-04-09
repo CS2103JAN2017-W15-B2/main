@@ -8,8 +8,6 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import werkbook.task.commons.core.Messages;
 import werkbook.task.logic.commands.EditCommand;
-import werkbook.task.model.task.Name;
-// import werkbook.task.model.task.StartDateTime;
 import werkbook.task.testutil.TaskBuilder;
 import werkbook.task.testutil.TestTask;
 
