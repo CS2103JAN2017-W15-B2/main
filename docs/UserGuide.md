@@ -57,16 +57,10 @@ To start Werkbook, simply double click on `werkbook.jar`.
 *Figure 2: Launching werkbook.jar*
 
 ### iii. Interface Introduction
-After launching Werkbook, you will be greeted with the main interface.
+After launching Werkbook, you will be greeted with the main interface. There will be a short tutorial for you to follow so be sure to follow those instructions!
 
-<img src="images/userguide-figure-3.jpg" width="580"><br>
+<img src="images/userguide-figure-3.jpg" width="700"><br>
 *Figure 3: Werkbook's main interface*
-
-You can find the **Command Box** at the top of the interface, this is where you type your commands!
-
-The **Results Panel** is located below the **Command Box**, and it tells you the result of your command.
-
-All of your tasks can be found in the **Task Panel**, it is initially empty until you fill it up with tasks.
 
 ### iv. Quick Start
 Here's a quick guide to get you started with Werkbook.
@@ -110,24 +104,7 @@ Typing `help` in the **Command Box** will bring up the help window with a list o
 
 Now you're all set to start managing your tasks! Feel free to refer to our [Features](#4-features) section below for details of each command.
 
-## 3. User Interface
-
-<img src="images/annotated-ui.png" width="600"><br>
-1. Menu bar
-2. Command box
- > Commands are entered here. As you type, the drop-down box will also show the list of commands you can use.
-3. Output box
- > Results of commands are displayed here
-4. Task cards listing
- > Tasks retrieved are listed here
-5. Selected card display
- > Additional details about the selected task is displayed here
-6. Last saved status
- > Time of when the tasks are saved is shown here
-7. Save location status
- > Current save location is shown here
-
-## 4. Features
+## 3. Features
 
 **Command Format**
 
@@ -346,7 +323,7 @@ Changes where tasks data and user config are saved to specified `SAVE_LOCATION`.
 Exits the program.<br>
 Format: `exit`
 
-## 5. FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?
 
@@ -358,7 +335,7 @@ Format: `exit`
 
 > **A**: You don't need to! Your tasks are automatically saved after every command!
 
-## 6. Commands Cheatsheet
+## 5. Commands Cheatsheet
 
 Command | Purpose | Format
 --- | --- | ---
