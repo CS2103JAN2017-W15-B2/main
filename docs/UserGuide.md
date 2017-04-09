@@ -401,6 +401,10 @@ Command | Purpose | Format
 `mark` | Mark specified task as complete | `mark INDEX`
 `delete` | Delete specified task | `delete INDEX`
 `clear` | Clear all tasks | `clear`
+`glogin` | Login to Google | `glogin`
+`gexport` | Export tasks to Google Tasks | `gexport`
+`gimport` | Import tasks from Google Tasks | `gimport`
+`glogout` | Logout of Google | `glogout`
 `help` | Display help page | `help`
 `undo` | Undo command(s) | `undo`
 `redo` | Redo command(s) | `redo`
