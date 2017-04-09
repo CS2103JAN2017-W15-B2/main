@@ -89,7 +89,7 @@ public class MarkCommand extends Command {
             dpe.printStackTrace();
         }
 
-        model.updateFilteredListToShowAll();
+        model.updateFilteredList();
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
 
         return new CommandResult(String.format(statusMessage, taskToMark.getName()));

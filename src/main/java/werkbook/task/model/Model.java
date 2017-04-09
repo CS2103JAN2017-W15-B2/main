@@ -50,6 +50,9 @@ public interface Model {
      */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
+    /** Updates the current filtered task list */
+    void updateFilteredList();
+
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
@@ -60,14 +63,12 @@ public interface Model {
     void updateFilteredTaskList(Set<String> keywords);
 
     /**
-     * Updates the filter of the filtered task list to filter by the given
-     * keywords
+     * Updates the filter of the filtered task list to filter by incomplete status
      */
     void updateFilteredTaskListToShowIncomplete();
 
     /**
-     * Updates the filter of the filtered task list to filter by the given
-     * keywords
+     * Updates the filter of the filtered task list to filter by complete status
      */
     void updateFilteredTaskListToShowComplete();
 
