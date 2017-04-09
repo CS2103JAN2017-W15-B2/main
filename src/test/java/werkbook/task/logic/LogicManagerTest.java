@@ -261,23 +261,29 @@ public class LogicManagerTest {
         assertCommandSuccess("list", ListCommand.MESSAGE_SUCCESS, expectedTaskList, expectedList);
     }
 
-    //@@author A0140462R
-    @Test
-    public void execute_list_completeTasks() throws Exception {
-
-        TestDataHelper helper = new TestDataHelper();
-        TaskList expectedTaskList = helper.generateTaskListWithCompleteTasks(2);
-        List<Task> addedTasksList = helper.generateCompleteTaskList(2);
-        List<? extends ReadOnlyTask> expectedList = expectedTaskList.getTaskList();
-
-        helper.addToModel(model, addedTasksList);
-        //add 2 more incomplete tasks
-        model.addTask(helper.generateTask(3));
-        model.addTask(helper.generateTask(4));
-
-        assertCommandSuccess("list complete", ListCommand.MESSAGE_SHOW_COMPLETE_SUCCESS,
-                              expectedTaskList, expectedList);
-    }
+    //@@author A0140462R-unused
+//    @Test
+//    public void execute_list_completeTasks() throws Exception {
+//        // set up expected results
+//        TestDataHelper helper = new TestDataHelper();
+//        TaskList expectedTaskList = helper.generateTaskListWithCompleteTasks(2);
+//        List<Task> addedTasksList = helper.generateCompleteTaskList(2);
+//        List<? extends ReadOnlyTask> expectedList = expectedTaskList.getTaskList();
+//
+//        // add 2 more incomplete tasks to expectedTaskList because only the
+//        // model will contain all the tasks, but only show the completed tasks
+//        expectedTaskList.addTask(helper.generateTask(3));
+//        expectedTaskList.addTask(helper.generateTask(4));
+//
+//        helper.addToModel(model, addedTasksList);
+//        //add 2 more incomplete tasks
+//        model.addTask(helper.generateTask(3));
+//        model.addTask(helper.generateTask(4));
+//
+//        assertCommandSuccess("list complete", ListCommand.MESSAGE_SHOW_COMPLETE_SUCCESS,
+//                              expectedTaskList, expectedList);
+//    }
+    //@@author
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given
@@ -538,13 +544,13 @@ public class LogicManagerTest {
                     new UniqueTagList("Incomplete"), clock);
         }
 
-        //@@author A0140462R
-        Task generateCompleteTask(int seed) throws Exception {
-            return new Task(new Name("Task " + seed), new Description("" + Math.abs(seed)),
-                    new StartDateTime("10/10/2016 0900"), new EndDateTime("10/10/2016 1000"),
-                    new UniqueTagList("Complete"), clock);
-        }
-        //@@author
+//        //@@author A0140462R-unused
+//        Task generateCompleteTask(int seed) throws Exception {
+//            return new Task(new Name("Task " + seed), new Description("" + Math.abs(seed)),
+//                    new StartDateTime("10/10/2016 0900"), new EndDateTime("10/10/2016 1000"),
+//                    new UniqueTagList("Complete"), clock);
+//        }
+//        //@@author
 
         /** Generates the correct add command based on the task given */
         String generateAddCommand(Task p) {
@@ -574,13 +580,13 @@ public class LogicManagerTest {
             return taskList;
         }
 
-        //@@author A0140462R
-        TaskList generateTaskListWithCompleteTasks(int numGenerated) throws Exception {
-            TaskList taskList = new TaskList();
-            addtoTaskList(taskList, generateCompleteTaskList(numGenerated));
-            return taskList;
-        }
-        //@@author
+//        //@@author A0140462R-unused
+//        TaskList generateTaskListWithCompleteTasks(int numGenerated) throws Exception {
+//            TaskList taskList = new TaskList();
+//            addtoTaskList(taskList, generateCompleteTaskList(numGenerated));
+//            return taskList;
+//        }
+//        //@@author
 
         /**
          * Generates an TaskList based on the list of Tasks given.
@@ -606,15 +612,15 @@ public class LogicManagerTest {
             return Arrays.asList(tasks);
         }
 
-        //@@author A0140462R
-        List<Task> generateCompleteTaskList(int numGenerated) throws Exception {
-            List<Task> tasks = new ArrayList<>();
-            for (int i = 1; i <= numGenerated; i++) {
-                tasks.add(generateCompleteTask(i));
-            }
-            return tasks;
-        }
-        //@@author
+//        //@@author A0140462R-unused
+//        List<Task> generateCompleteTaskList(int numGenerated) throws Exception {
+//            List<Task> tasks = new ArrayList<>();
+//            for (int i = 1; i <= numGenerated; i++) {
+//                tasks.add(generateCompleteTask(i));
+//            }
+//            return tasks;
+//        }
+//        //@@author
 
         /**
          * Adds auto-generated Task objects to the given TaskList
