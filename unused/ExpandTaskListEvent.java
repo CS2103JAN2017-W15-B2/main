@@ -1,4 +1,4 @@
-//@@author A0130183U
+//@@author A0130183U - unused as some other command is used to expand task card
 package werkbook.task.commons.events.ui;
 
 import werkbook.task.commons.events.BaseEvent;

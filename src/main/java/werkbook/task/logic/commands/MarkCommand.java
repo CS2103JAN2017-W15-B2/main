@@ -112,7 +112,6 @@ public class MarkCommand extends Command {
             taskToReturn = new Task(taskToEdit.getName(), taskToEdit.getDescription(),
                     taskToEdit.getStartDateTime(), taskToEdit.getEndDateTime(), updatedTags, clock);
         } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

@@ -102,12 +102,6 @@ public class EditCommandTest extends TaskListGuiTest {
         // assertResultMessage(StartDateTime.MESSAGE_START_DATETIME_CONSTRAINTS);
     }
 
-    @Test
-    public void edit_duplicateTask_failure() {
-        commandBox.runCommand("edit 3 Walk the dog (Take Zelda on a walk at the park)"
-                + "from 01/01/2016 0900 to 01/01/2016 1000");
-    }
-
     /**
      * Checks whether the edited task has the correct updated details.
      *

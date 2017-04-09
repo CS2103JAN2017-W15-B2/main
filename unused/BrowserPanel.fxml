@@ -1,3 +1,5 @@
+<!— @@author A0130183U- unused because browser panel was done away with—>
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
@@ -30,3 +32,5 @@
            </children>
        </VBox>
 </AnchorPane>
+
+<!— @@author —>
