@@ -11,7 +11,7 @@ public class GLogoutCommand extends Command {
 
     public static final String COMMAND_WORD = "glogout";
 
-    public static final String GOOGLE_LOGOUT_ACKNOWLEDGEMENT = "Logged out of Google";
+    public static final String GOOGLE_LOGOUT_ACKNOWLEDGEMENT = "ヽ(*・ω・)ﾉ" + "Logged out of Google";
 
     @Override
     public CommandResult execute() throws CommandException {

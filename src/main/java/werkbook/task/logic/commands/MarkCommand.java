@@ -6,7 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import werkbook.task.commons.core.EventsCenter;
 import werkbook.task.commons.core.Messages;
+import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 import werkbook.task.logic.parser.ParserUtil;
@@ -15,6 +17,7 @@ import werkbook.task.model.task.ReadOnlyTask;
 import werkbook.task.model.task.Task;
 import werkbook.task.model.task.UniqueTaskList;
 
+//@@author A0139930B
 /**
  * Marks an existing task in the task list as done.
  */
@@ -26,8 +29,8 @@ public class MarkCommand extends Command {
             + "by the index number used in the last task listing. "
             + "Parameters: INDEX (must be a positive integer)" + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked %1$s as complete!";
-    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmark %1$s as complete!";
+    public static final String MESSAGE_MARK_TASK_SUCCESS = "ヽ(〃･ω･)ﾉ" + "\nMarked %1$s as complete!";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "ヽ(〃･ω･)ﾉ" + "\nUnmark %1$s as complete!";
     public static final String MESSAGE_TASK_NOT_FOUND = "I can't seem to find this task!";
 
     private final int targetIndex;
@@ -88,6 +91,8 @@ public class MarkCommand extends Command {
         }
 
         model.updateFilteredListToShowAll();
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
+
         return new CommandResult(String.format(statusMessage, taskToMark.getName()));
     }
 

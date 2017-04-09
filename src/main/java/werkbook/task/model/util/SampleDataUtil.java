@@ -1,5 +1,8 @@
 package werkbook.task.model.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.model.ReadOnlyTaskList;
 import werkbook.task.model.TaskList;
@@ -13,27 +16,30 @@ import werkbook.task.model.task.UniqueTaskList;
 
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
+        // @@author A0130183U
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HHmm");
         try {
             return new Task[] {
-                new Task(new Name("Walk the dog"),
-                        new Description("Take Zelda on a walk around the park"),
-                        new StartDateTime("03/01/2016 0900"), new EndDateTime("03/01/2016 1100"),
-                        new UniqueTagList("Incomplete")),
-                new Task(new Name("Get groceries"), new Description("Egg, cheese, and milk"),
-                        new StartDateTime("10/01/2016 1900"), new EndDateTime("10/01/2016 2100"),
-                        new UniqueTagList("Incomplete")),
-                new Task(new Name("Finish report"), new Description("Do up citations and references"),
-                        new StartDateTime("15/03/2016 1000"), new EndDateTime("23/03/2016 2359"),
-                        new UniqueTagList("Incomplete")),
-                new Task(new Name("Take out the trash"), new Description(""),
-                        new StartDateTime("25/12/2015 1400"), new EndDateTime("25/12/2015 1415"),
-                        new UniqueTagList("Completed")),
-                new Task(new Name("Do Christmas shopping"), new Description("Compare prices with Amazon"),
-                        new StartDateTime("20/12/2015 1200"), new EndDateTime("24/12/2015 2200"),
-                        new UniqueTagList("Complete")),
-                new Task(new Name("Learn how to cook"), new Description("Google instant noodle recipes"),
-                        new StartDateTime("11/11/2015 0900"), new EndDateTime("11/11/2015 1900"),
-                        new UniqueTagList("Complete")) };
+                new Task(new Name("Welcome to Werkbook! Select this task by typing 'select 1'"),
+                new Description("Now, add a new task by typing: 'add This is how I can add a floating task "
+                        + "(Descriptions are optional, and they go inside brackets)'"),
+                new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
+                new UniqueTagList("Incomplete")),
+                new Task(new Name("Now try to select this task!"),
+                new Description("As you have already figured, typing `select` followed by a number lets you choose "
+                        + "the specific task from the list you see here. "
+                        + "You can specify start and end date times using `from` and `to`, as well as `by`. "
+                        + "Try typing in: `add Learn how to create a deadlined task by today`"),
+                new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
+                new UniqueTagList("Incomplete")),
+                new Task(new Name("Finally, select this task!"),
+                    new Description("Now that you have learnt how to add a deadlined task, it's time to add an event "
+                            + "Type in: `add Use Werkbook for a week from today to next week` "
+                            + "Lastly, if you need any help, simply type in `help`!"),
+                    new StartDateTime(sdf.format(cal.getTime())), new EndDateTime(sdf.format(cal.getTime())),
+                    new UniqueTagList("Incomplete"))};
+            // @@author
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
         }

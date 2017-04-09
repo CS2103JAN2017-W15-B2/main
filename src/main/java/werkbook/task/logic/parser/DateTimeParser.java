@@ -1,7 +1,6 @@
 package werkbook.task.logic.parser;
 
 import java.util.Date;
-import java.util.List;
 
 import werkbook.task.model.util.DateTimeUtil;
 
@@ -15,9 +14,9 @@ public class DateTimeParser {
      * @param date Any string to be parsed
      * @return Returns formatted date time if a string was found, an empty string otherwise
      */
-    public static String parse(String date) {
-        List<Date> dateList = DateTimeUtil.parse(date);
-        return dateList.size() == 0 ? "" : DateTimeUtil.DATETIME_FORMATTER.format(dateList.get(0));
+    public static String parse(String dateToParse) {
+        Date date = DateTimeUtil.parse(dateToParse);
+        return date == null ? "" : DateTimeUtil.DATETIME_FORMATTER.format(date);
     }
 
     /**
@@ -25,9 +24,8 @@ public class DateTimeParser {
      * @param date Any string to be parsed
      * @return Returns a Date if a date was found, an empty object otherwise
      */
-    public static Date parseAsDate(String date) {
-        List<Date> dateList = DateTimeUtil.parse(date);
-        return dateList.size() == 0 ? null : dateList.get(0);
+    public static Date parseAsDate(String dateToParse) {
+        return DateTimeUtil.parse(dateToParse);
     }
 
     /**
@@ -36,6 +34,6 @@ public class DateTimeParser {
      * @return Returns true if the date is valid
      */
     public static boolean isValidDate(String date) {
-        return DateTimeUtil.parse(date).size() != 0 ? true : false;
+        return DateTimeUtil.parse(date) != null;
     }
 }

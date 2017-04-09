@@ -3,7 +3,9 @@ package werkbook.task.logic.commands;
 import java.util.List;
 import java.util.Optional;
 
+import werkbook.task.commons.core.EventsCenter;
 import werkbook.task.commons.core.Messages;
+import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.commons.util.CollectionUtil;
 import werkbook.task.logic.commands.exceptions.CommandException;
@@ -31,8 +33,9 @@ public class EditCommand extends Command {
             + "[from Start date and time] [to End date and time]\n" + "Example: " + COMMAND_WORD
             + " 1 (Walk the dog) to 08/03/2017 0300";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "( ´ ▽ ` )ﾉ" + "\nHere's what you changed: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "(　ﾟДﾟ)＜!!"
+            + "\nAt least one field to edit must be provided";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list!";
 
     private final int filteredTaskListIndex;
@@ -76,6 +79,11 @@ public class EditCommand extends Command {
         }
 
         model.updateFilteredListToShowAll();
+
+        int updatedIndex = model.getFilteredTaskList().indexOf(taskToEdit);
+
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(updatedIndex));
+
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

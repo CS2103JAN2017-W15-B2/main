@@ -21,7 +21,7 @@ public class SaveCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " ./NewSaveFolder";
 
-    public static final String MESSAGE_SUCCESS = "Save location changed successfully";
+    public static final String MESSAGE_SUCCESS = "(•̀o•́)ง" + "\nSave location changed successfully";
     public static final String MESSAGE_INVALID_PATH = "Specified folder is invalid";
     public static final String MESSAGE_FOLDER_NOT_EXIST = "Specified folder does not exist";
     public static final String MESSAGE_NOT_A_DIRECTORY = "Specified path is not a folder";

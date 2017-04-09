@@ -13,9 +13,9 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("(");
     public static final Prefix PREFIX_DESCRIPTIONEND = new Prefix(")");
-    public static final Prefix PREFIX_STARTDATETIME = new Prefix("from", true);
-    public static final Prefix PREFIX_ENDDATETIME = new Prefix("to", true);
-    public static final Prefix PREFIX_DEADLINE = new Prefix("by", true);
+    public static final Prefix PREFIX_STARTDATETIME = new Prefix(" from ", true);
+    public static final Prefix PREFIX_ENDDATETIME = new Prefix(" to ", true);
+    public static final Prefix PREFIX_DEADLINE = new Prefix(" by ", true);
     //@author
 
     /* Patterns definitions */

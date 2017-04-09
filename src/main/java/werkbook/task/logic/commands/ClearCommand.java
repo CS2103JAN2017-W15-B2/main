@@ -8,7 +8,7 @@ import werkbook.task.model.TaskList;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Everything has been cleared!";
+    public static final String MESSAGE_SUCCESS = "(╯°□°）╯︵ ┻━┻" + "\nEverything has been cleared!";
 
 
     @Override
