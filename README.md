@@ -6,7 +6,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/af383e34b7e646d2893c81cd564bc671)](https://www.codacy.com/app/pzyu/main?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CS2103JAN2017-W15-B2/main&amp;utm_campaign=Badge_Grade)
 
 
-<img src="docs/images/Ui.png" width="600"><br>
+<img src="docs/images/GUI.png" width="600"><br>
 
 * This is a desktop task list manager. It has a GUI but most of the user interactions happen using
   a CLI (Command Line Interface).

@@ -119,7 +119,7 @@ public class UiManager extends ComponentManager implements Ui {
         mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
-    // @@author A0130183U
+    // @@author A0130183U - other methods have been used to expand each task card
     // changes height of gbox
 //    @Subscribe
 //    public void expandListEvent(ExpandTaskListEvent event) {
