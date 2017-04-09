@@ -12,9 +12,7 @@ import werkbook.task.model.task.UniqueTaskList;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * Clears existing backing model and replaces with the provided new data.
-     */
+    /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyTaskList newData);
 
     /** Returns the TaskList */
@@ -27,13 +25,11 @@ public interface Model {
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
 
     /**
-     * Updates the task located at {@code filteredTaskListIndex} with
-     * {@code editedTask}.
+     * Updates the task located at {@code filteredTaskListIndex} with {@code editedTask}.
      *
-     * @throws DuplicateTaskException if updating the task's details causes the
-     *             task to be equivalent to another existing task in the list.
-     * @throws IndexOutOfBoundsException if {@code filteredTaskListIndex} < 0 or
-     *             >= the size of the filtered list.
+     * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
+     * @throws IndexOutOfBoundsException if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicateTaskException;
@@ -44,46 +40,28 @@ public interface Model {
     /** Redoes the last undo */
     void redo() throws EmptyStackException;
 
-    /**
-     * Returns the filtered task list as an
-     * {@code UnmodifiableObservableList<ReadOnlyTask>}
-     */
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
-    /**
-     * Updates the filter of the filtered task list to filter by the given
-     * keywords
-     */
+    /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
-
-    /**
-     * Updates the filter of the filtered task list to filter by the given
-     * keywords
-     */
-    void updateFilteredTaskListToShowIncomplete();
-
-    /**
-     * Updates the filter of the filtered task list to filter by the given
-     * keywords
-     */
-    void updateFilteredTaskListToShowComplete();
 
     /** Raises an event to indicate the model has changed */
     void indicateTaskListChanged();
 
-    // @@author A0139903B
+    //@@author A0139903B
     /** Raises an event to indicate a task has changed */
     void indicateTaskChanged(ReadOnlyTask editedTask);
 
     /** Raises an event to indicate the task list is empty */
     void indicateTaskListEmpty();
-    // @@author
+    //@@author
 
-    // @@author A0162266E
+    //@@author A0162266E
     /** Overwrite current task list with given task list **/
     void importTaskList(UniqueTaskList taskList);
-    // @@author
+    //@@author
 }

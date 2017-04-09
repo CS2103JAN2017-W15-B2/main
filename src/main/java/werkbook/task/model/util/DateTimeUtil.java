@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.ocpsoft.prettytime.PrettyTime;
-
-import com.joestelmach.natty.DateGroup;
-import com.joestelmach.natty.Parser;
+import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 
 //@@author A0139903B
 /**
@@ -20,21 +18,16 @@ public class DateTimeUtil {
     public static final SimpleDateFormat DATETIME_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HHmm");
 
     private static PrettyTime prettyTime = new PrettyTime(Locale.UK);
-    private static Parser nattyParser = new Parser();
+    private static PrettyTimeParser prettyTimeParser = new PrettyTimeParser();
     private static Date currentDate = new Date();
 
     /**
-     * Parses a string and extracts any values with resemblance to a date using natty time
+     * Parses a string and extracts any values with resemblance to a date using PrettyTimeNLP
      * @param dateToParse a string to be parsed
-     * @return Date found in the string
+     * @return a list of dates found in the string
      */
-    public static Date parse(String dateToParse) {
-        List<DateGroup> groups = nattyParser.parse(dateToParse);
-        Date date = null;
-        for (DateGroup group: groups) {
-            date = group.getDates().get(0);
-        }
-        return date;
+    public static List<Date> parse(String dateToParse) {
+        return prettyTimeParser.parse(dateToParse);
     }
 
     /**
@@ -46,6 +39,10 @@ public class DateTimeUtil {
     public static String getPrettyDateTime(Date date) {
         return getDifferenceInDays(date, currentDate) > NUM_OF_DAYS_LIMIT ? DATETIME_FORMATTER.format(date)
                 : prettyTime.format(date);
+    }
+
+    public static Date getVerboseDateTime(String dateToParse) {
+        return prettyTimeParser.parse(dateToParse).get(0);
     }
 
     /**

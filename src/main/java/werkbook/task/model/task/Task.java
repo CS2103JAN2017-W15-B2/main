@@ -30,7 +30,6 @@ public class Task implements ReadOnlyTask {
 
     private UniqueTagList tags;
 
-    //@@author A0162266E
     /**
      * Name must be present and not null.
      * @throws IllegalValueException when EndDateTime is not present or occurs after StartDateTime when
@@ -54,7 +53,6 @@ public class Task implements ReadOnlyTask {
                                              // changes in the arg list
         this.lastUpdated = new Date();
     }
-    //@@author
 
     //@@author A0162266E
     public Task(Name name, Description description, StartDateTime startDateTime, EndDateTime endDateTime,

@@ -4,13 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import werkbook.task.commons.core.CommandTexts;
 import werkbook.task.ui.CommandBox;
 
 public class CommandBoxTest extends TaskListGuiTest {
@@ -58,23 +55,4 @@ public class CommandBoxTest extends TaskListGuiTest {
         assertEquals(defaultStyleOfCommandBox, commandBox.getStyleClass());
     }
 
-    //@@author A0140462R
-    @Test
-    public void commandBox_checkAutocompleteSuccess() {
-        commandBox.pressAKey();
-        List<String> expectedItemList = new ArrayList<String>(Arrays.asList(CommandTexts.ADD_COMMAND_WORD,
-                                                              CommandTexts.CLEAR_COMMAND_WORD,
-                                                              CommandTexts.MARK_COMMAND_WORD,
-                                                              CommandTexts.SAVE_COMMAND_WORD));
-
-        assertEquals(expectedItemList , commandBox.getItemList());
-    }
-
-    @Test
-    public void commandBox_checkAutocompleteWithNoMatchingCommands() {
-        commandBox.pressZKey();
-        List<String> expectedItemList = new ArrayList<String>();
-
-        assertEquals(expectedItemList, commandBox.getItemList());
-    }
 }

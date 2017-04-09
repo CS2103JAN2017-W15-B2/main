@@ -47,7 +47,6 @@ allprojects {
         googleAPITasks = 'v1-rev46-1.22.0'
         prettytimeNLPVersion = '4.0.0.Final'
         prettytimeVersion = '4.0.0.Final'
-        nattyVersion = '0.13'
 
         libDir = 'lib'
     }
@@ -73,7 +72,7 @@ allprojects {
         compile "com.google.oauth-client:google-oauth-client-jetty:$googleOAuthClient"
         compile "com.google.apis:google-api-services-tasks:$googleAPITasks"
         compile "org.ocpsoft.prettytime:prettytime:$prettytimeVersion"
-        compile "com.joestelmach:natty:$nattyVersion"
+        compile "org.ocpsoft.prettytime:prettytime-nlp:$prettytimeNLPVersion"
 
         testCompile "junit:junit:$junitVersion"
         testCompile "org.testfx:testfx-core:$testFxVersion"

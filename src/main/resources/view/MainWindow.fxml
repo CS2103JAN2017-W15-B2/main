@@ -33,13 +33,30 @@
                </items>
             </Menu>
          </menus>
+         <effect>
+            <Bloom threshold="0">
+               <input>
+                  <Lighting diffuseConstant="1.05" specularConstant="0.21" surfaceScale="1.16">
+                     <bumpInput>
+                        <Shadow color="#a8a8a8" height="35.93" radius="33.37" width="99.55" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#ebebeb" />
+                     </light>
+                  </Lighting>
+               </input>
+            </Bloom>
+         </effect>
       </MenuBar>
       <AnchorPane fx:id="commandBoxPlaceholder" prefHeight="5.0" prefWidth="690.0" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
          <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
+         <effect>
+            <InnerShadow choke="0.04" color="#111111" height="23.97" radius="9.68" width="16.75" />
+         </effect>
       </AnchorPane>
-       <AnchorPane fx:id="resultDisplayPlaceholder" maxHeight="124" minHeight="92.0" prefHeight="124.0" prefWidth="690.0" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
+       <AnchorPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="92.0" prefHeight="92.0" prefWidth="690.0" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
            <padding>
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
            </padding>

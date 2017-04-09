@@ -36,12 +36,12 @@ public class SelectCommandTest extends TaskListGuiTest {
 
     private void assertSelectionInvalid(int index) {
         commandBox.runCommand("select " + index);
-        assertResultMessage("(⁄ ⁄•⁄ω⁄•⁄ ⁄)" + "\nThis task doesn't exist, silly");
+        assertResultMessage("I can't seem to find this task :(");
     }
 
     private void assertSelectionSuccess(int index) {
         commandBox.runCommand("select " + index);
-        assertResultMessage("( •⌄• ू )✧" + "\nSelected task: " + index);
+        assertResultMessage("Selected task: " + index);
         assertTaskSelected(index);
     }
 

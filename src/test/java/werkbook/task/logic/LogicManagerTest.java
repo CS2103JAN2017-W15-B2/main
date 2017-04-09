@@ -39,7 +39,6 @@ import werkbook.task.logic.commands.ExitCommand;
 import werkbook.task.logic.commands.FindCommand;
 import werkbook.task.logic.commands.HelpCommand;
 import werkbook.task.logic.commands.ListCommand;
-import werkbook.task.logic.commands.RedoCommand;
 import werkbook.task.logic.commands.SelectCommand;
 import werkbook.task.logic.commands.UndoCommand;
 import werkbook.task.logic.commands.exceptions.CommandException;
@@ -207,7 +206,6 @@ public class LogicManagerTest {
         assertCommandSuccess("clear", ClearCommand.MESSAGE_SUCCESS, new TaskList(), Collections.emptyList());
     }
 
-    //@@author A0162266E
     @Test
     public void execute_add_invalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -223,6 +221,9 @@ public class LogicManagerTest {
     public void execute_add_invalidTaskData() {
         assertCommandFailure("add []\\[;] (12345) from 01/01/1980 0000 to 01/01/1980 0100",
                 Name.MESSAGE_NAME_CONSTRAINTS);
+        // To fix
+        //assertCommandFailure("add Valid Name d/12345 from 99/99/9999 9999 to 01/01/1980 1000",
+        //        StartDateTime.MESSAGE_START_DATETIME_CONSTRAINTS);
         assertCommandFailure(
                 "add Valid Name (12345) from 01/01/1980 0000",
                 Task.MESSAGE_START_WITHOUT_END_CONSTRAINTS);
@@ -231,7 +232,6 @@ public class LogicManagerTest {
                 Task.MESSAGE_END_BEFORE_START_CONSTRAINTS);
 
     }
-    //@@author
 
     @Test
     public void execute_add_successful() throws Exception {
@@ -411,13 +411,9 @@ public class LogicManagerTest {
                 Command.getMessageForTaskListShownSummary(expectedList.size()), expectedTaskList,
                 expectedList);
     }
-    //@@author A0140462R
-    /**
-     * Creates a task list, executes add command, then executes undo command
-     * to confirm that the add is undone.
-     */
+
     @Test
-    public void execute_undo_withPriorMutableAction() throws Exception {
+    public void execute_undo_withPriorMutablePriorAction() throws Exception {
 
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.adam();
@@ -442,56 +438,7 @@ public class LogicManagerTest {
 
         assertCommandSuccess("undo", UndoCommand.MESSAGE_SUCCESS, expectedTaskList, expectedTaskList.getTaskList());
     }
-    /**
-     * Confirms that undo fails and an error message is shown when there are no
-     * prior mutable commands executed
-     */
-    @Test
-    public void execute_undo_withNoPriorMutableAction() throws Exception {
 
-        assertCommandFailure("undo", UndoCommand.MESSAGE_NO_LAST_ACTION);
-    }
-    /**
-     * Creates a new taskList, executes add command, executes undo command, then
-     * confirms that the redo command returns the task list to the original state
-     * before the undo command
-     */
-    @Test
-    public void execute_redo_withPriorUndo() throws Exception {
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
-        TaskList expectedTaskList = new TaskList();
-        expectedTaskList.addTask(toBeAdded);
-
-        // execute command and verify result
-        assertCommandSuccess(helper.generateAddCommand(toBeAdded),
-                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
-                expectedTaskList,
-                expectedTaskList.getTaskList());
-
-        //add one more task
-        Task newTask = helper.generateTask(1);
-        TaskList newExpectedTaskList = new TaskList();
-        newExpectedTaskList.addTask(toBeAdded);
-        newExpectedTaskList.addTask(newTask);
-        assertCommandSuccess(helper.generateAddCommand(newTask),
-                String.format(AddCommand.MESSAGE_SUCCESS, newTask),
-                newExpectedTaskList,
-                newExpectedTaskList.getTaskList());
-
-        //executes undo
-        assertCommandSuccess("undo", UndoCommand.MESSAGE_SUCCESS, expectedTaskList, expectedTaskList.getTaskList());
-        //executes redo
-        assertCommandSuccess("redo", RedoCommand.MESSAGE_SUCCESS,
-                             newExpectedTaskList, newExpectedTaskList.getTaskList());
-    }
-
-    @Test
-    public void execute_redo_withNoPriorUndo() throws Exception {
-
-        assertCommandFailure("redo", RedoCommand.MESSAGE_NO_LAST_ACTION);
-    }
-    //@@author
     /**
      * A utility class to generate test data.
      */

@@ -16,6 +16,7 @@ import werkbook.task.commons.events.ui.ExitAppRequestEvent;
 import werkbook.task.commons.util.FxViewUtil;
 import werkbook.task.logic.Logic;
 import werkbook.task.model.UserPrefs;
+//import werkbook.task.model.task.ReadOnlyTask;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,8 +33,8 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+//  private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
-    private CommandBox commandBox;
     private Config config;
 
     @FXML
@@ -107,19 +108,16 @@ public class MainWindow extends UiPart<Region> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
-            } else {
-                if (event.getCode().isLetterKey()) {
-                    commandBox.focusOnTextField();
-                }
             }
         });
     }
 
     void fillInnerParts() {
+//      browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskListFilePath());
-        commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
+        new CommandBox(getCommandBoxPlaceholder(), logic);
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
