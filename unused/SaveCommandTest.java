@@ -1,4 +1,4 @@
-//@@author A0162266E
+//@@author A0162266E-unused
 
 // Attempted to write test for writing to a directory with insufficient permissions
 // The test might work in *nix systems but fails on Windows due to it not supporting Posix
