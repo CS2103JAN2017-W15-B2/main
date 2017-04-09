@@ -13,7 +13,7 @@ public class SaveCommandTest extends TaskListGuiTest {
 
     @Test
     public void save_invalidPath_failure() {
-        commandBox.runCommand("save C:\\/##**\\/ayylmao");
+        commandBox.runCommand("save \"\" ");
         assertResultMessage(SaveCommand.MESSAGE_INVALID_PATH);
     }
 
