@@ -21,7 +21,12 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
         6. [Mark task](#f-mark-task)
         7. [Delete task](#g-delete-task)
         8. [Clear all tasks](#h-clear-all-tasks)
-    2. [Program Usage](#ii-program-usage)
+    2. [Google Tasks Integration](#ii-google-tasks-integration)
+        1. [Login](#a-login)
+        2. [Export](#b-export)
+        3. [Import](#c-import)
+        4. [Logout](#d-logout)
+    3. [Program Usage](#iii-program-usage)
         1. [Help](#a-help)
         2. [Undo/Redo](#b-undo-redo)
         3. [Change save location](#c-change-save-location)
@@ -297,11 +302,37 @@ Examples:
 Seeking a fresh start? Use the `clear` command to clear all the tasks in Werkbook and start anew!<br>
 Format: `clear`
 
-### ii. Program Usage
+### ii. Google Tasks Integration
+
+#### a. Login
+
+Want your tasks to be on Google Tasks too? Before you perform any of the commands below, you must first log in to Google with the `glogin` command. You only need to login once unless you decided to logout.
+
+Format: `glogin`
+
+#### b. Export
+
+Once you are logged in, you can export all your tasks from Werkbook to Google Tasks with the `gexport` command. Werkbook will create a task list labeled "Werkbook" containing all your tasks. If you have a lot of tasks, give it a few minutes to export all of them.
+
+Format: `gexport`
+
+#### c. Import
+
+Added tasks to the "Werkbook" task list in Google Tasks? You can import them into Werkbook with the `gimport` command. Note that this clears your tasks before adding the tasks from Google Tasks.
+
+Format: `gimport`
+
+#### d. Logout
+
+Want to change Google accounts? You can logout of your current account with the `glogout` command.
+
+Format: `gimport`
+
+### iii. Program Usage
 
 #### a. Help
 
-Displays the help sheet.
+Forgot the syntax of a command? You can open this user guide in-app with the `help` command.
 
 Format: `help`
 
@@ -309,7 +340,7 @@ Format: `help`
 
 #### b. Undo/Redo
 
-Undo the last command executed.
+Made a mistake while editing your tasks? You can use the `undo` command to undo the last command. If you feel it was right after all you can also use the `redo` command to redo the last command. This works for all task management commands and Google Tasks import command.
 
 Format: `undo`
 
@@ -336,10 +367,11 @@ Examples:
 
 #### c. Change save location
 
-Saves all changes to disk. <br>
+Want to have your tasks synced on Dropbox instead? You can change the save location of your tasks with the `save` command.
+
 Format: `save SAVE_LOCATION`
 
-Changes where tasks data and user config are saved to specified `SAVE_LOCATION`.
+Changes where tasks data and user config are saved to specified `SAVE_LOCATION`. `SAVE_LOCATION` must be an existing folder.
 
 #### d. Exit program
 
