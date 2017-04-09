@@ -220,6 +220,13 @@ The `Storage` component,
 
 Classes used by multiple components are in the `werkbook.task.commons` package.
 
+They are separated into 4 further sub-packages:
+* `core` -  Includes essential classes used across multiple components.
+* `events` - Includes the different types of commands that can occur based on the events-driven nature of the design.
+* `exceptions` - Includes the types of exceptions that can be thrown.
+* `util` - Includes additional utility classes.
+
+
 ## 4. Implementation
 
 ### 4.1. Logging

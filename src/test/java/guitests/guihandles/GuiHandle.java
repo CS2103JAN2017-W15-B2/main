@@ -1,5 +1,6 @@
 package guitests.guihandles;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -59,6 +60,22 @@ public class GuiHandle {
         ComboBox<String> textField = getNode(filedName);
         return textField.getEditor().getText();
     }
+
+    //@@author A0140462R
+    protected List<String> getDropdownItems(String filedName) {
+        ComboBox<String> textField = getNode(filedName);
+        return textField.getItems();
+    }
+
+    //used to test autocomplete feature
+    public void pressAKey() {
+        guiRobot.type(KeyCode.A).sleep(500);
+    }
+
+    public void pressZKey() {
+        guiRobot.type(KeyCode.Z).sleep(500);
+    }
+    //@@author
 
     protected void setTextField(String textFieldId, String newText) {
         guiRobot.clickOn(textFieldId);
