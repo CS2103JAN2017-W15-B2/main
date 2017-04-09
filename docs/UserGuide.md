@@ -10,8 +10,7 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
     2. [Starting Werkbook](#ii-starting-werkbook)
     3. [Interface Introduction](#iii-interface-introduction)
     4. [Quick Start](#iv-quick-start)
-3. [User Interface](#3-user-interface)
-4. [Features](#4-features)
+3. [Features](#3-features)
     1. [Task Management](#i-task-management)
         1. [Add task](#a-add-task)
         2. [List tasks](#b-list-tasks)
@@ -31,8 +30,8 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
         2. [Undo/Redo](#b-undo-redo)
         3. [Change save location](#c-change-save-location)
         4. [Exit program](#d-exit-program)
-5. [FAQ](#5-faq)
-6. [Commands Cheatsheet](#6-commands-cheatsheet)
+4. [FAQ](#4-faq)
+5. [Commands Cheatsheet](#5-commands-cheatsheet)
 
 ## 1. Welcome
 
@@ -87,7 +86,7 @@ Now, say you want to get the groceries done by tonight, you can edit the task by
 `> edit 1 by tonight`
 
 Werkbook supports natural language input, so you can tell it what to do just like how you talk to another person. Telling Werkbook that you want to get the task done by tonight, will automatically set the deadline to 8pm on the same day.
-Alternatively, if you feel like you're up task, you can also provide an earlier time such as `7pm`, `1900`, `3 hours later`. You can learn more about the different ways you can specify the time in the [Features](#4-features) section.
+Alternatively, if you feel like you're up task, you can also provide an earlier time such as `7pm`, `1900`, `3 hours later`. You can learn more about the different ways you can specify the time in the [Features](#3-features) section.
 
 **Completing a task**
 
@@ -107,7 +106,7 @@ Typing `help` in the **Command Box** will bring up the help window with a list o
 
 **Ready to go!**
 
-Now you're all set to start managing your tasks! Feel free to refer to our [Features](#4-features) section below for details of each command.
+Now you're all set to start managing your tasks! Feel free to refer to our [Features](#3-features) section below for details of each command.
 
 ## 3. Features
 
@@ -263,12 +262,16 @@ Accidentally added duplicate tasks? Use the `delete` command to remove the speci
 Format: `delete INDEX`
 
 Examples:
->`list`
->`delete 2`
-* Deletes the 2nd task in the task list.
->`find Report`
->`delete 1`
-* Deletes the 1st task in the results of the `find` command.
+* `list`
+* `delete 2`<br>
+
+Deletes the 2nd task in the task list.
+
+* `find Report`
+* `delete 1`<br>
+
+Deletes the 1st task in the results of the `find` command.
+
 
 > * Deletes the task at the specified `INDEX`. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
@@ -325,9 +328,10 @@ Format: `undo`
 
 Examples:
 
->`delete 2`
->`undo`
-  Undo the deletion of the 2nd task in the task list.
+* `delete 2`
+* `undo`
+
+Undo the deletion of the 2nd task in the task list.
 
 Redo the last undo command(s) executed.
 
@@ -337,10 +341,11 @@ Format: `redo`
 
 Examples:
 
->`delete 2`
->`undo`
->`redo`
-  The final action would be the deletion of the 2nd task in the task list.
+* `delete 2`
+* `undo`
+* `redo`
+
+The final action would be the deletion of the 2nd task in the task list.
 
 #### c. Change save location
 
