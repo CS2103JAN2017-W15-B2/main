@@ -37,9 +37,8 @@ public class MarkCommand extends Command {
     private MarkTaskDescriptor markTaskDescriptor;
 
     /**
-     * @param targetIndex the index of the task in the filtered task list to
-     *            edit
-     * @param markTaskDescriptor details to edit the task with
+     * @param targetIndex the index of the task in the filtered task list to mark
+     * @param markTaskDescriptor details to mark the task with
      */
     public MarkCommand(int targetIndex) {
         assert targetIndex > 0;

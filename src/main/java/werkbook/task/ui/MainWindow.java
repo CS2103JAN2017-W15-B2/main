@@ -200,31 +200,4 @@ public class MainWindow extends UiPart<Region> {
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
     }
-
-    //@@author A0139903B
-    /**
-     * Loads task page with information from {@code task}
-     */
-/*
-    void loadTaskPanel(ReadOnlyTask task) {
-        browserPanel.loadTaskPanel(task);
-    }
-
-    /**
-     * Clears the task panel
-     */
-/*
-    void clearTaskPanel() {
-        browserPanel.clearTaskPanel();
-    }
-
-    /**
-     * Initializes the task panel
-     */
-/*
-    void initTaskPanel() {
-        browserPanel.initTaskPanel();
-    }
-    */
-    //@@author
 }

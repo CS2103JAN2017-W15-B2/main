@@ -230,6 +230,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    //@@author A0139903B
     private class StatusQualifier implements Qualifier {
         private Set<String> statusKeyWords;
 
@@ -249,6 +250,7 @@ public class ModelManager extends ComponentManager implements Model {
             return "status=" + String.join(", ", statusKeyWords);
         }
     }
+    //@@author
 
     // @@author A0162266E
     @Override
