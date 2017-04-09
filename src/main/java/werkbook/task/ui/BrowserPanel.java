@@ -70,7 +70,7 @@
 //        placeholder.getChildren().add(browser);
 //    }
 //
-//    //@@author A0139903B
+//    //@@author A0139903B-unused
 //    /**
 //     * Initializes the task panel with welcome message
 //     */
@@ -114,7 +114,7 @@
 //    }
 //    //@@author
 //
-//  //@@author A0130183U
+//  //@@author A0130183U-unused
 //    private void initTags(ReadOnlyTask task) {
 //        tags.getChildren().clear();
 //        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
