@@ -177,10 +177,10 @@ The first task will now have the name `Submit resume` with a description of `urg
 
 ### Removing multiple fields
 #### Actions
-1. Enter `edit 1 Submit resume in () by`
+1. Enter `edit 3 Can't attend anymore () by`
 
 #### Results
-The first task will now have the name `Submit resume` with no description and no due date, becoming a floating task which will be sent near the bottom.
+The third task will now have the name `Can't attend anymore` with no description and no due date, becoming a floating task which will be sent near the bottom.
 
 ### Removing task title
 #### Actions
