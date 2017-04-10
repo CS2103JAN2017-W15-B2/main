@@ -1,4 +1,4 @@
-Result box will tell you that you've got the wrong command formatResult box will tell you that you've got the wrong command format# Werkbook Test Script
+# Werkbook Test Script
 
 1. Launching Werkbook
 2. Loading sample data
