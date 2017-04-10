@@ -1,4 +1,4 @@
-# Werkbook Test Script
+Result box will tell you that you've got the wrong command formatResult box will tell you that you've got the wrong command format# Werkbook Test Script
 
 1. Launching Werkbook
 2. Loading sample data
@@ -40,7 +40,7 @@ App launches, listing 50+ sample tasks.
 ## 3. Command suggestions
 ### Showing command suggestions
 #### Actions
-1. Type `a` in the command box.
+1. Type `a` in the command box. Command box does not require focus with the mouse as typing anywhere will set give focus to the command box.
 
 #### Results
 A list of commands containing `a` shows in a list below the command box.
@@ -90,29 +90,54 @@ A new task with the title `Attend Google I/O` will be added. In the expanded vie
 #### Results
 Result box will show `End Date/Time must be specified if Start Date/Time is specified`, since tasks with only start dates are not supported.
 
+### Adding a task without a name
+#### Actions
+1. Enter `add`
+
+#### Results
+Result box will tell you that you've got the wrong command format, since task name are mandatory.
+
+>You've got the wrong command format!
+
+>add: Adds a task to the task list.
+
+>A task must have a name, but you can choose to give it a description or not.
+
+>It can also have an end date and time but it cannot have a start date and time without an end.
+
+>Parameters: Task name [(Description)] [from Start date and time] [to End date and time]
+ 
+>Example: add Walk the dog (Take Zelda on a walk around the park) from 10am to 12pm
+
 ## 5. Selecting tasks
+### Selecting a valid task index
 #### Actions
 1. Enter `select 3`
 
 #### Results
 The task list will scroll to the task at index 3 and expand it. In the expanded view more detailed dates and description of the task can be seen.
 
+### Selecting an invalid task index
 #### Actions
 1. Enter `select 1000`
 
 #### Results
 Result box will show `This task doesn't exist, silly`, since there is no task with an index of 1000.
 
+### Selecting a negative task index
 #### Actions
 1. Enter `select -10`
 
 #### Results
-Result box will tell you that you've got the wrong command format, only positive integers can follow the `select` command.
+Result box will tell you that you've got the wrong command format, since only positive integers can follow the `select` command.
 
 >You've got the wrong command format!
-select: Selects the task identified by the index number used in the last task listing.
-Parameters: INDEX (must be a positive integer)
-Example: select 1
+
+>select: Selects the task identified by the index number used in the last task listing.
+
+>Parameters: INDEX (must be a positive integer)
+
+>Example: select 1
 
 ## 6. Listing tasks
 ### Listing incomplete/complete tasks
@@ -173,6 +198,7 @@ The first task will now have the name `Submit resume` with no description and no
 An error message will show up: `At least one field to edit must be provided`. Task title is mandatory and must be provided, it cannot be blank.
 
 ## 8. Finding tasks
+### Finding an existing task
 #### Actions
 1. Enter `find client`
 
@@ -180,6 +206,7 @@ An error message will show up: `At least one field to edit must be provided`. Ta
 The task list will be filtered to only display tasks with `client` in its name. Enter `list` to show all tasks again.
 
 #### Actions
+### Finding a task that does not exist
 1. Enter `find unknowntaskname`
 
 #### Results
@@ -202,11 +229,42 @@ The first task will reverse the state of the first task, from Complete to Incomp
 Task will disappear from the list of incomplete task. The task after it will be selected and its details expanded. Similar result when done with `list complete` command.
 
 ## 10. Deleting tasks
+### Deleting a valid task index
 #### Actions
 1. Enter `delete 1`
 
 #### Results
-The first task will be deleted
+The first task will be deleted. Result box will show details about the task that was deleted.
+>This is gone now: <Task name> <[Task status]>
+
+>Description: <[Task description]>
+
+>From: <[Start date time]> To: <[End date time]>
+
+
+>Last Updated: <Last updated time>
+
+### Deleting an invalid task index
+#### Actions
+1. Enter `delete 1000`
+
+#### Results
+Result box will show `This task doesn't exist, silly`, since there is no task with an index of 1000.
+
+### Deleting a negative task index
+#### Actions
+1. Enter `delete -10`
+
+#### Results
+Result box will tell you that you've got the wrong command format, since only positive integers can follow the `delete` command.
+
+>You've got the wrong command format!
+
+>delete: Deletes the task identified by the index number used in the last task listing.
+
+>Parameters: INDEX (must be a positive integer)
+
+>Example: delete 1
 
 ## 11. Clearing all tasks
 #### Actions
