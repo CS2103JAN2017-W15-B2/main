@@ -195,11 +195,10 @@ public class ArgumentTokenizer {
             int valueStartPos = prefixPositions.get(i).getStartPosition() + prefix.getPrefix().length();
             String value = argsString.substring(valueStartPos, prefixPositions.get(i + 1).getStartPosition());
 
-            boolean isValidDate = DateTimeParser.isValidDate(value);
+            boolean isValidDate = DateTimeParser.isValidDate(prefix.getPrefix() + value);
 
-            // If it is a date, text following is not empty and is not valid
-            // date, continue
-            if (prefix.isDateTime() && !value.isEmpty() && !isValidDate) {
+            // If it is a date, text following is not empty and is not valid date, and if escaped, continue
+            if (prefix.isDateTime() && !value.isEmpty() && !isValidDate || value.contains("\"")) {
                 PrefixPosition another = new PrefixPosition(new Prefix(""),
                         prefixPositions.get(i + 1).getStartPosition());
                 filteredList.add(another);
@@ -283,7 +282,7 @@ public class ArgumentTokenizer {
         // Should already be filtered by now, time to convert to fit date time
         // format
         if (prefix.isDateTime()) {
-            value = DateTimeParser.parse(value);
+            value = DateTimeParser.parse(prefix.getPrefix() + value);
         }
         //@@author
         return value.trim();
