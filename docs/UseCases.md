@@ -300,7 +300,7 @@ This use case extends [List Tasks](#list-tasks). It is inserted at extension poi
 > 1a1. Werkbook shows an error message <br>
   **Use case ends**
 
-### Google Tasks Export
+### Google Logout
 
 #### MSS
 
