@@ -177,7 +177,7 @@ You can find out more at: http://natty.joestelmach.com/doc.jsp.
 The `list` command lets you view your tasks in a list depending on their completion status.<br>
 Format: `list [(complete/incomplete)]`
 
-To see the list of all your tasks, both completed or incomplete, simply type in: 
+To see the list of all your tasks, both completed or incomplete, simply type in:
 Example: `list`
 
 For completed tasks, add the `complete` argument at the back
@@ -315,7 +315,7 @@ Format: `gimport`
 
 When you have a whole bunch of tasks in your list, it will be handy for you to learn how to navigate through them!
 
-Pressing <kbd>tab</kbd> on the keyboard will allow you to cycle through the components in Werkbook, and it can be seen with a blue highlight. Scrolling through your tasks is as simple as pressing <kbd>PgUp</kbd> and <kbd>PgDn</kbd>. 
+Pressing <kbd>tab</kbd> on the keyboard will allow you to cycle through the components in Werkbook, and it can be seen with a blue highlight. Scrolling through your tasks is as simple as pressing <kbd>PgUp</kbd> and <kbd>PgDn</kbd>.
 
 #### b. Help
 
