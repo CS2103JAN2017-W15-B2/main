@@ -1,5 +1,5 @@
 # A0130183U-unused
-###### \java\werkbook\task\ui\BrowserPanel.java
+###### \BrowserPanel.java
 ``` java
 //    private void initTags(ReadOnlyTask task) {
 //        tags.getChildren().clear();

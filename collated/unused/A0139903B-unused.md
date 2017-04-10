@@ -1,5 +1,5 @@
 # A0139903B-unused
-###### \java\werkbook\task\ui\BrowserPanel.java
+###### \BrowserPanel.java
 ``` java
 //    /**
 //     * Initializes the task panel with welcome message
