@@ -1,8 +1,15 @@
 
 .error {
-    -fx-background-color: red;
+    -fx-background-color: #C44C51;
 }
 
+.default {
+    -fx-background-color: #f2f3f4;
+}
+
+.success {
+    -fx-background-color: #76CC99;
+}
 
 .tag-selector {
     -fx-border-width: 1;

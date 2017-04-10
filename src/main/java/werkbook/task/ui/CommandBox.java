@@ -22,6 +22,8 @@ import werkbook.task.logic.commands.exceptions.CommandException;
 public class CommandBox extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private static final String FXML = "CommandBox.fxml";
+    public static final String DEFAULT_STYLE_CLASS = "default";
+    public static final String SUCCESS_STYLE_CLASS = "success";
     public static final String ERROR_STYLE_CLASS = "error";
     private static final int SUGGESTION_COUNT = 5;
 
@@ -42,6 +44,7 @@ public class CommandBox extends UiPart<Region> {
         placeHolderPane.getChildren().add(commandTextField);
         FxViewUtil.applyAnchorBoundaryParameters(getRoot(), 0.0, 0.0, 0.0, 0.0);
         FxViewUtil.applyAnchorBoundaryParameters(commandTextField, 0.0, 0.0, 0.0, 0.0);
+        setStyleToDefault();
 
         //@@author A0140462R
         Platform.runLater(() -> {
@@ -80,6 +83,7 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.getEditor().clear();
             commandTextField.getEditor().setText("");
             commandTextField.getSelectionModel().clearSelection();
+            commandTextField.getParent().requestFocus();
             commandTextField.hide();
             logger.info("Result: " + commandResult.feedbackToUser);
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
@@ -93,10 +97,13 @@ public class CommandBox extends UiPart<Region> {
         }
     }
     //@@author A0140462R
+    /**
+     * Searches through list of available commands and displays the commands containing
+     * the user input in a dropdown list.
+     */
     private void handleInputMethodTextChanged() {
         String userInput = new String(commandTextField.getEditor().getText());
-        int initialCaretPosition = commandTextField.getEditor().getCaretPosition();
-
+        int initialCaretPosition = commandTextField.getEditor().getCaretPosition(); //saves the caret position
         commandTextField.getItems().clear();
         ArrayList<String> suggestions = new ArrayList<String>();
         for (String s : CommandTexts.COMMAND_TEXT_LIST) {
@@ -106,27 +113,53 @@ public class CommandBox extends UiPart<Region> {
         }
         commandTextField.getItems().addAll(suggestions);
         commandTextField.getEditor().setText(userInput);
-        commandTextField.getEditor().positionCaret(initialCaretPosition);
-        commandTextField.hide();
+        commandTextField.getEditor().positionCaret(initialCaretPosition); //set caret position back
+        commandTextField.hide();       //hides the dropdown list so that the visible row count can be updated
         commandTextField.setVisibleRowCount(suggestions.size());
-        if (suggestions.size() > 0) {
+        if (suggestions.size() > 0 && userInput.length() > 0) {
             commandTextField.show();
         }
+        setStyleToDefault();
     }
 
     //@@author
+
+    //@@author A0139903B
     /**
      * Sets the command box style to indicate a successful command.
      */
     private void setStyleToIndicateCommandSuccess() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+        commandTextField.getStyleClass().remove(DEFAULT_STYLE_CLASS);
+        commandTextField.getStyleClass().add(SUCCESS_STYLE_CLASS);
     }
 
     /**
      * Sets the command box style to indicate a failed command.
      */
     private void setStyleToIndicateCommandFailure() {
+        commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
+        commandTextField.getStyleClass().remove(DEFAULT_STYLE_CLASS);
         commandTextField.getStyleClass().add(ERROR_STYLE_CLASS);
     }
 
+    /**
+     * Sets the command box style to default.
+     */
+    private void setStyleToDefault() {
+        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+        commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
+        if (!commandTextField.getStyleClass().contains(DEFAULT_STYLE_CLASS)) {
+            commandTextField.getStyleClass().add(DEFAULT_STYLE_CLASS);
+        }
+    }
+    //@@author A0139903B
+
+    /**
+     * Focuses on text field and reverts back to default style
+     */
+    public void focusOnTextField() {
+        commandTextField.requestFocus();
+        setStyleToDefault();
+    }
 }

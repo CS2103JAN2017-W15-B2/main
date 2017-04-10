@@ -10,8 +10,7 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
     2. [Starting Werkbook](#ii-starting-werkbook)
     3. [Interface Introduction](#iii-interface-introduction)
     4. [Quick Start](#iv-quick-start)
-3. [User Interface](#3-user-interface)
-4. [Features](#4-features)
+3. [Features](#3-features)
     1. [Task Management](#i-task-management)
         1. [Add task](#a-add-task)
         2. [List tasks](#b-list-tasks)
@@ -21,13 +20,19 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
         6. [Mark task](#f-mark-task)
         7. [Delete task](#g-delete-task)
         8. [Clear all tasks](#h-clear-all-tasks)
-    2. [Program Usage](#ii-program-usage)
-        1. [Help](#a-help)
-        2. [Undo/Redo](#b-undo-redo)
-        3. [Change save location](#c-change-save-location)
-        4. [Exit program](#d-exit-program)
-5. [FAQ](#5-faq)
-6. [Commands Cheatsheet](#6-commands-cheatsheet)
+    2. [Google Tasks Integration](#ii-google-tasks-integration)
+        1. [Login](#a-login)
+        2. [Export](#b-export)
+        3. [Import](#c-import)
+        4. [Logout](#d-logout)
+    3. [Program Usage](#iii-program-usage)
+        1. [Task Navigation](#a-task-navigation)
+        2. [Help](#b-help)
+        3. [Undo/Redo](#c-undo-redo)
+        4. [Change save location](#d-change-save-location)
+        5. [Exit program](#e-exit-program)
+4. [FAQ](#4-faq)
+5. [Commands Cheatsheet](#5-commands-cheatsheet)
 
 ## 1. Welcome
 
@@ -57,23 +62,13 @@ To start Werkbook, simply double click on `werkbook.jar`.
 *Figure 2: Launching werkbook.jar*
 
 ### iii. Interface Introduction
-After launching Werkbook, you will be greeted with the main interface.
+After launching Werkbook, you will be greeted with the main interface. There will be a short tutorial for you to follow so be sure to follow those instructions!
 
-<img src="images/userguide-figure-3.png" width="600"><br>
+<img src="images/userguide-figure-3.jpg" width="700"><br>
 *Figure 3: Werkbook's main interface*
-
-You can find the **Command Box** at the top of the interface, this is where you type your commands!
-
-The **Results Panel** is located below the **Command Box**, and it tells you the result of your command.
-
-All of your tasks can be found in the **Task Panel**, it is initially empty until you fill it up with tasks.
 
 ### iv. Quick Start
 Here's a quick guide to get you started with Werkbook.
-
-**Feeling lost?**
-
-Typing **`help`** in the **Command Box** will bring up the help window with a list of all of the available commands.
 
 **Adding your first task**
 
@@ -81,11 +76,18 @@ Let's start by adding a new task to Werkbook. Perhaps you want to remind yoursel
 
 `> add Get Groceries`
 
+Notice how when you first type in the letter `a`, a list of commands containing the letter `a` automatically shows up below?
+
+Be sure to make use of this handy autocomplete feature to familiarize yourself with the commands!
+
 **Making changes**
 
-Say you want it done by 5th March 8:30pm, you can edit the task by using the following command:
+Now, say you want to get the groceries done by tonight, you can edit the task by using the following command:
 
-`> edit 1 by 05/03/2017 2030`
+`> edit 1 by tonight`
+
+Werkbook supports natural language input, so you can tell it what to do just like how you talk to another person. Telling Werkbook that you want to get the task done by tonight, will automatically set the deadline to 8pm on the same day.
+Alternatively, if you feel like you're up task, you can also provide an earlier time such as `7pm`, `1900`, `3 hours later`. You can learn more about the different ways you can specify the time in the [Features](#3-features) section.
 
 **Completing a task**
 
@@ -93,28 +95,21 @@ Once you've finished getting the groceries, it's time to mark it as complete by 
 
 `> mark 1`
 
+**Deleting a task**
+
+At the end of the day, you can delete the task as simply as typing in:
+
+`> delete 1`
+
+**Still feeling lost?**
+
+Typing `help` in the **Command Box** will bring up the help window with a list of all of the available commands.
+
 **Ready to go!**
 
-Now you're all set to start managing your tasks! Feel free to refer to our [Features](#4-features) section below for details of each command.
+Now you're all set to start managing your tasks! Feel free to refer to our [Features](#3-features) section below for details of each command.
 
-## 3. User Interface
-
-<img src="images/annotated-ui.png" width="600"><br>
-1. Menu bar
-2. Command box
- > Commands are entered here. As you type, the drop-down box will also show the list of commands you can use.
-3. Output box
- > Results of commands are displayed here
-4. Task cards listing
- > Tasks retrieved are listed here
-5. Selected card display
- > Additional details about the selected task is displayed here
-6. Last saved status
- > Time of when the tasks are saved is shown here
-7. Save location status
- > Current save location is shown here
-
-## 4. Features
+## 3. Features
 
 **Command Format**
 
@@ -127,7 +122,7 @@ Now you're all set to start managing your tasks! Feel free to refer to our [Feat
 
 #### a. Add task
 
-Once you receive a new task, you can add it to Werkbook using the `add` command. You can also add in extra information by surrounding them with round brackets.<br>
+Once you receive a new task, you can add it to Werkbook using the `add` command. You can also add in an extra description by surrounding it with round brackets.<br>
 Format: `add NAME [(DESCRIPTION)]`
 
 Example: `add Get the groceries (Milk, eggs, and cheese)`
@@ -135,21 +130,61 @@ Example: `add Get the groceries (Milk, eggs, and cheese)`
 But if you need to get it done by a certain date, use the `by` prefix to let Werkbook know!<br>
 Format: `add NAME [(DESCRIPTION)] [by END_DATETIME]`
 
-Example: `add Get the groceries (Milk, eggs, and cheese) by 10/03/2017 1400`
+Example: `add Get the groceries (Milk, eggs, and cheese) by Tuesday 5pm`
 
 And if you plan to get it done in a particular timespan, you can specify the duration by using `from` and `to`!<br>
 Format: `add NAME [(DESCRIPTION)] [from START_DATETIME] [to END_DATETIME]`
 
-Example: `add Get the groceries (Milk, eggs, and cheese) from 10/03/2017 1400 to 10/03/2017 1600`
+Example: `add Get the groceries (Milk, eggs, and cheese) from Tuesday 5pm to Tuesday 7pm`
 
-> * Date and time must be formatted as DD/MM/YYYY HHMM<br>
-> * A task must have a name, the description is optional<br>
-> * The task can also optionally have a End Date/Time, or both a Start Date/Time and End Date/Time<br>
+> * A task must have a name, while the description is optional<br>
+> * The task can also optionally have a either an end date time, or both a start date time and end date time<br>
+
+**Acceptable date and time formats**
+
+Formal dates:
+> 01/02/2017<br>
+> 5-6-17
+
+Relaxed dates:
+> 1st Jan<br>
+> Feb 21st, 2017
+
+Relative dates:
+> today<br>
+> tomorrow<br>
+> next Friday<br>
+> next week<br>
+> next month
+
+Time:
+> 0600<br>
+> 5pm<br>
+> 4<br>
+> noon<br>
+> tonight<br>
+> midnight
+
+Relative times:
+> 5 mins<br>
+> in 10 minutes<br>
+> 15 minutes from now
+
+You can find out more at: http://natty.joestelmach.com/doc.jsp.
 
 #### b. List tasks
 
-If you want to see a list of all the tasks you have added, you can use the `list` command.<br>
-Format: `list`
+The `list` command lets you view your tasks in a list depending on their completion status.<br>
+Format: `list [(complete/incomplete)]`
+
+To see the list of all your tasks, both completed or incomplete, simply type in:
+Example: `list`
+
+For completed tasks, add the `complete` argument at the back
+Example: `list complete`
+
+Likewise, for incomplete tasks, add the `incomplete` argument at the back
+Example: `list incomplete`
 
 #### c. Edit task
 
@@ -157,10 +192,10 @@ Perhaps the deadline for your project has been pushed back, or maybe you want to
 Format: `edit INDEX [NAME] [(DESCRIPTION)] [from START_DATETIME] [to/by END_DATETIME]`
 
 Examples:
-* `edit 1 by 01/01/2018 2359`<br>
-  Edits the deadline of the 1st task to be `01/01/2018 2359`.<br>
-* `edit 2 (Help to finish up essay)`<br>
-  Edits the description of the 2nd task to be `Help to finish up essay`<br>
+* `edit 1 by next monday noon`<br>
+  Edits the deadline of the 1st task to be `next monday 12pm`.<br>
+* `edit 2 (Help to finish up report)`<br>
+  Edits the description of the 2nd task to be `Help to finish up report`<br>
 
 To remove the start/end date entirely, simply add the corresponding prefix without specifying a new date.
 
@@ -168,9 +203,14 @@ Example:
 * `edit 3 by`<br>
   Removes the deadline from task 3.<br>
 
+Similarly, to remove a description, add in this prefix without specifying anything.
+
+Example:
+* `edit 3 ()`<br>
+  Removes the description from task 3.<br>
+
 > * Edits the task at the specified `INDEX`.
     The index refers to the index number shown in the last task listing.<br>
-    The index **must be a positive integer** 1, 2, 3, ...
 > * At least one of the optional fields must be provided.
 > * Existing values will be updated to the input values.
 
@@ -223,12 +263,16 @@ Accidentally added duplicate tasks? Use the `delete` command to remove the speci
 Format: `delete INDEX`
 
 Examples:
->`list`
->`delete 2`
-* Deletes the 2nd task in the task list.
->`find Betsy`
->`delete 1`
-* Deletes the 1st task in the results of the `find` command.
+* `list`
+* `delete 2`<br>
+
+Deletes the 2nd task in the task list.
+
+* `find Report`
+* `delete 1`<br>
+
+Deletes the 1st task in the results of the `find` command.
+
 
 > * Deletes the task at the specified `INDEX`. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
@@ -239,63 +283,91 @@ Examples:
 Seeking a fresh start? Use the `clear` command to clear all the tasks in Werkbook and start anew!<br>
 Format: `clear`
 
-### ii. Program Usage
+### ii. Google Tasks Integration
 
-#### a. Help
+#### a. Login
 
-Displays the help sheet.
+Want your tasks to be on Google Tasks too? Before you perform any of the commands below, you must first log in to Google with the `glogin` command. You only need to login once unless you decided to logout.
+
+Format: `glogin`
+
+#### b. Export
+
+Once you are logged in, you can export all your tasks from Werkbook to Google Tasks with the `gexport` command. Werkbook will create a task list labeled "Werkbook" containing all your tasks. If you have a lot of tasks, give it a few minutes to export all of them.
+
+Format: `gexport`
+
+#### c. Import
+
+Added tasks to the "Werkbook" task list in Google Tasks? You can import them into Werkbook with the `gimport` command. Note that this clears your tasks before adding the tasks from Google Tasks.
+
+Format: `gimport`
+
+#### d. Logout
+
+Want to change Google accounts? You can logout of your current account with the `glogout` command.
+
+Format: `gimport`
+
+### iii. Program Usage
+
+#### a. Task Navigation
+
+When you have a whole bunch of tasks in your list, it will be handy for you to learn how to navigate through them!
+
+Pressing <kbd>tab</kbd> on the keyboard will allow you to cycle through the components in Werkbook, and it can be seen with a blue highlight. Scrolling through your tasks is as simple as pressing <kbd>PgUp</kbd> and <kbd>PgDn</kbd>.
+
+#### b. Help
+
+Forgot the syntax of a command? You can open this user guide in-app with the `help` command.
 
 Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
 
-#### b. Undo/Redo
+#### c. Undo/Redo
 
-Undo the last command(s) executed.
+Made a mistake while editing your tasks? You can use the `undo` command to undo the last command. If you feel it was right after all you can also use the `redo` command to redo the last command. This works for all task management commands and Google Tasks import command.
 
-Format: `undo [AMOUNT]`
+Format: `undo`
 
 > Undo the last command executed.
-> Repeated use of undo will undo the previous command from the last command undone
 
 Examples:
 
->`delete 2`
->`undo`
-  Undo the deletion of the 2nd task in the task list.
+* `delete 2`
+* `undo`
 
->`delete 2`
->`delete 3`
->`undo 2`
-  Undo the deletion of the 2nd and 3rd task in the task list.
+Undo the deletion of the 2nd task in the task list.
 
 Redo the last undo command(s) executed.
 
-Format: `undo [AMOUNT]`
+Format: `redo`
 
 > Redo the last undo command executed.
 
 Examples:
 
+* `delete 2`
+* `undo`
+* `redo`
 
->`delete 2`
->`undo`
->`redo`
-  The final action would be the deletion of the 2nd task in the task list.
+The final action would be the deletion of the 2nd task in the task list.
 
-#### c. Change save location
+#### d. Change save location
 
-Saves all changes to disk. <br>
+Want to have your tasks synced on Dropbox instead? You can change the save location of your tasks with the `save` command.
+
 Format: `save SAVE_LOCATION`
 
-Changes where tasks data and user config are saved to specified `SAVE_LOCATION`.
+Changes where tasks data and user config are saved to specified `SAVE_LOCATION`. `SAVE_LOCATION` must be an existing folder.
 
-#### d. Exit program
+#### e. Exit program
 
 Exits the program.<br>
 Format: `exit`
 
-## 5. FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?
 
@@ -307,19 +379,23 @@ Format: `exit`
 
 > **A**: You don't need to! Your tasks are automatically saved after every command!
 
-## 6. Commands Cheatsheet
+## 5. Commands Cheatsheet
 
 Command | Purpose | Format
 --- | --- | ---
 `add` | Add a task | `add NAME [(DESCRIPTION)] [from START_DATETIME] [to/by END_DATETIME]`
-`list` | List all tasks | `list`
+`list` | List tasks based on completion status | `list [(complete/incomplete)]`
 `edit` | Edit specified task | `edit INDEX [NAME] [(DESCRIPTION)] [from START_DATETIME] [to/by END_DATETIME]`
 `find` | Find tasks based on specified keywords | `find KEYWORD [MORE_KEYWORD]`
 `mark` | Mark specified task as complete | `mark INDEX`
 `delete` | Delete specified task | `delete INDEX`
 `clear` | Clear all tasks | `clear`
+`glogin` | Login to Google | `glogin`
+`gexport` | Export tasks to Google Tasks | `gexport`
+`gimport` | Import tasks from Google Tasks | `gimport`
+`glogout` | Logout of Google | `glogout`
 `help` | Display help page | `help`
-`undo` | Undo command(s) | `undo [AMOUNT]`
-`redo` | Redo command(s) | `redo [AMOUNT]`
+`undo` | Undo command(s) | `undo`
+`redo` | Redo command(s) | `redo`
 `save` | Change save location | `save SAVE_LOCATION`
 `exit` | Exit the program | `exit`

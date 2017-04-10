@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Locale;
 
 import org.ocpsoft.prettytime.PrettyTime;
-import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
+
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
 
 //@@author A0139903B
 /**
@@ -18,31 +20,32 @@ public class DateTimeUtil {
     public static final SimpleDateFormat DATETIME_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HHmm");
 
     private static PrettyTime prettyTime = new PrettyTime(Locale.UK);
-    private static PrettyTimeParser prettyTimeParser = new PrettyTimeParser();
+    private static Parser nattyParser = new Parser();
     private static Date currentDate = new Date();
 
     /**
-     * Parses a string and extracts any values with resemblance to a date using PrettyTimeNLP
+     * Parses a string and extracts any values with resemblance to a date using natty
      * @param dateToParse a string to be parsed
-     * @return a list of dates found in the string
+     * @return Date found in the string
      */
-    public static List<Date> parse(String dateToParse) {
-        return prettyTimeParser.parse(dateToParse);
+    public static Date parse(String dateToParse) {
+        List<DateGroup> groups = nattyParser.parse(dateToParse);
+        Date date = null;
+        for (DateGroup group: groups) {
+            date = group.getDates().get(0);
+        }
+        return date;
     }
 
     /**
      * Returns prettified date time if the difference between {@code date} and
-     * the current date is within 14 days
+     * the current date is within {@code NUM_OF_DAYS_LIMIT}
      * @param date date to be formatted
-     * @return ~A pretty string~
+     * @return ~A pretty date string~
      */
     public static String getPrettyDateTime(Date date) {
         return getDifferenceInDays(date, currentDate) > NUM_OF_DAYS_LIMIT ? DATETIME_FORMATTER.format(date)
                 : prettyTime.format(date);
-    }
-
-    public static Date getVerboseDateTime(String dateToParse) {
-        return prettyTimeParser.parse(dateToParse).get(0);
     }
 
     /**

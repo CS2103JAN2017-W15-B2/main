@@ -16,6 +16,7 @@ import werkbook.task.commons.core.LogsCenter;
 import werkbook.task.commons.events.storage.DataSavingExceptionEvent;
 import werkbook.task.commons.events.ui.JumpToListRequestEvent;
 import werkbook.task.commons.events.ui.ShowHelpRequestEvent;
+import werkbook.task.commons.events.ui.TaskPanelSelectionChangedEvent;
 import werkbook.task.commons.util.StringUtil;
 import werkbook.task.logic.Logic;
 import werkbook.task.model.UserPrefs;
@@ -53,7 +54,6 @@ public class UiManager extends ComponentManager implements Ui {
             mainWindow.show(); // This should be called before creating other UI
                                // parts
             mainWindow.fillInnerParts();
-            // mainWindow.initTaskPanel();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -119,7 +119,7 @@ public class UiManager extends ComponentManager implements Ui {
         mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
-    // @@author A0130183U
+    // @@author A0130183U - other methods have been used to expand each task card
     // changes height of gbox
 //    @Subscribe
 //    public void expandListEvent(ExpandTaskListEvent event) {
@@ -129,11 +129,10 @@ public class UiManager extends ComponentManager implements Ui {
 //
 //    // @@ author
 //
-//    @Subscribe
-//    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
-//        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-//        mainWindow.getTaskListPanel();
-//    }
+    @Subscribe
+    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    }
 
     /*
      * //@@author A0139903B

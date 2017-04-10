@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.gtasks;
 
 import com.google.api.client.util.DateTime;
@@ -8,6 +7,7 @@ import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.model.tag.Tag;
 import werkbook.task.model.task.ReadOnlyTask;
 
+//@@author A0162266E
 public class TaskToGTaskAdapter {
     private Task gTask;
 

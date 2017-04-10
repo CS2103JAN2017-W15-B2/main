@@ -1,17 +1,18 @@
-//@@author A0162266E
 package werkbook.task.logic.commands;
 
 import werkbook.task.logic.commands.exceptions.CommandException;
 import werkbook.task.model.task.UniqueTaskList;
 
+//@@author A0162266E
 /**
- * Terminates the program.
+ * Import tasks from Google Tasks
  */
 public class GImportCommand extends Command {
 
     public static final String COMMAND_WORD = "gimport";
 
-    public static final String GOOGLE_IMPORTED_ACKNOWLEDGEMENT = "Imported Tasks from Google Tasks";
+    public static final String GOOGLE_IMPORTED_ACKNOWLEDGEMENT = "ヽ(｡･ω･｡)ﾉ"
+            + "\nImported Tasks from Google Tasks";
 
     @Override
     public CommandResult execute() throws CommandException {

@@ -51,7 +51,6 @@ public class ArgumentTokenizer {
         resetTokenizerState();
         List<PrefixPosition> positions = findAllPrefixPositions(argsString);
         List<PrefixPosition> filteredList = filterPositions(argsString, positions);
-        //List<PrefixPosition> filteredList = filterPositionsForDate(argsString, positions);
         extractArguments(argsString, filteredList);
     }
 
@@ -73,7 +72,7 @@ public class ArgumentTokenizer {
         return Optional.of(values);
     }
 
-    // @@author A0139903B
+    //@@author A0139903B
     /**
      * Returns the full preamble (text before and after the first valid prefix),
      * if any. Leading/trailing spaces will be trimmed. If the string before the
@@ -95,7 +94,7 @@ public class ArgumentTokenizer {
             return Optional.empty();
         }
     }
-    // @@author
+    //@@author
 
     private void resetTokenizerState() {
         this.tokenizedArguments.clear();
@@ -174,8 +173,8 @@ public class ArgumentTokenizer {
         PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(""), argsString.length());
         prefixPositions.add(endPositionMarker);
 
+        // Filter positions for description and dates
         filterPositionsForDescription(prefixPositions);
-
         filterPositionsForDates(argsString, prefixPositions, filteredList);
 
         return filteredList;

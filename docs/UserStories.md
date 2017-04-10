@@ -2,8 +2,7 @@
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
 
-Priority | As a ... | I want
- to ... | So that I can...
+Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | New user | See the instructions to use the program | Learn how to use it and refer to the instructions
 `* * *` | New user | Know the format of adding a task | Add a new task correctly

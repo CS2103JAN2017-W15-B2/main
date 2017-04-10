@@ -6,20 +6,25 @@
     - [Add Deadline Task](#add-deadline-task)
     - [Add Event](#add-event)
     - [List Tasks](#list-tasks)
-    - [List all Tasks](#list-all-tasks)
     - [Find Tasks](#find-tasks)
+    - [List all Tasks](#list-all-tasks)
+    - [List complete Tasks](#list-complete-tasks)
+    - [List incomplete Tasks](#list-incomplete-tasks)
     - [Select Task](#select-task)
     - [Edit Task](#edit-task)
-    - [Mark Task as Completed](#mark-task-as-completed)
+    - [Mark Task](#mark-task)
     - [Delete Task](#delete-task)
     - [Undo Action](#undo-action)
     - [Redo Action](#redo-action)
-    - [Save to File](#save-to-file)
-    - [Change File storage](#change-file-storage)
+    - [Change Save Directory](#change-save-directory)
+    - [Google Login](#google-login)
+    - [Google Tasks Import](#google-tasks-import)
+    - [Google Tasks Export](#google-tasks-export)
+    - [Google Logout](#google-logout)
 
 ## Use Case Diagram
 
-![Use Case Diagram](diagrams/Use_Case_Diagram.PNG)
+<img src="diagrams/Use_Case_Diagram.PNG" width="650"><br>
 
 ## Use Cases
 
@@ -28,7 +33,7 @@
 #### MSS
 
 1. User enters command with name and description of task
-2. TaskList enters task into system <br>
+2. Werkbook enters task into system <br>
 **Use case ends**
 
 #### Extensions
@@ -46,7 +51,7 @@ This use case extends [Add Floating task](#add-floating-task). It is inserted at
 #### Extensions
 
 1a. End date/time is in the wrong format
-> 1a1. TaskList shows an error message <br>
+> 1a1. Werkbook shows an error message <br>
   **Use case ends**
 
 - [Add Event](#add-event) occurs after step 1.
@@ -63,62 +68,97 @@ This use case extends [Add Deadline Task](#add-deadline-task). It is inserted at
 #### Extensions
 
 1a. Start date/time is in the wrong format
-> 1a1. TaskList shows an error message <br>
+> 1a1. Werkbook shows an error message <br>
   **Use case ends**
 
 ### List Tasks
 
 #### MSS
 
-1. TaskList shows the list of tasks <br>
+1. Werkbook shows the list of tasks <br>
 **Use case ends**
 
-- [List all Tasks](#list-all-tasks) occurs before step 1
 - [Find Tasks](#find-tasks) occurs before step 1
+- [List all Tasks](#list-all-tasks) occurs before step 1
+- [List complete Tasks](#list-complete-tasks) occurs before step 1
+- [List incomplete Tasks](#list-incomplete-tasks) occurs before step 1
+
+### Find Tasks
+
+This use case extends [List Tasks](#list-tasks). It is inserted at extension point Find Tasks.
+
+#### MSS
+
+1. User requests to find tasks by keyword
+2. Werkbook shows a list of tasks with keywords that match the exact keyword <br>
+**Use Case continues in step 1 of [List Tasks](#list-tasks)**
+
+#### Extensions
+
+2a. No tasks match the specified keywords
+> 2a1. Werkbook shows a notice message <br>
+  **Use case ends**
 
 ### List all Tasks
 
-This use case extends [List all Tasks](#list-all-tasks). It is inserted at extension point List all tasks.
+This use case extends [List Tasks](#list-tasks). It is inserted at extension point List all tasks.
 
 #### MSS
 
 1. User request to list all tasks
-2. TaskList retrieves all tasks <br>
+2. Werkbook retrieves all tasks <br>
 **Use Case continues in step 1 of [List Tasks](#list-tasks)**
 
 #### Extensions
 
 2a. There are no tasks
-> 2a1. TaskList shows a notice message <br>
+> 2a1. Werkbook shows a notice message <br>
+  **Use case ends**
+
+### List complete Tasks
+
+This use case extends [List Tasks](#list-tasks). It is inserted at extension point List complete tasks.
+
+#### MSS
+
+1. User request to list complete tasks
+2. Werkbook retrieves complete tasks <br>
+**Use Case continues in step 1 of [List Tasks](#list-tasks)**
+
+#### Extensions
+
+2a. There are no tasks
+> 2a1. Werkbook shows a notice message <br>
+  **Use case ends**
+
+### List incomplete Tasks
+
+This use case extends [List Tasks](#list-tasks). It is inserted at extension point List incomplete tasks.
+
+#### MSS
+
+1. User request to list incomplete tasks
+2. Werkbook retrieves all tasks <br>
+**Use Case continues in step 1 of [List Tasks](#list-tasks)**
+
+#### Extensions
+
+2a. There are no tasks
+> 2a1. Werkbook shows a notice message <br>
   **Use case ends**
 
 ### Select Task
 
 #### MSS
 
-1. User selects a task using its index
-2. TaskList retrieves the full details of the task <br>
+1. User retrieves list of tasks [via Use Case: List Tasks](#list-tasks)
+2. User selects a task using its index
+3. Werkbook retrieves the full details of the task <br>
 
 #### Extensions
 
-2a. No tasks match the index
-> 2a1. TaskList shows a notice message <br>
-  **Use case ends**
-
-### Find Tasks
-
-This use case extends [List all Tasks](#list-all-tasks). It is inserted at extension point Find Tasks.
-
-#### MSS
-
-1. User requests to find tasks by keyword
-2. TaskList shows a list of tasks with keywords that match the exact keyword <br>
-**Use Case continues in step 1 of [List Tasks](#list-tasks)**
-
-#### Extensions
-
-2a. No tasks match the specified keywords
-> 2a1. TaskList shows a notice message <br>
+3a. No tasks match the index
+> 2a1. Werkbook shows a notice message <br>
   **Use case ends**
 
 ### Edit Task
@@ -127,31 +167,33 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 
 1. User retrieves list of tasks [via Use Case: List Tasks](#list-tasks)
 2. User enters command to edit task
-3. TaskList edits task according to given parameters <br>
+3. Werkbook edits task according to given parameters <br>
 **Use case ends**
 
 #### Extensions
 
 2a. The given index is invalid
-> 2a1. TaskList shows an error message <br>
+> 2a1. Werkbook shows an error message <br>
   **Use case resumes at step 2**
 
 2b. The given parameters are invalid
 
- > 2b1. TaskList shows an error message <br>
+ > 2b1. Werkbook shows an error message <br>
   **Use case resumes at step 2**
 
-### Mark Task as Completed
+### Mark Task
+
+#### MSS
 
 1. User retrieves list of tasks [via Use Case: List Tasks](#list-tasks)
-2. User enters command to mark task as completed
-3. TaskList marks specified task as completed <br>
+2. User enters command to mark task
+3. Werkbook marks specified task from incomplete to complete or vice versa <br>
 **Use case ends**
 
 #### Extensions
 
 2a. The given index is invalid
-> 2a1. TaskList shows an error message <br>
+> 2a1. Werkbook shows an error message <br>
   **Use case resumes at step 2**
 
 ### Delete Task
@@ -160,13 +202,13 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 
 1. User retrieves list of tasks [via Use Case: List Tasks](#list-tasks)
 2. User enters command to delete task
-3. TaskList deletes specified task <br>
+3. Werkbook deletes specified task <br>
 **Use case ends**
 
 #### Extensions
 
 2a. The given index is invalid
-> 2a1. TaskList shows an error message <br>
+> 2a1. Werkbook shows an error message <br>
   **Use case resumes at step 2**
 
 ### Undo Action
@@ -174,14 +216,14 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 #### MSS
 
 1. User requests to undo the previous action
-2. TaskList undos the last action
-3. TaskList shows the reflected changes <br>
+2. Werkbook undos the last action
+3. Werkbook shows the reflected changes <br>
 **Use case ends**
 
 #### Extensions
 
 2a. There exists no valid action that can be undone
-> 2a1. TaskList shows a notice message <br>
+> 2a1. Werkbook shows a notice message <br>
   **Use case ends**
 
 ### Redo Action
@@ -189,33 +231,88 @@ This use case extends [List all Tasks](#list-all-tasks). It is inserted at exten
 #### MSS
 
 1. User requests to redo the previous undo
-2. TaskList redos the previous undo
-3. TaskList shows the reflected changes <br>
+2. Werkbook redos the previous undo
+3. Werkbook shows the reflected changes <br>
 **Use case ends**
 
 #### Extensions
 
 2a. There exists no valid undo action that can be redone
-> 2a1. TaskList shows a notice message <br>
+> 2a1. Werkbook shows a notice message <br>
   **Use case ends**
 
-### Save to File
-
-1. User enters command to save progress
-2. Task manager saves progress in the directory<br>
-**Use case ends**
-
-### Change File storage
+### Change Save Directory
 
 #### MSS
 
-1. User enters command to retrieve file saving directory
-2. User switches directory
+1. User enters command to save to specified directory
 2. All data is then relocated to the specified location<br>
 **Use case ends**
 
 #### Extensions
 
-1a. At first startup, an options message will display available directories for the files to be saved to
-> 1a1. Save to desktop by default in the options<br>
+1a. Directory does not exist
+> 1a1. Werkbook shows a notice message <br>
+  **Use case ends**
+
+### Google Login
+
+#### MSS
+
+1. User enters command to login to Google
+2. Werkbook launches a web page asking for access
+3. User approves Werbook access
+4. Werkbook saves user's credentials<br>
+**Use case ends**
+
+#### Extensions
+
+3a. User denies access
+> 3a1. Werkbook shows an error message <br>
+  **Use case ends**
+
+### Google Tasks Import
+
+#### MSS
+
+1. User logs in [via Use Case: Google Login](#google-login)
+2. User enters command to import tasks from Google
+3. Werkbook clears tasks and add all the tasks from Google
+**Use case ends**
+
+#### Extensions
+
+1a. User is not logged in
+> 1a1. Werkbook shows an error message <br>
+  **Use case ends**
+
+
+### Google Tasks Export
+
+#### MSS
+
+1. User logs in [via Use Case: Google Login](#google-login)
+2. User enters command to export tasks to Google
+3. Werkbook clears tasks that were on Google tasks and add tasks from Werkbook to Google Tasks
+**Use case ends**
+
+#### Extensions
+
+1a. User is not logged in
+> 1a1. Werkbook shows an error message <br>
+  **Use case ends**
+
+### Google Logout
+
+#### MSS
+
+1. User is logged in [via Use Case: Google Login](#google-login)
+2. User enters command to logout
+3. Werkbook clears user's credentials
+**Use case ends**
+
+#### Extensions
+
+1a. User is not logged in
+> 1a1. Werkbook shows an error message <br>
   **Use case ends**

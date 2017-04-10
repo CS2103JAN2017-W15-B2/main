@@ -30,7 +30,7 @@ public class DeleteCommandTest extends TaskListGuiTest {
 
         //invalid index
         commandBox.runCommand("delete " + currentList.length + 1);
-        assertResultMessage("I can't seem to find this task :(");
+        assertResultMessage("(⁄ ⁄•⁄ω⁄•⁄ ⁄)" + "\nThis task doesn't exist, silly");
 
     }
 

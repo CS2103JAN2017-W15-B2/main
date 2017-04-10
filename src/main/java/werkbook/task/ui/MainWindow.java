@@ -16,7 +16,6 @@ import werkbook.task.commons.events.ui.ExitAppRequestEvent;
 import werkbook.task.commons.util.FxViewUtil;
 import werkbook.task.logic.Logic;
 import werkbook.task.model.UserPrefs;
-//import werkbook.task.model.task.ReadOnlyTask;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -26,15 +25,15 @@ public class MainWindow extends UiPart<Region> {
 
     private static final String ICON = "/images/app_icon_32.png";
     private static final String FXML = "MainWindow.fxml";
-    private static final int MIN_HEIGHT = 600;
-    private static final int MIN_WIDTH = 450;
+    private static final int MIN_HEIGHT = 800;
+    private static final int MIN_WIDTH = 600;
 
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-//  private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
+    private CommandBox commandBox;
     private Config config;
 
     @FXML
@@ -108,16 +107,19 @@ public class MainWindow extends UiPart<Region> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
+            } else {
+                if (event.getCode().isLetterKey()) {
+                    commandBox.focusOnTextField();
+                }
             }
         });
     }
 
     void fillInnerParts() {
-//      browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskListFilePath());
-        new CommandBox(getCommandBoxPlaceholder(), logic);
+        commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
@@ -198,31 +200,4 @@ public class MainWindow extends UiPart<Region> {
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
     }
-
-    //@@author A0139903B
-    /**
-     * Loads task page with information from {@code task}
-     */
-/*
-    void loadTaskPanel(ReadOnlyTask task) {
-        browserPanel.loadTaskPanel(task);
-    }
-
-    /**
-     * Clears the task panel
-     */
-/*
-    void clearTaskPanel() {
-        browserPanel.clearTaskPanel();
-    }
-
-    /**
-     * Initializes the task panel
-     */
-/*
-    void initTaskPanel() {
-        browserPanel.initTaskPanel();
-    }
-    */
-    //@@author
 }

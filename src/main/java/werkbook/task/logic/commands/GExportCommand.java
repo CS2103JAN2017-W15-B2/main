@@ -1,16 +1,17 @@
-//@@author A0162266E
 package werkbook.task.logic.commands;
 
 import werkbook.task.logic.commands.exceptions.CommandException;
 
+//@@author A0162266E
 /**
- * Terminates the program.
+ * Export tasks to Google Tasks
  */
 public class GExportCommand extends Command {
 
     public static final String COMMAND_WORD = "gexport";
 
-    public static final String GOOGLE_EXPORTED_ACKNOWLEDGEMENT = "Exported Tasks to Google Tasks";
+    public static final String GOOGLE_EXPORTED_ACKNOWLEDGEMENT = "ヽ(｡･ω･｡)ﾉ"
+            + "\nExported Tasks to Google Tasks";
 
     @Override
     public CommandResult execute() throws CommandException {

@@ -1,5 +1,6 @@
 package guitests.guihandles;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import werkbook.task.TestApp;
@@ -59,6 +61,22 @@ public class GuiHandle {
         return textField.getEditor().getText();
     }
 
+    //@@author A0140462R
+    protected List<String> getDropdownItems(String filedName) {
+        ComboBox<String> textField = getNode(filedName);
+        return textField.getItems();
+    }
+
+    //used to test autocomplete feature
+    public void pressAKey() {
+        guiRobot.type(KeyCode.A).sleep(500);
+    }
+
+    public void pressZKey() {
+        guiRobot.type(KeyCode.Z).sleep(500);
+    }
+    //@@author
+
     protected void setTextField(String textFieldId, String newText) {
         guiRobot.clickOn(textFieldId);
         ComboBox<String> textField = getNode(textFieldId);
@@ -71,7 +89,11 @@ public class GuiHandle {
     }
 
     protected String getTextFromLabel(String fieldId, Node parentNode) {
-        return ((Label) guiRobot.from(parentNode).lookup(fieldId).tryQuery().get()).getText();
+        if (guiRobot.from(parentNode).lookup(fieldId).tryQuery().get().getClass().equals(Label.class)) {
+            return ((Label) guiRobot.from(parentNode).lookup(fieldId).tryQuery().get()).getText();
+        } else {
+            return ((Text) guiRobot.from(parentNode).lookup(fieldId).tryQuery().get()).getText();
+        }
     }
 
     public void focusOnSelf() {

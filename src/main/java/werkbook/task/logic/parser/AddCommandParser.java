@@ -14,7 +14,6 @@ import werkbook.task.logic.commands.AddCommand;
 import werkbook.task.logic.commands.Command;
 import werkbook.task.logic.commands.IncorrectCommand;
 
-//@@author A0139903B
 /**
  * Parses input arguments and creates a new AddCommand object
  */

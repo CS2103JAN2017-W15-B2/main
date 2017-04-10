@@ -1,6 +1,7 @@
 package werkbook.task.model;
 
 import java.util.EmptyStackException;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
@@ -20,8 +21,8 @@ import werkbook.task.model.task.UniqueTaskList;
 import werkbook.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Represents the in-memory model of the task book data.
- * All changes to any model should be synchronized.
+ * Represents the in-memory model of the task book data. All changes to any
+ * model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,6 +30,16 @@ public class ModelManager extends ComponentManager implements Model {
     private final TaskList taskList;
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private static Stack<TaskList> undoStack, redoStack;
+
+    private enum LISTSTATUS {
+        ALL,
+        COMPLETE,
+        INCOMPLETE,
+        SEARCH
+    };
+
+    private LISTSTATUS listStatus;
+    private Set<String> lastSearchedKeywords;
 
     /**
      * Initializes a ModelManager with the given taskList and userPrefs.
@@ -43,6 +54,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
         undoStack = new Stack<TaskList>();
         redoStack = new Stack<TaskList>();
+        listStatus = LISTSTATUS.ALL;
     }
 
     public ModelManager() {
@@ -68,17 +80,17 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new TaskListChangedEvent(taskList));
     }
 
-    //@@author A0139903B
+    // @@author A0139903B
     @Override
     public void indicateTaskChanged(ReadOnlyTask editedTask) {
-        raise (new TaskPanelSelectionChangedEvent(editedTask));
+        raise(new TaskPanelSelectionChangedEvent(editedTask));
     }
 
     @Override
     public void indicateTaskListEmpty() {
-        raise (new ClearTaskPanelEvent());
+        raise(new ClearTaskPanelEvent());
     }
-    //@author
+    // @author
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
@@ -117,6 +129,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskListChanged();
     }
 
+    // @@author A0140462R
     @Override
     public void undo() throws EmptyStackException {
         if (undoStack.isEmpty()) {
@@ -136,21 +149,47 @@ public class ModelManager extends ComponentManager implements Model {
         taskList.resetData(redoStack.pop());
         indicateTaskListChanged();
     }
+    //@@author
 
-    //=========== Filtered Task List Accessors =============================================================
+  // =========== Filtered Task List Accessors
+    // =============================================================
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
+    //@@author A0139903B
+    @Override
+    public void updateFilteredList() {
+        switch(listStatus) {
+        case ALL:
+            updateFilteredListToShowAll();
+            break;
+        case COMPLETE:
+            updateFilteredTaskListToShowComplete();
+            break;
+        case INCOMPLETE:
+            updateFilteredTaskListToShowIncomplete();
+            break;
+        case SEARCH:
+            updateFilteredTaskList(lastSearchedKeywords);
+            break;
+        default:
+            break;
+        }
+    }
+
     @Override
     public void updateFilteredListToShowAll() {
+        listStatus = LISTSTATUS.ALL;
         filteredTasks.setPredicate(null);
     }
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
+        listStatus = LISTSTATUS.SEARCH;
+        lastSearchedKeywords = keywords;
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
@@ -158,10 +197,29 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
-    //========== Inner classes/interfaces used for filtering =================================================
+    @Override
+    public void updateFilteredTaskListToShowIncomplete() {
+        Set<String> keywords = new HashSet<String>();
+        keywords.add("Incomplete");
+        listStatus = LISTSTATUS.INCOMPLETE;
+        updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
+    }
+
+    @Override
+    public void updateFilteredTaskListToShowComplete() {
+        Set<String> keywords = new HashSet<String>();
+        keywords.add("Complete");
+        listStatus = LISTSTATUS.COMPLETE;
+        updateFilteredTaskList(new PredicateExpression(new StatusQualifier(keywords)));
+    }
+    //@@author
+
+    // ========== Inner classes/interfaces used for filtering
+    // =================================================
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
+
         String toString();
     }
 
@@ -186,6 +244,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
+
         String toString();
     }
 
@@ -200,8 +259,7 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             return nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().taskName, keyword))
-                    .findAny()
-                    .isPresent();
+                    .findAny().isPresent();
         }
 
         @Override
@@ -210,7 +268,29 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    //@@author A0162266E
+    //@@author A0139903B
+    private class StatusQualifier implements Qualifier {
+        private Set<String> statusKeyWords;
+
+        StatusQualifier(Set<String> statusKeyWords) {
+            this.statusKeyWords = statusKeyWords;
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return statusKeyWords.stream().filter(keyword -> StringUtil
+                    .containsWordIgnoreCase(task.getTags().asObservableList().get(0).tagName, keyword))
+                    .findAny().isPresent();
+        }
+
+        @Override
+        public String toString() {
+            return "status=" + String.join(", ", statusKeyWords);
+        }
+    }
+    //@@author
+
+    // @@author A0162266E
     @Override
     public void importTaskList(UniqueTaskList importedTaskList) {
         undoStack.push(new TaskList(taskList));
@@ -219,6 +299,5 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateTaskListChanged();
     }
-    //@@author
-
+    // @@author
 }

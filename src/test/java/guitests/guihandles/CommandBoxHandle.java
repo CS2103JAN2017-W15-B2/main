@@ -1,5 +1,7 @@
 package guitests.guihandles;
 
+import java.util.List;
+
 import guitests.GuiRobot;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
@@ -29,6 +31,12 @@ public class CommandBoxHandle extends GuiHandle {
     public String getCommandInput() {
         return getTextFieldText(COMMAND_INPUT_FIELD_ID);
     }
+
+    //@@author A0140462R
+    public List<String> getItemList() {
+        return getDropdownItems(COMMAND_INPUT_FIELD_ID);
+    }
+    //@@author
 
     /**
      * Enters the given command in the Command Box and presses enter.

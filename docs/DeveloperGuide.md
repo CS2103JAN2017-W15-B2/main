@@ -11,11 +11,11 @@ By : `Team W15B2`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp
 5. [Testing](#5-testing)
 6. [Dev Ops](#6-dev-ops)
 
-* [Appendix A: User Stories](#appendix-a--user-stories)
-* [Appendix B: Use Cases](#appendix-b--use-cases)
-* [Appendix C: Non Functional Requirements](#appendix-c--non-functional-requirements)
-* [Appendix D: Glossary](#appendix-d--glossary)
-* [Appendix E : Product Survey](#appendix-e--product-survey)
+* [Appendix A: User Stories](#appendix-a-user-stories)
+* [Appendix B: Use Cases](#appendix-b-use-cases)
+* [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d-glossary)
+* [Appendix E : Product Survey](#appendix-e-product-survey)
 
 
 ## 1. Introduction
@@ -81,6 +81,7 @@ This guide consists of all the information that is required for developers like 
 
 ## 3. Design
 
+
 ### 3.1. Architecture
 
 <img src="images/Architecture.png" width="600"><br>
@@ -97,21 +98,22 @@ Given below is a quick overview of each component.
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup method where necessary.
 
-[**`Commons`**](#3-6-common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#3-7-common-classes) represents a collection of classes used by multiple other components.
 Two of those classes play important roles at the architecture level.
 
 * `EventsCenter` : This class (written using [Google's Event Bus library](https://github.com/google/guava/wiki/EventBusExplained))
   is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
 * `LogsCenter` : Used by many classes to write log messages to the App's log file.
 
-The rest of the App consists of four components.
+The rest of the App consists of five components.
 
 * [**`UI`**](#3-2-ui-component) : Provides a graphical user interface to the app
 * [**`Logic`**](#3-3-logic-component) : Handles commands entered
 * [**`Model`**](#3-4-model-component) : Holds the data of the App in-memory.
 * [**`Storage`**](#3-5-storage-component) : Reads data from, and writes data to, the hard disk.
+* [**`GTask`**](#3-6-gtask-component) : Handles authentication with Google, reads and writes to Google Tasks.
 
-Each of the four components
+Each of the five components
 
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
@@ -153,7 +155,7 @@ _Figure 3.2.1 : Structure of the UI Component_
 **API** : [`Ui.java`](../src/main/java/werkbook/task/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`,
-`StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
  that are in the `src/main/resources/view` folder.<br>
@@ -216,9 +218,31 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Task List data in xml format and read it back.
 
-### 3.6. Common classes
+### 3.6. GTask component
+
+Author: Luo Wenhan
+
+<img src="images/GTaskClassDiagram.png" width="350"><br>
+_Figure 3.6.1 : Structure of the GTask Component_
+
+**API** : [`GTask.java`](../src/main/java/werkbook/task/storage/GTask.java)
+
+The `GTask` component,
+
+* handles the authentication of the user to the Google API
+* reads and writes to Google Tasks once authenticated
+* provides adapters to convert between `Task` as defined in Model above and `Task` from Google API
+
+### 3.7. Common classes
 
 Classes used by multiple components are in the `werkbook.task.commons` package.
+
+They are separated into 4 further sub-packages:
+* `core` -  Includes essential classes used across multiple components.
+* `events` - Includes the different types of commands that can occur based on the events-driven nature of the design.
+* `exceptions` - Includes the types of exceptions that can be thrown.
+* `util` - Includes additional utility classes.
+
 
 ## 4. Implementation
 

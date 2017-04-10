@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.logic.commands;
 
 import java.io.IOException;
@@ -8,6 +7,7 @@ import java.nio.file.Path;
 import werkbook.task.commons.exceptions.IllegalValueException;
 import werkbook.task.logic.commands.exceptions.CommandException;
 
+//@@author A0162266E
 /**
  * Change the save location of the task list
  */
@@ -21,7 +21,7 @@ public class SaveCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " ./NewSaveFolder";
 
-    public static final String MESSAGE_SUCCESS = "Save location changed successfully";
+    public static final String MESSAGE_SUCCESS = "(•̀o•́)ง" + "\nSave location changed successfully";
     public static final String MESSAGE_INVALID_PATH = "Specified folder is invalid";
     public static final String MESSAGE_FOLDER_NOT_EXIST = "Specified folder does not exist";
     public static final String MESSAGE_NOT_A_DIRECTORY = "Specified path is not a folder";

@@ -1,4 +1,3 @@
-//@@author A0162266E
 package werkbook.task.gtasks;
 
 import java.io.File;
@@ -31,6 +30,7 @@ import werkbook.task.model.ReadOnlyTaskList;
 import werkbook.task.model.task.ReadOnlyTask;
 import werkbook.task.model.task.UniqueTaskList;
 
+//@@author A0162266E
 public class GTasksManager extends ComponentManager implements GTasks {
 
     /** Application name. */
