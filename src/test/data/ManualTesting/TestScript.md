@@ -97,6 +97,23 @@ Result box will show `End Date/Time must be specified if Start Date/Time is spec
 #### Results
 The task list will scroll to the task at index 3 and expand it. In the expanded view more detailed dates and description of the task can be seen.
 
+#### Actions
+1. Enter `select 1000`
+
+#### Results
+Result box will show `This task doesn't exist, silly`, since there is no task with an index of 1000.
+
+#### Actions
+1. Enter `select -10`
+
+#### Results
+Result box will tell you that you've got the wrong command format, only positive integers can follow the `select` command.
+
+>You've got the wrong command format!
+select: Selects the task identified by the index number used in the last task listing.
+Parameters: INDEX (must be a positive integer)
+Example: select 1
+
 ## 6. Listing tasks
 ### Listing incomplete/complete tasks
 #### Actions
@@ -129,7 +146,7 @@ The description of the first task will now be `Tailor it for Microsoft`. It will
 
 ### Edit time only
 #### Actions
-1. Enter `edit 1 next week`
+1. Enter `edit 1 by next week`
 
 #### Results
 The first task will have the day and time modified to that of next week's. It will automatically be selected, showing that other fields remain the same.
@@ -161,6 +178,12 @@ An error message will show up: `At least one field to edit must be provided`. Ta
 
 #### Results
 The task list will be filtered to only display tasks with `client` in its name. Enter `list` to show all tasks again.
+
+#### Actions
+1. Enter `find unknowntaskname`
+
+#### Results
+The task list will show `There are no tasks here` and the result box will show `I can't seem to find anything` because this task does not exist. Enter `list` to show all tasks again.
 
 ## 9. Marking tasks
 ### Marking a task from the default list
