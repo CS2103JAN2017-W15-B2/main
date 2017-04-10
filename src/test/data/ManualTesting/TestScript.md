@@ -170,7 +170,7 @@ The first task will have the day and time modified to that of next week's. It wi
 
 ### Edit multiple fields
 #### Actions
-1. Enter `edit 1 Submit resume (urgent) by tomorrow`
+1. Enter `edit 1 Submit resume (urgent) by tmr`
 
 #### Results
 The first task will now have the name `Submit resume` with a description of `urgent` and a due date of tomorrow (relative to when you perform this action).
