@@ -97,16 +97,11 @@ Result box will show `End Date/Time must be specified if Start Date/Time is spec
 #### Results
 Result box will tell you that you've got the wrong command format, since task name are mandatory.
 
->You've got the wrong command format!
-
->add: Adds a task to the task list.
-
->A task must have a name, but you can choose to give it a description or not.
-
->It can also have an end date and time but it cannot have a start date and time without an end.
-
->Parameters: Task name [(Description)] [from Start date and time] [to End date and time]
- 
+>You've got the wrong command format!<br>
+>add: Adds a task to the task list.<br>
+>A task must have a name, but you can choose to give it a description or not.<br>
+>It can also have an end date and time but it cannot have a start date and time without an end.<br>
+>Parameters: Task name [(Description)] [from Start date and time] [to End date and time]<br>
 >Example: add Walk the dog (Take Zelda on a walk around the park) from 10am to 12pm
 
 ## 5. Selecting tasks
@@ -131,12 +126,9 @@ Result box will show `This task doesn't exist, silly`, since there is no task wi
 #### Results
 Result box will tell you that you've got the wrong command format, since only positive integers can follow the `select` command.
 
->You've got the wrong command format!
-
->select: Selects the task identified by the index number used in the last task listing.
-
->Parameters: INDEX (must be a positive integer)
-
+>You've got the wrong command format!<br>
+>select: Selects the task identified by the index number used in the last task listing.<br>
+>Parameters: INDEX (must be a positive integer)<br>
 >Example: select 1
 
 ## 6. Listing tasks
@@ -235,13 +227,10 @@ Task will disappear from the list of incomplete task. The task after it will be 
 
 #### Results
 The first task will be deleted. Result box will show details about the task that was deleted.
->This is gone now: <Task name> <[Task status]>
 
->Description: <[Task description]>
-
->From: <[Start date time]> To: <[End date time]>
-
-
+>This is gone now: <Task name> <[Task status]><br>
+>Description: <[Task description]><br>
+>From: <[Start date time]> To: <[End date time]><br>
 >Last Updated: <Last updated time>
 
 ### Deleting an invalid task index
@@ -258,12 +247,9 @@ Result box will show `This task doesn't exist, silly`, since there is no task wi
 #### Results
 Result box will tell you that you've got the wrong command format, since only positive integers can follow the `delete` command.
 
->You've got the wrong command format!
-
->delete: Deletes the task identified by the index number used in the last task listing.
-
->Parameters: INDEX (must be a positive integer)
-
+>You've got the wrong command format!<br>
+>delete: Deletes the task identified by the index number used in the last task listing.<br>
+>Parameters: INDEX (must be a positive integer)<br>
 >Example: delete 1
 
 ## 11. Clearing all tasks
