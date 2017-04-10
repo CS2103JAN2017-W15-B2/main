@@ -1,0 +1,12 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+ol li ol {
+	list-style-type: lower-roman;
+}
+
+ol li ol li ol {
+	list-style-type: lower-alpha;
+}
