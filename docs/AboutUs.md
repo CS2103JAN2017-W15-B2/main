@@ -34,7 +34,9 @@ We are a team based in the [School of Computing, National University of Singapor
 * Components in charge of: [Logic](https://github.com/CS2103JAN2017-W15-B2/main/blob/master/docs/DeveloperGuide.md#3-3-logic-component)
 * Aspects/tools in charge of: Git Integration, Code Quality
 * Features implemented:
-   * [NLP in Commands for Date/Time input](https://github.com/CS2103JAN2017-W15-B2/main/blob/master/docs/UserGuide.md#i-task-management)
+   * [NLP in Commands for Date/Time input (https://github.com/CS2103JAN2017-W15-B2/main/blob/master/docs/UserGuide.md#i-task-management)
+   * [Mark Command] (https://github.com/CS2103JAN2017-W15-B2/main/blob/master/docs/UserGuide.md#f-mark-task)
+   * [List Command and sorting] (https://github.com/CS2103JAN2017-W15-B2/main/blob/master/docs/UserGuide.md#b-list-task)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W15-B2/main/blob/master/collated/main/A0139903B.md)][[test code](https://github.com/CS2103JAN2017-W15-B2/main/blob/master/collated/test/A0139903B.md)]
 * Other major contributions:
   * Set up appveyor, codacy, coveralls
